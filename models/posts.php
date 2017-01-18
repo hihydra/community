@@ -511,4 +511,13 @@ class posts_class extends AWS_MODEL
 
 		return $recommend_posts;
 	}
+
+	public function get_category_article(){
+		$category_list =  $this->fetch_all('category');
+		foreach ($category_list as &$value) {
+			//$value['article'] = $this->fetch_all('article','category_id = ' . $value['id'],null,6);
+			$value['article'] = $this->model('article')->get_articles_list($value['id'],1,6, 'add_time DESC');
+		}
+		return $category_list;
+	}
 }

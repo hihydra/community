@@ -1,0 +1,39 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+
+
+<link href="<?php echo G_STATIC_URL; ?>/css/<?php echo $this->template_name; ?>/<?php echo $this->template_name; ?>/css/public.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="<?php echo G_STATIC_URL; ?>/css/<?php echo $this->template_name; ?>/<?php echo $this->template_name; ?>/css/style4.css" id="skin">
+
+<div class="spModular_bg">
+  <div class="tea_spModular_content" style="z-index:1000;">
+    <div class="tea_spModular_top">
+      <div class="banner">
+       <div class="clearfix">
+        <h5><?php echo $this->topic_info['topic_title']; ?></h5>
+        <!--<a href="javascript:void(0);" class="attention"><span>+</span>关注</a>-->
+      </div>
+      <p>你好，欢迎光临！</p>
+    </div>
+    <span class="tea_return_wrap"><a class="tea_return tea_color" target="_blank" href="topic/">[返回共同体列表]</a></span>
+  </div>
+
+  <div class="tea_spModular_nav">
+    <ul class="clearfix nav">
+      <?php foreach ($this->content_nav_menu as $key => $val) { ?>
+      <?php if($_GET['topic']){$val['link'] .='__topic-'.$_GET['topic'];}?>
+      <?php if(!empty($this->topic_id)){$val['link'] .='__topic-'.$this->topic_id;}?>
+      <li><a href="<?php echo $val['link']; ?>" class="stair"><?php echo $val['title']; ?></a>
+      <?php if ($val['child'] && get_setting('nav_menu_show_child') == 'Y') { ?>
+        <ul class="second" style="width: 167px; display: none;">
+           <?php foreach ($val['child'] AS $_key => $_val) { ?>
+            <?php if($_GET['topic']){$val['link'] .='__topic-'.$_GET['topic'];}?>
+            <?php if(!empty($this->topic_id)){$val['link'] .='__topic-'.$this->topic_id;}?>
+            <a href="<?php echo $_val['link']; ?>"><?php echo $_val['title']; ?></a>
+           <?php } ?>
+        </ul>
+      <?php } ?>
+      </li>
+     <?php } ?>
+   </ul>
+ </div>
+</div>

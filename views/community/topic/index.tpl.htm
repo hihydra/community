@@ -1,326 +1,343 @@
-<?php TPL::output('global/header.tpl.htm'); ?>
+<?php TPL::output('global/header_community.tpl.htm'); ?>
 
-<div class="aw-container-wrap">
+<div class="w960 clearfix tea_main" style="">
+  <div id="module_l" class="groupWrapper tea_sidebar tea_fl">
+    <div class="groupItem" id="Info" style="z-index: 100;">
+      <div class="itemContent">
+        <div class="tea_module tea_brief">
+          <div class="tea_title clearfix">
+            <h3>共同体简介</h3>
+            <a href="http://www.wuhaneduyun.cn/index.php?r=studio/intro/index&amp;sid=343" class="fr more" target="_blank">详情</a>
+          </div>
+          <div class="details">
+            <div class="head_wrap">
+              <img src="<?php echo get_topic_pic_url('mid', $this->topic_info['topic_pic']); ?>" class="head_img">
+            </div>
+            <ul class="list clearfix">
+             <li class="first">
+               <span></span> <em></em>
+             </li>
+             <li><span>成员数</span> <em><a><?php echo $this->topic_info['focus_count']; ?></a></em></li>
+             <li><span>资源数</span> <em><a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources&amp;sid=343">102</a></em></li>
+             <li class="last"><span>文章数</span> <em><a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/categoryindex&amp;sid=343">25</a></em></li>
+           </ul>
+           <?php if ($this->user_id) { ?>
+           <a href="javascript:;" onclick="AWS.User.follow($(this), 'topic', <?php echo $this->topic_info['topic_id']; ?>);" class="follow btn btn-normal manage<?php if ($this->topic_info['has_focus']) { ?> active<?php } ?>"><span><?php if ($this->topic_info['has_focus']) { ?><?php _e('加入共同体'); ?><?php } else { ?><?php _e('退出共同体'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->topic_info['focus_count']; ?></b></a>
+           <?php } ?>
+           <!-- <a href="javascript:void(0);" class="manage" id="apply"></a> -->
+           <!-- <a href="" onclick="addfavorite(this)" class="enshrine" rel="sidebar">加入收藏</a> -->
+         </div>
+       </div>
+     </div>
+   </div>
 
-	<?php TPL::output('block/content_nav_menu.tpl.htm'); ?>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="aw-global-tips">
-					<?php if ($this->redirect_message) { ?>
-					<div class="alert alert-warning fade in">
-						<?php foreach ($this->redirect_message AS $key => $message) { ?>
-						<?php echo $message; ?>
-						<?php } ?>
-					</div>
-					<?php } ?>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-		<div class="row">
-			<div class="aw-content-wrap clearfix">
-				<div class="col-sm-12 col-md-9 aw-main-content">
-					<div class="aw-mod aw-topic-detail-title">
-						<div class="mod-body">
-							<img src="<?php echo get_topic_pic_url('mid', $this->topic_info['topic_pic']); ?>" alt="<?php echo $this->topic_info['topic_title']; ?>" />
-							<h2 class="pull-left"><?php echo $this->topic_info['topic_title']; ?> <?php if ($this->topic_info['topic_lock']) { ?><i class="aw-icon i-lock" title="<?php _e('已锁定'); ?>"></i><?php } ?></h2>
-							<div class="aw-topic-operate text-color-999">
-								<?php if ($this->user_id) { ?>
-								<a href="javascript:;" onclick="AWS.User.follow($(this), 'topic', <?php echo $this->topic_info['topic_id']; ?>);" class="follow btn btn-normal btn-success<?php if ($this->topic_info['has_focus']) { ?> active<?php } ?>"><span><?php if ($this->topic_info['has_focus']) { ?><?php _e('退出共同体'); ?><?php } else { ?><?php _e('加入共同体'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->topic_info['focus_count']; ?></b></a>
-								<?php } ?>
-							</div>
-						</div>
-					</div>
-
-					<div class="aw-mod aw-topic-list-mod">
-						<div class="mod-head">
-							<div class="tabbable">
-								<!-- tab 切换 -->
-								<ul class="nav nav-tabs aw-nav-tabs hidden-xs">
-									<li class="active"><a href="#all" data-toggle="tab"><?php _e('全部内容'); ?></a></li>
-									<li><a href="#best_answers" data-toggle="tab"><?php _e('精华'); ?></a></li>
-									<?php if ($this->all_list_bit) { ?>
-									<li><a href="#recommend" data-toggle="tab"><?php _e('推荐'); ?></a></li>
-									<?php } ?>
-									<?php if ($this->all_questions_list_bit) { ?>
-									<li><a href="#questions" data-toggle="tab"><?php _e('问题'); ?></a></li>
-									<?php } ?>
-									<?php if ($this->recommend_list_bit) { ?>
-									<li><a href="#articles" data-toggle="tab"><?php _e('文章'); ?></a></li>
-									<?php } ?>
-									<li><a href="#favorite" id="i_favorite" data-toggle="tab" style="display:none"><?php _e('我的收藏'); ?></a></li>
-									<li><a href="#about" id="i_about" data-toggle="tab"><?php _e('关于共同体'); ?></a></li>
-									<div class="aw-search-bar pull-right hidden-xs">
-										<i class="icon icon-search"></i>
-										<input type="text" id="question-input" class="search-query form-control" placeholder="搜索...">
-										<div class="aw-dropdown">
-											<p class="title"><?php _e('没有找到相关结果'); ?></p>
-											<ul class="aw-dropdown-list"></ul>
-										</div>
-									</div>
-								</ul>
-								<!-- end tab 切换 -->
-							</div>
-						</div>
-
-						<div class="mod-body">
-							<!-- tab 切换内容 -->
-							<div class="tab-content">
-								<div class="tab-pane active" id="all">
-									<!-- 推荐问题 -->
-									<?php if ($this->recommend_list) { ?>
-									<div class="aw-mod aw-topic-recommend-list">
-										<div class="mod-body">
-											<div class="aw-common-list" id="c_recommend_list">
-												<ul>
-													<?php foreach ($this->topic_recommend_list AS $key => $val) { ?>
-													<li>
-														<?php if ($val['question_id']) { ?>
-														<a href="question/<?php echo $val['question_id']; ?>"><?php echo $val['question_content']; ?></a>
-														<span class="pull-right text-color-999"><?php _e('% 个回复', $val['comment_count']); ?></span>
-														<?php } else { ?>
-														<a href="article/<?php echo $val['id']; ?>"><?php echo $val['title']; ?></a>
-														<span class="pull-right text-color-999"><?php _e('% 评论', $val['comments']); ?></span>
-														<?php } ?>
-													</li>
-													<?php } ?>
-												</ul>
-											</div>
-										</div>
-										<div class="mod-footer">
-											<a class="pull-right" id="aw-more-recommend"><?php _e('更多推荐内容'); ?> &gt;</a>
-										</div>
-									</div>
-									<?php } ?>
-									<!-- end 推荐问题 -->
-									<div class="aw-mod">
-										<div class="mod-body">
-											<div class="aw-common-list" id="c_all_list">
-												<?php echo $this->all_list_bit; ?>
-											</div>
-										</div>
-										<div class="mod-footer">
-											<a class="aw-load-more-content" id="c_all_more" auto-load="false">
-												<span><?php _e('更多'); ?>...</span>
-											</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="tab-pane" id="best_answers">
-									<div class="aw-feed-list" id="c_best_question_list">
-										<div class="mod-body">
-											<?php echo $this->best_questions_list_bit; ?>
-										</div>
-										<div class="mod-footer">
-											<a class="aw-load-more-content" id="bp_best_question_more" auto-load="false">
-												<span><?php _e('更多'); ?>...</span>
-											</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="tab-pane" id="recommend">
-									<div class="aw-mod">
-										<div class="mod-body">
-											<div class="aw-common-list" id="c_recommend_list">
-												<?php echo $this->recommend_list_bit; ?>
-											</div>
-										</div>
-										<div class="mod-footer">
-											<a class="aw-load-more-content" id="c_recommend_more" auto-load="false">
-												<span><?php _e('更多'); ?>...</span>
-											</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="tab-pane" id="questions">
-									<div class="aw-mod">
-										<div class="mod-body">
-											<div class="aw-common-list" id="c_question_list">
-												<?php echo $this->all_questions_list_bit; ?>
-											</div>
-										</div>
-										<div class="mod-footer">
-											<a class="aw-load-more-content" id="c_question_more" auto-load="false">
-												<span><?php _e('更多'); ?>...</span>
-											</a>
-										</div>
-									</div>
-								</div>
-
-								<div class="tab-pane" id="articles">
-									<!-- 动态首页&共同体精华模块 -->
-									<div class="aw-mod">
-										<div class="mod-body">
-											<div class="aw-common-list" id="c_articles_list">
-												<?php echo $this->articles_list_bit; ?>
-											</div>
-										</div>
-										<div class="mod-footer">
-											<a class="aw-load-more-content" id="bp_articles_more" auto-load="false">
-												<span><?php _e('更多'); ?>...</span>
-											</a>
-										</div>
-									</div>
-									<!-- end 动态首页&共同体精华模块 -->
-								</div>
-
-								<div class="tab-pane" id="favorite">
-									<!-- 动态首页&共同体精华模块 -->
-									<div class="aw-mod aw-feed-list" id="c_favorite_list"></div>
-									<!-- end 动态首页&共同体精华模块 -->
-
-									<!-- 加载更多内容 -->
-									<a class="aw-load-more-content" id="bp_favorite_more">
-										<span><?php _e('更多'); ?>...</span>
-									</a>
-									<!-- end 加载更多内容 -->
-								</div>
-
-								<div class="tab-pane" id="about">
-									<div class="aw-topic-detail-about text-color-666 markitup-box">
-										<?php echo $this->topic_info['topic_description']; ?>
-									</div>
-								</div>
-							</div>
-							<!-- end tab 切换内容 -->
-						</div>
-					</div>
-				</div>
-
-				<!-- 侧边栏 -->
-				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-					<!-- 共同体描述 -->
-					<div class="aw-mod aw-text-align-justify">
-						<div class="mod-head">
-							<h3><?php _e('共同体描述'); ?></h3>
-						</div>
-						<div class="mod-body">
-							<?php if ($this->topic_info['topic_description']) { ?>
-							<p><?php echo cjk_substr(strip_tags($this->topic_info['topic_description']), 0, 128, 'UTF-8', '... &nbsp; <a href="javascript:;" onclick="$(\'#i_about\').click()">查看全部</a>'); ?></p>
-							<?php } else if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) { ?>
-							<a href="topic/edit/<?php echo $this->topic_info['topic_id']; ?>" class="icon-inverse" class=><i class="icon icon-edit"></i> <?php _e('添加描述'); ?></a>
-							<?php } ?>
-						</div>
-					</div>
-					<!-- end 共同体描述 -->
-
-					<?php TPL::output('topic/related_topics.tpl.htm'); ?>
-
-					<?php if ($this->parent_topic_info) { ?>
-					<div class="aw-mod">
-						<div class="mod-head">
-							<h3><?php _e('根共同体'); ?></h3>
-						</div>
-
-						<a class="aw-topic-name" href="topic/<?php echo $this->parent_topic_info['url_token']; ?>" data-id="<?php echo $this->parent_topic_info['topic_id']; ?>"><span><?php echo $this->parent_topic_info['topic_title']; ?></span></a>
-					</div>
-					<?php } ?>
-
-					<!-- 最佳回复者 -->
-					<?php if ($this->best_answer_users) { ?>
-					<div class="aw-mod">
-						<div class="mod-head">
-							<h3><?php _e('最佳回复者'); ?></h3>
-						</div>
-
-						<div class="mod-body">
-							<?php foreach ($this->best_answer_users AS $key => $val) { ?>
-							<dl>
-								<dt class="pull-left aw-border-radius-5">
-									<a href="people/<?php echo $val['user_info']['url_token']; ?>"><img src="<?php echo get_avatar_url($val['user_info']['uid'], 'mid'); ?>" alt="" /></a>
-								</dt>
-
-								<dd class="pull-left">
-									<a class="aw-user-name" href="people/<?php echo $val['user_info']['url_token']; ?>" data-id="<?php echo $val['user_info']['uid']; ?>"><?php echo $val['user_info']['user_name']; ?><?php if ($val['user_info']['verified']) { ?><i class="icon-v<?php if ($val['user_info']['verified'] == 'enterprise') { ?> i-ve<?php } ?>" title="<?php if ($val['user_info']['verified'] == 'enterprise') { ?>企业认证<?php } else { ?>个人认证<?php } ?>"></i><?php } ?>
-									<?php echo $val['signature']; ?></a>
-									<p><?php _e('获得'); ?> <?php _e('%s 次赞同', '<b>' . $val['agree_count'] . '</b>'); ?>, <?php _e('%s 次感谢', '<b>' . $val['thanks_count'] . '</b>'); ?></p>
-								</dd>
-							</dl>
-							<?php } ?>
-						</div>
-					</div>
-					<?php } ?>
-					<!-- end 最佳回复者 -->
-
-					<!-- xx人关注该共同体 -->
-					<div class="aw-mod topic-status">
-						<div class="mod-head">
-							<h3><?php _e('%s 人关注该共同体', $this->topic_info['focus_count']); ?></h3>
-						</div>
-						<div class="mod-body">
-							<div id="focus_users" class="aw-border-radius-5"></div>
-						</div>
-					</div>
-					<!-- end xx人关注该共同体 -->
-
-					<!-- 共同体修改记录 -->
-					<?php if ($this->user_id) {?>
-					<div class="aw-mod topic-edit-notes">
-						<div class="mod-head">
-							<h3><i class="icon icon-down pull-right"></i><?php _e('共同体修改记录'); ?></h3>
-						</div>
-						<div class="mod-body collapse">
-							<ul>
-								<?php if ($this->log_list) { ?>
-								<?php foreach ($this->log_list as $key => $val) { ?>
-								<li onclick="AWS.dialog('topicEditHistory', decodeURIComponent('<?php echo rawurlencode($val['add_time'] . ': ' . $val['title']); ?>'));">
-									<span class="pull-right text-color-999"><?php echo $val['add_time']; ?></span>
-									<a href="javascript:;" data-id="<?php echo $val['uid']; ?>" class="aw-user-name"><?php echo $val['user_name']; ?></a>
-								</li>
-								<?php } ?>
-								<?php } ?>
-							</ul>
-						</div>
-					</div>
-					<?php } ?>
-					<!-- end 共同体修改记录 -->
-
-					<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'] OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic'])) { ?>
-					<div class="aw-mod">
-						<div class="mod-head">
-							<h3><?php _e('管理'); ?></h3>
-						</div>
-
-						<div class="mod-body">
-							<ul>
-								<?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) { ?>
-								<li><a href="topic/edit/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('编辑共同体'); ?></a></li>
-								<?php } ?>
-								<?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic']) { ?>
-								<li><a href="topic/manage/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('管理共同体'); ?></a></li>
-								<?php } ?>
-
-								<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
-								<li><a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定共同体'); ?><?php } ?></a></li>
-
-								<li><a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});"><?php _e('删除共同体'); ?></a></li>
-								<?php } ?>
-							</ul>
-						</div>
-					</div>
-					<?php } ?>
-				</div>
-				<!-- end 侧边栏 -->
-			</div>
-		</div>
-	</div>
+   <div class="groupItem" id="Member" style="z-index: 99;">
+    <div class="itemContent">
+      <div class="tea_module tea_member">
+        <div class="tea_title clearfix">
+         <h3>共同体成员</h3>
+         <a href="http://www.wuhaneduyun.cn/index.php?r=studio/member/index&amp;sid=343" class="fr more" target="_blank">更多</a>
+       </div>
+       <div class="details">
+         <ul class="member_list clearfix">
+          <div id="focus_users" class="aw-border-radius-5"></div>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script type="text/javascript">
-	var TOPIC_ID = '<?php echo $this->topic_info['topic_id']; ?>';
+<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'] OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic'])) { ?>
+   <div class="groupItem" id="Member" style="z-index: 99;">
+    <div class="itemContent">
+      <div class="tea_module tea_member">
+        <div class="tea_title clearfix">
+         <h3>共同体管理</h3>
+       </div>
+       <div class="details">
+         <ul class="member_list clearfix">
+          <div class="mod-body">
+    <ul>
+      <?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) { ?>
+      <li><a href="topic/edit/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('编辑'); ?></a></li>
+      <?php } ?>
+      <?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic']) { ?>
+      <li><a href="topic/manage/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('管理'); ?></a></li>
+      <?php } ?>
 
-	var CONTENTS_TOPIC_ID = '<?php echo $this->contents_topic_id; ?>';
-	var CONTENTS_RELATED_TOPIC_IDS = '<?php echo $this->contents_related_topic_ids; ?>';
-	var CONTENTS_TOPIC_TITLE = '<?php echo $this->contents_topic_title; ?>';
-</script>
+      <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
+      <li><a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定'); ?><?php } ?></a></li>
 
-<script type="text/javascript" src="<?php echo G_STATIC_URL; ?>/js/app/topic.js"></script>
+      <li><a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});"><?php _e('删除'); ?></a></li>
+      <?php } ?>
+    </ul>
+  </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
 
-<?php TPL::output('global/footer.tpl.htm'); ?>
+</div>
+
+
+<div id="module_m" class="groupWrapper tea_content tea_fr">
+  <div class="groupItem" id="News" style="z-index: 96;"><div class="itemContent">
+
+
+    <div class="clearfix">
+     <div class="tea_module tea_news" id="tea_news">
+      <div class="tea_title clearfix">
+       <h3>工作室资讯</h3>
+       <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/index&amp;sid=343" class="fr more" target="_blank">更多</a>
+     </div>
+     <div class="details clearfix">
+       <div class="tea_focus">
+        <ul class="pic" style="width: 880px; left: -528px;">
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=3003" target="_blank"><img src="./images/5829198d210ea.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=1559" target="_blank"><img src="./images/560b252fa27da.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=1479" target="_blank"><img src="./images/56089cb10fa51.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=992" target="_blank"><img src="./images/55fb72a2a0ef6.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=989" target="_blank"><img src="./images/55fb6f0a2146a.jpg_200x200.jpg"></a>
+        </ul>
+
+        <ul class="btn cleafix" style="right: 47.5px;">
+         <a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class="active"></a><a href="javascript:void(0)" class=""></a></ul>
+       </div>
+
+       <div class="news_list">
+        <h3><a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=3003" title="先生回来——“教海探航”全国名师课堂展示活动报道" target="_blank">先生回来——“教海探</a></h3>
+        <p class="c888">先生回来是的，久违了，我们需要..<a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=3003" target="_blank">[详情]</a></p>
+        <ul>
+          <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=1559" title="工作室邀请何方（Fiona）开展本月的实幼名师讲堂" target="_blank">工作室邀请何方（Fiona）开</a></li>
+          <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=1479" title="何磊名师工作室集体备课" target="_blank">何磊名师工作室集体备课</a></li>
+          <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=992" title="赶快掏本本 记录名师何磊幼教金句" target="_blank">赶快掏本本 记录名师何磊幼</a></li>
+          <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/news/details&amp;sid=343&amp;id=989" title="何磊参加湖北省教材审定工作" target="_blank">何磊参加湖北省教材审定工</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
+    <div class="tea_title clearfix">
+     <h3>工作室公告</h3>
+     <a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/index&amp;sid=343" class="fr more" target="_blank">更多</a>
+   </div>
+   <div class="details clearfix">
+     <ul class="list">
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=1309" title="外宾考察" target="_blank">外宾考察</a><span>2016-11-14</span></li>
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=395" title="近4000资源上线请点击后连接" target="_blank">近4000资源上线</a><span>2015-11-15</span></li>
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=592" title="《新西兰幼儿教师learning story 》分享交流会" target="_blank">《新西兰幼儿教</a><span>2015-09-28</span></li>
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=394" title="点击获取资源链接" target="_blank">点击获取资源链</a><span>2015-09-15</span></li>
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=396" title="工作室资源全部上线，动动手指即可链接！" target="_blank">工作室资源全部</a><span>2015-08-15</span></li>
+       <li class="clearfix"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/notice/details&amp;sid=343&amp;id=400" title="让我们快乐出发——告实验幼儿园小班家长的一封信" target="_blank">让我们快乐出发</a><span>2015-07-15</span></li>
+     </ul>
+   </div>
+ </div>
+
+</div>
+</div>
+</div>
+
+
+<div class="groupItem" id="Search" style="z-index: 95;">
+  <div class="itemContent">
+    <div class="search-box clearfix app">
+      <form method="get" id="searchform" action="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343">
+        <div class="txt-l fl">
+          <div class="option fl">
+            <ul class="drop-list" style="text-align:left">
+              <li class="st" data-type="post"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室文章</a></li>
+              <li class="othertb" data-type="post" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室文章</a></li>
+              <li class="othertb" data-type="res" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室资源</a></li>
+              <li class="othertb" data-type="topic" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室话题</a></li>
+              <li class="othertb" data-type="video" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室视频</a></li>
+              <li class="othertb" data-type="activies" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室活动</a></li>
+            </ul>
+          </div>
+          <div class="txt fl">
+            <input id="key_words" name="key_words" type="text" class="s-txt" value="" placeholder="请输入搜索内容">
+            <input id="searchtype" name="type" type="hidden" value="post">
+          </div>
+        </div>
+        <div class="btn fl">
+          <input type="submit" value="搜索" class="s-btn">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="groupItem" id="PostList" style="z-index: 94;">
+  <div class="itemContent">
+    <div class="tea_module tea_subject">
+      <div class="tea_title clearfix">
+        <?php $article = $this->posts_list['1'];?>
+        <h3><?php echo $article['title']; ?></h3>
+        <a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/categoryindex&amp;sid=343" target="_blank" class="fr more">更多</a>
+      </div>
+      <div class="details clearfix">
+        <ul class="list">
+          <?php foreach ($article['article'] as $key => $val) {?>
+          <li class="clearfix">
+            <em class="sub_left">
+              <a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/list&amp;sid=343&amp;cid=3115" class="a_blod">[<?php echo $article['title']; ?>]</a>
+              <a href="article/<?php echo $val['id']; ?>" class="t_c555" title="<?php echo $val['title']; ?>"><?php echo $val['title']; ?></a>
+            </em>
+            <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">何磊</a>
+            <span class="date"><?php echo date_friendly($val['add_time'], 604800, 'Y-m-d'); ?></span>
+            <span class="browse">浏览 <?php echo $val['views']; ?></span>
+          </li>
+          <?php } ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="groupItem" id="Album" style="z-index: 93;">
+  <div class="itemContent">
+    <div class="tea_module tea_fruits">
+     <div class="tea_title clearfix">
+      <h3>成果展示</h3>
+      <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/index&amp;sid=343" class="fr more" target="_blank">更多</a>
+    </div>
+    <div class="details clearfix">
+      <ul class="list clearfix">
+        <li>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1485" target="_blank"><img src="./images/5608abd457f57.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1485" target="_blank" title="《教师杂志》发表文章">《教师杂志》发表文章</a>
+        </li>
+        <li>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1484" target="_blank"><img src="./images/5608ab273fd54.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1484" target="_blank" title="早期教育2012年第5期佳园印象发表文章">早期教育2012年第5期</a>
+        </li>
+        <li>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1483" target="_blank"><img src="./images/5608aa36d67d8.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1483" target="_blank" title="幼儿100发表《向下扎根，向上生长》">幼儿100发表《向下扎</a>
+        </li>
+        <li>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1481" target="_blank"><img src="./images/5608a95352158.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1481" target="_blank" title="《儿童教育发展》发表文章">《儿童教育发展》发表</a>
+        </li>
+        <li class="last">
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1480" target="_blank"><img src="./images/5608a8b346d9d.jpg_200x200.jpg"></a>
+          <a href="http://www.wuhaneduyun.cn/index.php?r=studio/achievement/details&amp;sid=343&amp;id=1480" target="_blank" title="2013.1学前教育发展动态“解读童心 感受童真”">2013.1学前教育发展动</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="groupItem" id="Resources" style="z-index: 92;">
+  <div class="itemContent"> <!--widget接口调用耗时：0.0026-->
+    <div class="tea_module tea_resource">
+      <div class="tea_title clearfix">
+        <h3>学科资源</h3>
+        <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources&amp;sid=343" class="fr more" target="_blank">更多</a>
+      </div>
+      <div class="details clearfix">
+        <ul class="list clearfix">
+          <li class="clearfix">
+            <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=de977bc0bb9f4d39b3fb67be8eca415c" class="title doc">
+              武汉市实验幼儿园睿迪园刘莹大拇哥...           </a>
+              <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                何磊</a>
+                <span class="download">
+                </span>
+              </li>
+              <li class="clearfix">
+                <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=bf44b7c8a8a54b4395fd9491f149e44d" class="title doc">
+                  武汉市实验幼儿园2015年9月集...           </a>
+                  <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                    何磊</a>
+                    <span class="download">
+                    </span>
+                  </li>
+                  <li class="clearfix">
+                    <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=a643d3c6d3b042aea850afaf7a5efbce" class="title doc">
+                      武汉市实验幼儿园2015年9月集...           </a>
+                      <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                        何磊</a>
+                        <span class="download">
+                        </span>
+                      </li>
+                      <li class="clearfix">
+                        <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=98412dbb1b7e4feea9b898c9d711676b" class="title doc">
+                          武汉市实验幼儿园2015年9月集...           </a>
+                          <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                            何磊</a>
+                            <span class="download">
+                            </span>
+                          </li>
+                          <li class="clearfix">
+                            <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=a76f02d4e35141c7a4c753765a5ddff9" class="title doc">
+                              武汉市实验幼儿园2015年9月集...           </a>
+                              <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                何磊</a>
+                                <span class="download">
+                                </span>
+                              </li>
+                              <li class="clearfix">
+                                <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=044e45d6de4049e980b194a6a6238607" class="title doc">
+                                  武汉市实验幼儿园2015年9月集...           </a>
+                                  <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                    何磊</a>
+                                    <span class="download">
+                                    </span>
+                                  </li>
+                                  <li class="clearfix">
+                                    <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=6c495dc4c5e54edcba72b42aca3bc824" class="title doc">
+                                      武汉市实验幼儿园2015年9月集...           </a>
+                                      <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                        何磊</a>
+                                        <span class="download">
+                                        </span>
+                                      </li>
+                                      <li class="clearfix">
+                                        <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=f42445cd991a45f9b2fef0a86398f6a5" class="title doc">
+                                          田雨晴《罗伯生气了》.doc            </a>
+                                          <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                            何磊</a>
+                                            <span class="download">
+                                            </span>
+                                          </li>
+                                          <li class="clearfix">
+                                            <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=5ee5777a8b914044a685a7c9ac0aee34" class="title doc">
+                                              小班科艺活动《翻跟斗的小熊》-刘...           </a>
+                                              <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                                何磊</a>
+                                                <span class="download">
+                                                </span>
+                                              </li>
+                                              <li class="clearfix">
+                                                <a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources/info&amp;sid=343&amp;resId=e167b2a9e4be4d2aaf71fa4d1aed8c14" class="title doc">
+                                                  於琼芳《翻跟头的小熊》.doc           </a>
+                                                  <a href="http://www.wuhaneduyun.cn/index.php?r=space/person/index&amp;sid=300b6666915d4029b1fff56ba211f7ec" class="user">
+                                                    何磊</a>
+                                                    <span class="download">
+                                                    </span>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                            </div><!--widget模板解析耗时：0.0033--></div></div>
+
+
+                                          </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                          var TOPIC_ID = '<?php echo $this->topic_info['topic_id']; ?>';
+
+                                          var CONTENTS_TOPIC_ID = '<?php echo $this->contents_topic_id; ?>';
+                                          var CONTENTS_RELATED_TOPIC_IDS = '<?php echo $this->contents_related_topic_ids; ?>';
+                                          var CONTENTS_TOPIC_TITLE = '<?php echo $this->contents_topic_title; ?>';
+                                        </script>
+                                        <script type="text/javascript" src="<?php echo G_STATIC_URL; ?>/js/app/topic.js"></script>
+
+
+                                        <?php TPL::output('global/footer_community.tpl.htm'); ?>

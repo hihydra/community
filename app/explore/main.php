@@ -89,12 +89,23 @@ class main extends AWS_CONTROLLER
 
 			TPL::set_meta('description', $meta_description);
 		}
-
+		/*
 		// 导航
 		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'explore/index'))
 		{
 			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
 		}
+		*/
+
+		//wl-add 增加话题分类
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
+		TPL::assign('topic_id',$topic_info['topic_id']);
+		if($_GET['topic']){
+			$topic_id = array($_GET['topic']);
+		}else{
+			$topic_id = null;
+		}
+		//wl-end
 
 		// 边栏可能感兴趣的人
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'explore/index'))
@@ -119,14 +130,6 @@ class main extends AWS_CONTROLLER
 		{
 			TPL::assign('feature_list', $this->model('module')->feature_list());
 		}
-
-		//wl-add 增加话题分类
-		if($_GET['topic']){
-			$topic_id = array($_GET['topic']);
-		}else{
-			$topic_id = null;
-		}
-		//wl-end
 
 		if (! $_GET['sort_type'] AND !$_GET['is_recommend'])
 		{

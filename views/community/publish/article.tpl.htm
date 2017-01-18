@@ -19,11 +19,11 @@
 						<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
 						<input type="hidden" name="article_id" id="article_id" value="<?php echo $this->article_info['id']; ?>" />
 						<?php if ($this->article_category_list) { ?>
-							<select name="category_id" class="collapse" id="category_id">
-								<option value="0">- <?php _e('请选择分类'); ?> -</option>
-								<?php echo $this->article_category_list; ?>
-							</select>
-							<?php } ?>
+						<select name="category_id" class="collapse" id="category_id">
+							<option value="0">- <?php _e('请选择分类'); ?> -</option>
+							<?php echo $this->article_category_list; ?>
+						</select>
+						<?php } ?>
 						<div class="aw-mod aw-mod-publish">
 							<div class="mod-body">
 								<h3><?php _e('文章标题'); ?>:</h3>
@@ -46,12 +46,23 @@
 								</div>
 								<!-- end 文章标题 -->
 
+								<!-- 文章封面图 -->
+
+
+								<h3><?php _e('封面图'); ?>:</h3>
+								<div class="aw-upload-box">
+									<a class="btn btn-default">上传封面图</a>
+									<div class="upload-container"></div>
+									<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('支持上传图片类型'); ?>: jpg,jpeg,gif,png</span>
+								</div>
+
+								<!-- end 文章封面图  -->
 								<h3><?php _e('文章内容'); ?>:</h3>
 								<div class="aw-mod aw-editor-box">
 									<div class="mod-head">
 										<div class="wmd-panel">
 											<textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="message"><?php echo $this->article_info['message']; ?></textarea>
-								        </div>
+										</div>
 									</div>
 									<div class="mod-body">
 										<p class="text-color-999"><span class="pull-right" id="question_detail_message">&nbsp;</span></p>
@@ -113,6 +124,7 @@
 								</div>
 								<?php } ?>
 
+
 								<?php if ($this->human_valid) { ?>
 								<div class="aw-auth-img clearfix">
 									<em class="auth-img pull-right"><img src="" onclick="this.src = G_BASE_URL + '/account/captcha/' + Math.floor(Math.random() * 10000);" id="captcha"  /></em>
@@ -126,38 +138,40 @@
 									<?php if ($this->article_info['id'] AND ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])) { ?>
 									<label><input type="checkbox" class="pull-left" value="1" name="do_delete" />
 										<?php _e('删除文章'); ?></label>
-									<?php } ?>
-								</span>
-								<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+										<?php } ?>
+									</span>
+									<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- 侧边栏 -->
+					<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
+						<!-- 文章发起指南 -->
+						<div class="aw-mod publish-help">
+							<div class="mod-head">
+								<h3><?php _e('文章发起指南'); ?></h3>
+							</div>
+							<div class="mod-body">
+								<p><b>• <?php _e('文章标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的文章思想'); ?></p>
+								<p><b>• <?php _e('文章补充'); ?>:</b> <?php _e('详细补充您的文章内容, 并提供一些相关的素材以供参与者更多的了解您所要文章的主题思想'); ?></p>
+								<!--
+								<p><b>• <?php _e('选择话题'); ?>:</b> <?php _e('选择一个或者多个合适的话题, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的话题'); ?></p>
+								-->
 							</div>
 						</div>
-					</form>
-				</div>
-				<!-- 侧边栏 -->
-				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-					<!-- 文章发起指南 -->
-					<div class="aw-mod publish-help">
-						<div class="mod-head">
-							<h3><?php _e('文章发起指南'); ?></h3>
-						</div>
-						<div class="mod-body">
-							<p><b>• <?php _e('文章标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的文章思想'); ?></p>
-							<p><b>• <?php _e('文章补充'); ?>:</b> <?php _e('详细补充您的文章内容, 并提供一些相关的素材以供参与者更多的了解您所要文章的主题思想'); ?></p>
-							<p><b>• <?php _e('选择话题'); ?>:</b> <?php _e('选择一个或者多个合适的话题, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的话题'); ?></p>
-						</div>
+						<!-- end 文章发起指南 -->
 					</div>
-					<!-- end 文章发起指南 -->
+					<!-- end 侧边栏 -->
 				</div>
-				<!-- end 侧边栏 -->
 			</div>
 		</div>
 	</div>
-</div>
 
-<script type="text/javascript">
-	var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
-	var CATEGORY_ID = <?php echo $this->article_info['category_id']; ?>;
-	var PUBLISH_TYPE = 'article';
-</script>
+	<script type="text/javascript">
+		var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
+		var CATEGORY_ID = <?php echo $this->article_info['category_id']; ?>;
+		var PUBLISH_TYPE = 'article';
+	</script>
 
-<?php TPL::output('global/footer.tpl.htm'); ?>
+	<?php TPL::output('global/footer.tpl.htm'); ?>

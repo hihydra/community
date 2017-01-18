@@ -88,12 +88,9 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('human_valid', human_valid('answer_valid_hour'));
 
-		//wl-add 导航
-		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'explore/index'))
-		{
-			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-			TPL::assign('topic_id',$topic_info['topic_id']);
-		}
+		//wl-add 分类
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
+		TPL::assign('topic_id',$topic_info['topic_id']);
 		//wl-end
 
 		if ($_GET['item_id'])
