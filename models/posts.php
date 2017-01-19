@@ -512,11 +512,18 @@ class posts_class extends AWS_MODEL
 		return $recommend_posts;
 	}
 
-	public function get_category_article(){
+	public function get_category_article($topic_id){
 		$category_list =  $this->fetch_all('category');
 		foreach ($category_list as &$value) {
-			//$value['article'] = $this->fetch_all('article','category_id = ' . $value['id'],null,6);
-			$value['article'] = $this->model('article')->get_articles_list($value['id'],1,6, 'add_time DESC');
+			$value['link'] = 'explore/category-'.$value['id'].'__topic-'.$topic_id;
+			$value['article'] = $this->model('article')->get_articles_list_by_topic_category_id($topic_id,$value['id'],10);
+			foreach ($value['article'] as &$val) {
+				if ($val['icon'])
+				{
+					$val['attachs'] = $this->model('publish')->get_attach_by_id($val['icon']);
+					$val['user'] = $this->model('account')->get_user_info_by_uid($val['uid']);
+				}
+			}
 		}
 		return $category_list;
 	}

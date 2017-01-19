@@ -153,6 +153,7 @@ class menu_class extends AWS_MODEL
 				$nav_menu_data['base']['link'] = $url_prefix;
 			}
 		}
+
 		return $nav_menu_data;
 	}
 

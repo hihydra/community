@@ -47,6 +47,7 @@ html body .spModular_bg{width: 100%; background:url(../images/top_bg.png) repeat
 .tea_spModular_nav .nav li { float:left; line-height:20px; width:100px; height:40px; text-align:center;   font-size:16px; font-familY:'Microsoft YaHei'; position:relative;  z-index:999;}
 .tea_spModular_nav .nav li .stair { color:white; display:block; width:100%; height:100%; }
 .tea_spModular_nav .nav li .stair:hover { text-decoration:none;background:#967f5e;  }
+.tea_spModular_nav .nav li .stair:visited{ text-decoration:none;background:#967f5e;  }
 .tea_spModular_nav .nav li .stair.active { background:#967f5e}
 .tea_spModular_nav .nav li .second { position:absolute; left:0; top:40px; width:152px; border:1px solid #b6a286; display:none;   }
 .tea_spModular_nav .nav li .second a { display:block; width:100%; line-height:36px; height:36px;  color:black; font-size:14px; colro:#555; background:white; text-align:left; text-indent:16px; }

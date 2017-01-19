@@ -90,7 +90,7 @@ class main extends AWS_CONTROLLER
 
 		//wl-add 分类
 		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-		TPL::assign('topic_id',$topic_info['topic_id']);
+		TPL::assign('topic_info',$topic_info);
 		//wl-end
 
 		if ($_GET['item_id'])

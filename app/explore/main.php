@@ -99,8 +99,9 @@ class main extends AWS_CONTROLLER
 
 		//wl-add 增加话题分类
 		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-		TPL::assign('topic_id',$topic_info['topic_id']);
 		if($_GET['topic']){
+			$topic_info = $this->model('topic')->get_topic_by_id($_GET['topic']);
+			TPL::assign('topic_info',$topic_info);
 			$topic_id = array($_GET['topic']);
 		}else{
 			$topic_id = null;

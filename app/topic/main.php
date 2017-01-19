@@ -109,9 +109,8 @@ class main extends AWS_CONTROLLER
 
 		//wl-add 分类
 		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-		TPL::assign('topic_id',$topic_info['topic_id']);
 
-		$posts_list = $this->model('posts')->get_category_article();
+		$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
 		TPL::assign('posts_list',$posts_list);
 		TPL::output('topic/index');
 		//wl-end

@@ -490,4 +490,10 @@ class article_class extends AWS_MODEL
 
 		$this->model('posts')->set_posts_index($article_id, 'article');
 	}
+
+	//wl-add
+	public function get_articles_list_by_topic_category_id($topic_id,$category_id,$limit){
+		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and b.category_id = '.$category_id,$limit);
+	}
+	//wl-end
 }
