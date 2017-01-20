@@ -19,7 +19,7 @@
              </li>
              <li><span>成员数</span> <em><a><?php echo $this->topic_info['focus_count']; ?></a></em></li>
              <li><span>资源数</span> <em><a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources&amp;sid=343">102</a></em></li>
-             <li class="last"><span>文章数</span> <em><a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/categoryindex&amp;sid=343">25</a></em></li>
+             <li class="last"><span>文章数</span> <em><a><?php echo $this->topic_info['discuss_count']?></a></em></li>
            </ul>
            <?php if ($this->user_id) { ?>
            <a href="javascript:;" onclick="AWS.User.follow($(this), 'topic', <?php echo $this->topic_info['topic_id']; ?>);" class="follow btn btn-normal manage<?php if ($this->topic_info['has_focus']) { ?> active<?php } ?>"><span><?php if ($this->topic_info['has_focus']) { ?><?php _e('加入共同体'); ?><?php } else { ?><?php _e('退出共同体'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->topic_info['focus_count']; ?></b></a>
@@ -150,18 +150,8 @@
     <div class="search-box clearfix app">
       <form method="get" id="searchform" action="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343">
         <div class="txt-l fl">
-          <div class="option fl">
-            <ul class="drop-list" style="text-align:left">
-              <li class="st" data-type="post"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室文章</a></li>
-              <li class="othertb" data-type="post" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室文章</a></li>
-              <li class="othertb" data-type="res" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室资源</a></li>
-              <li class="othertb" data-type="topic" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室共同体</a></li>
-              <li class="othertb" data-type="video" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室视频</a></li>
-              <li class="othertb" data-type="activies" style="display: none;"><a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343#">工作室活动</a></li>
-            </ul>
-          </div>
           <div class="txt fl">
-            <input id="key_words" name="key_words" type="text" class="s-txt" value="" placeholder="请输入搜索内容">
+            <input id="key_words" name="key_words" type="text" class="s-txt" value="" placeholder=" 请输入搜索内容">
             <input id="searchtype" name="type" type="hidden" value="post">
           </div>
         </div>

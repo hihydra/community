@@ -222,7 +222,7 @@ class article_class extends AWS_MODEL
 		return $this->fetch_page('article', implode(' AND ', $where), $order_by, $page, $per_page);
 	}
 
-	public function get_articles_list_by_topic_ids($page, $per_page, $order_by, $topic_ids)
+	public function get_articles_list_by_topic_ids($page, $per_page, $order_by, $topic_ids,$category_id)
 	{
 		if (!$topic_ids)
 		{
@@ -235,7 +235,12 @@ class article_class extends AWS_MODEL
 				$topic_ids
 			);
 		}
-
+		//wl-add
+		if ($category_id)
+		{
+			$where[] = 'category_id IN(' . implode(',', $this->model('system')->get_category_with_child_ids('question', $category_id)) . ')';
+		}
+		//wl-end
 		array_walk_recursive($topic_ids, 'intval_string');
 
 		$result_cache_key = 'article_list_by_topic_ids_' . md5(implode('_', $topic_ids) . $order_by . $page . $per_page);
@@ -493,7 +498,7 @@ class article_class extends AWS_MODEL
 
 	//wl-add
 	public function get_articles_list_by_topic_category_id($topic_id,$category_id,$limit){
-		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and b.category_id = '.$category_id,$limit);
+		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and b.category_id = '.$category_id.' ORDER BY b.add_time DESC',$limit);
 	}
 	//wl-end
 }

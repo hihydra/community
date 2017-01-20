@@ -89,7 +89,7 @@ class main extends AWS_CONTROLLER
 		TPL::assign('human_valid', human_valid('answer_valid_hour'));
 
 		//wl-add 分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
 		TPL::assign('topic_info',$topic_info);
 		//wl-end
 
@@ -167,6 +167,10 @@ class main extends AWS_CONTROLLER
 
 		$this->crumb(AWS_APP::lang()->_t('文章'), '/article/');
 
+		//wl-add 分类
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
+		//wll -end
+
 		if ($_GET['category'])
 		{
 			if (is_digits($_GET['category']))
@@ -192,6 +196,16 @@ class main extends AWS_CONTROLLER
 				TPL::assign('feature_info', $feature_info);
 			}
 		}
+		//wll -add
+		else if($_GET['topic']){
+			$topic_id = $_GET['topic'];
+			$topic_info = $this->model('topic')->get_topic_by_id($topic_id);
+			TPL::assign('topic_info',$topic_info);
+			$article_list = $this->model('article')->get_articles_list_by_topic_ids($_GET['page'],get_setting('contents_per_page'), 'add_time DESC',$topic_id,$category_info['id']);
+
+			$article_list_total = $this->model('article')->found_rows();
+		}
+		//wll -end
 		else
 		{
 			$article_list = $this->model('article')->get_articles_list($category_info['id'], $_GET['page'], get_setting('contents_per_page'), 'add_time DESC');
@@ -217,11 +231,6 @@ class main extends AWS_CONTROLLER
 			}
 		}
 
-		// 导航
-		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'article/square'))
-		{
-			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
-		}
 
 		//边栏热门话题
 		if (TPL::is_output('block/sidebar_hot_topics.tpl.htm', 'article/square'))
@@ -251,7 +260,7 @@ class main extends AWS_CONTROLLER
 		TPL::assign('hot_articles', $this->model('article')->get_articles_list(null, 1, 10, 'votes DESC', 30));
 
 		TPL::assign('pagination', AWS_APP::pagination()->initialize(array(
-			'base_url' => get_js_url('/article/category_id-' . $_GET['category_id'] . '__feature_id-' . $_GET['feature_id']),
+			'base_url' => get_js_url('/article/category-' . $_GET['category']. '__topic-' . $_GET['topic'] . '__feature_id-' . $_GET['feature_id']),
 			'total_rows' => $article_list_total,
 			'per_page' => get_setting('contents_per_page')
 		))->create_links());

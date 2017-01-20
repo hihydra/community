@@ -521,8 +521,12 @@ class posts_class extends AWS_MODEL
 				if ($val['icon'])
 				{
 					$val['attachs'] = $this->model('publish')->get_attach_by_id($val['icon']);
-					$val['user'] = $this->model('account')->get_user_info_by_uid($val['uid']);
 				}
+				if(!$val['icon']||!$val['attachs']){
+					$val['attachs']['attachment'] = G_STATIC_URL . '/common/topic-max-img.png';
+				}
+
+				$val['user'] = $this->model('account')->get_user_info_by_uid($val['uid']);
 			}
 		}
 		return $category_list;

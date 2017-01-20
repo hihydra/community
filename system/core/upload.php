@@ -440,10 +440,10 @@ class core_upload {
         {
             $filename = md5(rand(1, 99999999) . microtime());
 
-            if ( $this->is_image() )
-            {
+            //if ( $this->is_image() )
+            //{
                 $filename .= $this->file_ext;
-            }
+            //}
 
             if ( ! file_exists($path . $filename))
             {

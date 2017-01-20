@@ -1,6 +1,6 @@
 <?php TPL::output('global/header.tpl.htm'); ?>
 
-
+<link href="<?php echo G_STATIC_URL; ?>/css/<?php echo $this->template_name; ?>/<?php echo $this->template_name; ?>/css/base.css" rel="stylesheet" type="text/css">
 <link href="<?php echo G_STATIC_URL; ?>/css/<?php echo $this->template_name; ?>/<?php echo $this->template_name; ?>/css/public.css" rel="stylesheet" type="text/css">
 <link type="text/css" rel="stylesheet" href="<?php echo G_STATIC_URL; ?>/css/<?php echo $this->template_name; ?>/<?php echo $this->template_name; ?>/css/style4.css" id="skin">
 
@@ -21,14 +21,12 @@
     <ul class="clearfix nav">
       <li><a href="topic/<?php echo $this->topic_info['topic_title']; ?>" class="stair">首页</a></li>
       <?php foreach ($this->content_nav_menu as $key => $val) { ?>
-      <?php if($_GET['topic']){$val['link'] .='__topic-'.$_GET['topic'];}?>
       <?php if(!empty($this->topic_info['topic_id'])){$val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>
       <li><a href="<?php echo $val['link']; ?>" class="stair"><?php echo $val['title']; ?></a>
       <?php if ($val['child'] && get_setting('nav_menu_show_child') == 'Y') { ?>
         <ul class="second" style="width: 167px; display: none;">
            <?php foreach ($val['child'] AS $_key => $_val) { ?>
-            <?php if($_GET['topic']){$val['link'] .='__topic-'.$_GET['topic'];}?>
-            <?php if(!empty($this->topic_info['topic_id'])){$val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>
+            <?php if(!empty($this->topic_info['topic_id'])){$_val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>
             <a href="<?php echo $_val['link']; ?>"><?php echo $_val['title']; ?></a>
            <?php } ?>
         </ul>
@@ -38,3 +36,14 @@
    </ul>
  </div>
 </div>
+<script type="text/javascript">
+//导航
+(function () {
+  $('.tea_spModular_nav li').mouseover(function () {
+    $(this).find('.second').show().end().find('.stair').addClass('active');
+  }).mouseout(function () {
+    $(this).find('.second').hide().end().find('.stair').removeClass('active');
+  });
+
+})();
+</script>

@@ -31,7 +31,7 @@ class main extends AWS_CONTROLLER
 
 		return $rule_action;
 	}
-
+	
 	public function setup()
 	{
 		if (is_mobile() AND !$_GET['ignore_ua_check'])
@@ -89,24 +89,12 @@ class main extends AWS_CONTROLLER
 
 			TPL::set_meta('description', $meta_description);
 		}
-		/*
+
 		// 导航
 		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'explore/index'))
 		{
 			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
 		}
-		*/
-
-		//wl-add 增加话题分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-		if($_GET['topic']){
-			$topic_info = $this->model('topic')->get_topic_by_id($_GET['topic']);
-			TPL::assign('topic_info',$topic_info);
-			$topic_id = array($_GET['topic']);
-		}else{
-			$topic_id = null;
-		}
-		//wl-end
 
 		// 边栏可能感兴趣的人
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'explore/index'))
@@ -143,7 +131,7 @@ class main extends AWS_CONTROLLER
 		}
 		else
 		{
-			$posts_list = $this->model('posts')->get_posts_list(null, $_GET['page'], get_setting('contents_per_page'), $_GET['sort_type'], $topic_id , $category_info['id'], $_GET['answer_count'], $_GET['day'], $_GET['is_recommend']);
+			$posts_list = $this->model('posts')->get_posts_list(null, $_GET['page'], get_setting('contents_per_page'), $_GET['sort_type'], null, $category_info['id'], $_GET['answer_count'], $_GET['day'], $_GET['is_recommend']);
 		}
 
 		if ($posts_list)
