@@ -320,13 +320,14 @@ class publish_class extends AWS_MODEL
 		return $question_id;
 	}
 
-	public function publish_article($title, $message, $uid, $topics = null, $category_id = null, $attach_access_key = null, $create_topic = true)
+	public function publish_article($title, $message, $uid, $topics = null, $category_id = null, $icon = null,$attach_access_key = null, $create_topic = true)
 	{
 		if ($article_id = $this->insert('article', array(
 			'uid' => intval($uid),
 			'title' => htmlspecialchars($title),
 			'message' => htmlspecialchars($message),
 			'category_id' => intval($category_id),
+			'icon' => $icon,
 			'add_time' => time()
 		)))
 		{

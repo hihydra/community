@@ -698,7 +698,7 @@ class ajax extends AWS_CONTROLLER
         }
         else
         {
-            $article_id = $this->model('publish')->publish_article($_POST['title'], $_POST['message'], $this->user_id, $_POST['topics'], $_POST['category_id'], $_POST['attach_access_key'], $this->user_info['permission']['create_topic']);
+            $article_id = $this->model('publish')->publish_article($_POST['title'], $_POST['message'], $this->user_id, $_POST['topics'], $_POST['category_id'],$_POST['icon'],$_POST['attach_access_key'], $this->user_info['permission']['create_topic']);
 
             if ($_POST['_is_mobile'])
             {

@@ -205,13 +205,33 @@ class article_class extends AWS_MODEL
 		return true;
 	}
 
-	public function get_articles_list($category_id, $page, $per_page, $order_by, $day = null)
+	public function get_articles_list($category_id, $page, $per_page, $order_by,$topic_id = null, $day = null)
 	{
 		$where = array();
 
 		if ($category_id)
 		{
 			$where[] = 'category_id = ' . intval($category_id);
+		}
+		if($topic_id)
+		{
+			$topic_relation_where[] = 'topic_id = ' . intval($topic_id);
+			$topic_relation_where[] = "`type` = 'article'";
+
+			if ($topic_relation_query = $this->query_all("SELECT item_id FROM " . get_table('topic_relation') . " WHERE " . implode(' AND ', $topic_relation_where)))
+			{
+				foreach ($topic_relation_query AS $key => $val)
+				{
+					$article_ids[$val['item_id']] = $val['item_id'];
+				}
+			}
+
+			if (!$article_ids)
+			{
+				return false;
+			}
+
+			$where[] = "id IN (" . implode(',', $article_ids) . ")";
 		}
 
 		if ($day)

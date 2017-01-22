@@ -39,24 +39,25 @@
 									<div class="dropdown">
 										<div class="dropdown-toggle" data-toggle="dropdown">
 											<span id="aw-topic-tags-select"><?php _e('选择分类'); ?></span>
-											<a href="javascript:;"><i class="icon icon-down"></i></a></a>
+											<a href="javascript:;"><i class="icon icon-down"></i></a>
 										</div>
 									</div>
 									<?php } ?>
 								</div>
 								<!-- end 文章标题 -->
-
-								<!-- 文章封面图 -->
-
-
 								<h3><?php _e('封面图'); ?>:</h3>
-								<div class="aw-upload-box">
-									<a class="btn btn-default">上传封面图</a>
-									<div class="upload-container"></div>
-									<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('支持上传图片类型'); ?>: jpg,jpeg,gif,png</span>
+								<div class="aw-mod aw-icon-box">
+									<div class="row">
+									  <div class="col-sm-2 col-md-2">
+									    <div class="thumbnail">
+									      <img class="aw-icon" src="http://localhost:98/static/common/reader_bg.png">
+									    </div>
+									  </div>
+									  <span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('上传附件图片后点击即可设置为封面'); ?></span>
+									</div>
+									<input type="hidden" name="icon" class="hidden-input">
 								</div>
 
-								<!-- end 文章封面图  -->
 								<h3><?php _e('文章内容'); ?>:</h3>
 								<div class="aw-mod aw-editor-box">
 									<div class="mod-head">

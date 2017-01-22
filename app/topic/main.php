@@ -113,7 +113,6 @@ class main extends AWS_CONTROLLER
 		$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
 		TPL::assign('posts_list',$posts_list);
 
-
 		TPL::output('topic/index');
 		//wl-end
 

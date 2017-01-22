@@ -57,6 +57,8 @@ class main extends AWS_CONTROLLER
 			$article_info['attachs_ids'] = FORMAT::parse_attachs($article_info['message'], true);
 		}
 
+
+
 		$article_info['user_info'] = $this->model('account')->get_user_info_by_uid($article_info['uid'], true);
 
 		$article_info['message'] = FORMAT::parse_attachs(nl2br(FORMAT::parse_bbcode($article_info['message'])));
@@ -67,8 +69,6 @@ class main extends AWS_CONTROLLER
 		}
 
 		$article_info['vote_users'] = $this->model('article')->get_article_vote_users_by_id('article', $article_info['id'], 1, 10);
-
-		TPL::assign('article_info', $article_info);
 
 		$article_topics = $this->model('topic')->get_topics_by_item_id($article_info['id'], 'article');
 
@@ -82,16 +82,21 @@ class main extends AWS_CONTROLLER
 			}
 		}
 
+		//wl-add 分类
+		if ($article_info['category_id']) {
+			$article_info['category'] = $this->model('system')->get_category_info($article_info['category_id']);
+			$article_info['category']['link'] = 'article/' . 'category-' . $article_info['category']['id'].'__topic-'.$topic_info['topic_id'];
+		}
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
+		TPL::assign('topic_info',$topic_info);
+		TPL::assign('article_info', $article_info);
+		//wl-end
+
 		TPL::assign('reputation_topics', $this->model('people')->get_user_reputation_topic($article_info['user_info']['uid'], $user['reputation'], 5));
 
 		$this->crumb($article_info['title'], '/article/' . $article_info['id']);
 
 		TPL::assign('human_valid', human_valid('answer_valid_hour'));
-
-		//wl-add 分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
-		TPL::assign('topic_info',$topic_info);
-		//wl-end
 
 		if ($_GET['item_id'])
 		{
@@ -154,7 +159,6 @@ class main extends AWS_CONTROLLER
 
 			TPL::assign('recommend_posts', $recommend_posts);
 		}
-
 		TPL::output('article/index');
 	}
 
@@ -252,12 +256,25 @@ class main extends AWS_CONTROLLER
 			}
 
 			TPL::set_meta('description', $meta_description);
+
+			//wl -add
+			if($category_info['parent_id']){
+				$category_top_id = $category_info['parent_id'];
+			}else{
+				$category_top_id = $category_info['id'];
+			}
+
+			$category_navigation =  $this->model('system')->get_category_info($category_top_id);
+			$category_navigation['link'] = 'article/' . 'category-' . $category_navigation['id'].'__topic-'.$topic_info['topic_id'];
+			$category_navigation['child'] = $this->model('menu')->process_child_menu_links($this->model('system')->fetch_category($category_info['type'],$category_top_id),'article');
+			TPL::assign('category_navigation', $category_navigation);
+			//wl-end
 		}
 
 		TPL::assign('article_list', $article_list);
 		TPL::assign('article_topics', $article_topics);
 
-		TPL::assign('hot_articles', $this->model('article')->get_articles_list(null, 1, 10, 'votes DESC', 30));
+		TPL::assign('hot_articles', $this->model('article')->get_articles_list($category_info['id'], 1, 10, 'votes DESC',$topic_id,30));
 
 		TPL::assign('pagination', AWS_APP::pagination()->initialize(array(
 			'base_url' => get_js_url('/article/category-' . $_GET['category']. '__topic-' . $_GET['topic'] . '__feature_id-' . $_GET['feature_id']),

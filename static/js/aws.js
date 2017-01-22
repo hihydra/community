@@ -1426,13 +1426,13 @@ AWS.User =
 		{
 			if (selector.hasClass('active'))
 			{
-				selector.find('span').html(_t('关注'));
+				selector.find('span').html(_t('加入共同体'));
 
 				selector.find('b').html(parseInt(selector.find('b').html()) - 1);
 			}
 			else
 			{
-				selector.find('span').html(_t('取消关注'));
+				selector.find('span').html(_t('退出共同体'));
 
 				selector.find('b').html(parseInt(selector.find('b').html()) + 1);
 			}
@@ -1441,11 +1441,11 @@ AWS.User =
 		{
 			if (selector.hasClass('active'))
 			{
-				selector.attr('data-original-title', _t('关注'));
+				selector.attr('data-original-title', _t('加入共同体'));
 			}
 			else
 			{
-				selector.attr('data-original-title', _t('取消关注'));
+				selector.attr('data-original-title', _t('退出共同体'));
 			}
 		}
 

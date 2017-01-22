@@ -18,11 +18,11 @@
                <span></span> <em></em>
              </li>
              <li><span>成员数</span> <em><a><?php echo $this->topic_info['focus_count']; ?></a></em></li>
-             <li><span>资源数</span> <em><a href="http://www.wuhaneduyun.cn/index.php?r=studio/resources&amp;sid=343">102</a></em></li>
+             <li><span>资源数</span> <em><a href="">102</a></em></li>
              <li class="last"><span>文章数</span> <em><a><?php echo $this->topic_info['discuss_count']?></a></em></li>
            </ul>
            <?php if ($this->user_id) { ?>
-           <a href="javascript:;" onclick="AWS.User.follow($(this), 'topic', <?php echo $this->topic_info['topic_id']; ?>);" class="follow btn btn-normal manage<?php if ($this->topic_info['has_focus']) { ?> active<?php } ?>"><span><?php if ($this->topic_info['has_focus']) { ?><?php _e('加入共同体'); ?><?php } else { ?><?php _e('退出共同体'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->topic_info['focus_count']; ?></b></a>
+           <a href="javascript:;" onclick="AWS.User.follow($(this), 'topic', <?php echo $this->topic_info['topic_id']; ?>);" class="follow btn btn-normal manage<?php if ($this->topic_info['has_focus']) { ?> active<?php } ?>"><span><?php if ($this->topic_info['has_focus']) { ?><?php _e('退出共同体'); ?><?php } else { ?><?php _e('加入共同体'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->topic_info['focus_count']; ?></b></a>
            <?php } ?>
            <!-- <a href="javascript:void(0);" class="manage" id="apply"></a> -->
            <!-- <a href="" onclick="addfavorite(this)" class="enshrine" rel="sidebar">加入收藏</a> -->
@@ -83,62 +83,61 @@
 
 
 <div id="module_m" class="groupWrapper tea_content tea_fr">
-  <div class="groupItem" id="News" style="z-index: 96;"><div class="itemContent">
-
-
-    <div class="clearfix">
-     <div class="tea_module tea_news" id="tea_news">
-      <div class="tea_title clearfix">
-       <?php $article = $this->posts_list['1'];?>
-       <h3><?php echo $article['title']; ?></h3>
-       <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
-     </div>
-     <div class="details clearfix">
-       <div class="tea_focus">
-        <ul class="pic" style="width: 880px; left: -528px;">
-          <?php foreach ($article['article'] as $key => $val) {?>
-          <?php if($key == 5){ break;}?>
-          <a href="article/<?php echo $val['id']; ?>" target="_blank"><img src="<?php echo $val['attachs']['attachment']; ?>"></a>
-          <?php } ?>
-        </ul>
-
-        <ul class="btn cleafix" style="right: 47.5px;">
-         <a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class="active"></a><a href="javascript:void(0)" class=""></a></ul>
+  <div class="groupItem" id="News" style="z-index: 96;">
+    <div class="itemContent">
+      <div class="clearfix">
+       <div class="tea_module tea_news" id="tea_news">
+        <div class="tea_title clearfix">
+         <?php $article = $this->posts_list['1'];?>
+         <h3><?php echo $article['title']; ?></h3>
+         <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
        </div>
+       <div class="details clearfix">
+         <div class="tea_focus">
+          <ul class="pic">
+            <?php foreach ($article['article'] as $key => $val) {?>
+            <?php if($key == 5){ break;}?>
+            <a href="article/<?php echo $val['id']; ?>" target="_blank"><img src="<?php echo $val['attachs']['attachment']; ?>"></a>
+            <?php } ?>
+          </ul>
 
-       <div class="news_list">
-        <?php foreach ($article['article'] as $key  => $val) {?>
+          <ul class="btn cleafix">
+           <a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class=""></a><a href="javascript:void(0)" class="active"></a><a href="javascript:void(0)" class=""></a></ul>
+         </div>
+
+         <div class="news_list">
+          <?php foreach ($article['article'] as $key  => $val) {?>
           <?php if($key == 1){ break;}?>
           <h3><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 15, 'UTF-8', '... &nbsp;'); ?></a></h3>
           <p class="c888"><?php echo cjk_substr($val['message'], 0, 20, 'UTF-8', '... &nbsp;'); ?><a href="article/<?php echo $val['id']; ?>" target="_blank">[详情]</a></p>
-        <?php } ?>
+          <?php } ?>
           <ul>
             <?php foreach ($article['article'] as $key  => $val) {?>
             <?php if($key == 0){  continue;} if($key == 5){ break;}?>
             <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 15, 'UTF-8', '... &nbsp;'); ?></a></li>
             <?php } ?>
           </ul>
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
 
-<div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
-  <div class="tea_title clearfix">
-   <?php $article = $this->posts_list['1'];?>
-   <h3><?php echo $article['title']; ?></h3>
-   <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
+  <div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
+    <div class="tea_title clearfix">
+     <?php $article = $this->posts_list['1'];?>
+     <h3><?php echo $article['title']; ?></h3>
+     <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
+   </div>
+   <div class="details clearfix">
+     <ul class="list">
+       <?php foreach ($article['article'] as $key => $val) {?>
+       <?php if($key == 6){ break;}?>
+       <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 10, 'UTF-8', '... &nbsp;'); ?></a><span><?php echo date_friendly($val['add_time'], 604800, 'Y-m-d'); ?></span></li>
+       <?php } ?>
+     </ul>
+   </div>
  </div>
- <div class="details clearfix">
-   <ul class="list">
-     <?php foreach ($article['article'] as $key => $val) {?>
-     <?php if($key == 6){ break;}?>
-     <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 10, 'UTF-8', '... &nbsp;'); ?></a><span><?php echo date_friendly($val['add_time'], 604800, 'Y-m-d'); ?></span></li>
-     <?php } ?>
-   </ul>
- </div>
-</div>
 
 </div>
 </div>

@@ -1,8 +1,10 @@
 <?php TPL::output('global/header_community.tpl.htm'); ?>
 
 <div class="aw-container-wrap">
-
     <div class="container">
+        <div class="tea_crumbs">
+            <a href="topic/<?php echo $this->topic_info['topic_title']; ?>">首页</a> &gt; <span><a href="<?php echo $this->article_info['category']['link']; ?>"><?php echo $this->article_info['category']['title']; ?></a></span>&gt;<?php echo $this->article_info['title']; ?> <span>
+        </div>
         <div class="row">
             <div class="aw-content-wrap clearfix">
                 <div class="col-sm-12 col-md-12 aw-main-content aw-article-content">

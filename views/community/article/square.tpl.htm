@@ -1,20 +1,23 @@
 <?php TPL::output('global/header_community.tpl.htm'); ?>
 <div class="w960 tea_main clearfix">
 	<div class="tea_crumbs">
-	<a href="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343">首页</a> &gt; <span>学科文章</span>
+	<a href="topic/<?php echo $this->topic_info['topic_title']; ?>">首页</a> &gt; <span><?php echo $this->category_navigation['title']; ?></span>
 	</div>
 
 	<div class="tea_noticelist tea_noticelist2 tea_noticelist3 clearfix" style="position:relative;">
 		<div class="sidebar">
 			<div class="module">
 				<ul class="first">
-					<a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/categoryindex&amp;sid=343" class="active">全部</a>
-					<a href="http://www.wuhaneduyun.cn/index.php?r=studio/post/categoryindex&amp;isall=-999&amp;sid=343&amp;cid=3115">教师发展                            <i></i></a>
+						<a href="<?php echo $this->category_navigation['link']; ?>" class="active">全部</a>
+				            <?php foreach ($this->category_navigation['child'] as $_key => $_val) { ?>
+				            <?php if(!empty($this->topic_info['topic_id'])){$_val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>
+				            <a href="<?php echo $_val['link']; ?>"><?php echo $_val['title']; ?></a>
+				           <?php } ?>
 				</ul>
 			</div>
 			<div class="module">
 				<div class="tea_headline clearfix">
-					<span><?php _e('热门文章'); ?></span>
+					<span><?php _e('热门'); ?></span>
 				</div>
 				<ul class="second">
 					<?php foreach($this->hot_articles AS $key => $val) { ?>
@@ -25,7 +28,7 @@
 		</div>
 		<div class="content" style=" min-height: 598px;">
 			<div class="tea_headline clearfix">
-				<span>全部文章</span>
+				<span><?php echo $this->category_info['title']; ?></span>
 			</div>
 
 			<ul class="first">

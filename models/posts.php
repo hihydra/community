@@ -515,7 +515,7 @@ class posts_class extends AWS_MODEL
 	public function get_category_article($topic_id){
 		$category_list =  $this->fetch_all('category');
 		foreach ($category_list as &$value) {
-			$value['link'] = 'explore/category-'.$value['id'].'__topic-'.$topic_id;
+			$value['link'] = 'article/category-'.$value['id'].'__topic-'.$topic_id;
 			$value['article'] = $this->model('article')->get_articles_list_by_topic_category_id($topic_id,$value['id'],10);
 			foreach ($value['article'] as &$val) {
 				if ($val['icon'])

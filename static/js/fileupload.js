@@ -49,12 +49,12 @@ function FileUpload (type, element, container, url, options, callback)
 	}
 }
 
-FileUpload.prototype = 
+FileUpload.prototype =
 {
 	// 初始化上传器
 	init : function (element, container)
 	{
-		
+
 		var form = this.createForm(),
 			input = this.createInput();
 
@@ -73,7 +73,7 @@ FileUpload.prototype =
 		}
 
 		$(container).append('<ul class="upload-list"></ul>');
-		
+
 	},
 
 	// 创建表单
@@ -159,7 +159,7 @@ FileUpload.prototype =
 				this.upload('');
 			}
 		}
-		
+
 	},
 
 	// 上传功能
@@ -184,7 +184,7 @@ FileUpload.prototype =
 	        };
 
 	        xhr.onreadystatechange = function()
-	        {      
+	        {
 	            _this.oncomplete(xhr, li, file);
 	        };
 
@@ -340,16 +340,21 @@ FileUpload.prototype =
 
 					$(element).find('.meta').append(btn);
 				}
-
-				// 插入隐藏域(wecenter定制)
-				$(element).append(this.createHiddenInput(json.attach_id));
-
+				//wl-add
+				$(element).click(function(){
+					if (json.thumb) {
+						$("input[name='icon']").val(json.attach_id);
+						icon = $(element).find(".img").attr('data-img');
+						$('.aw-icon').attr('src',icon);
+					}
+				})
+				//wl-end
 				this.oncallback();
 			}
 			else
 			{
 				$(element).addClass('error').find('.img').addClass('error').html('<i class="icon icon-delete"></i>');
-				
+
 				$(element).find('.size').text(json.error);
 			}
 		}
@@ -384,7 +389,6 @@ FileUpload.prototype =
         }
         return filesize;
     },
-
     // 创建插入按钮
     createInsertBtn : function (attach_id)
     {
@@ -436,7 +440,7 @@ FileUpload.prototype =
     setFileList : function (json)
     {
     	var template = '<li>';
-    	
+
     	if (!json.is_image)
 		{
 			template += '<div class="img file"><i class="icon icon-file"></i></div>';
