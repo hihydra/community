@@ -42,56 +42,8 @@ class menu_class extends AWS_MODEL
 			return false;
 		}
 
-		switch ($app)
-		{
-			case 'explore':
-				$url_prefix = '';
-
-				$url_mobile_prefix = 'm/explore/';
-			break;
-
-			case 'article':
-				$url_prefix = 'article/';
-
-				$url_mobile_prefix = 'm/article/';
-			break;
-		}
-
 		foreach ($data AS $key => $val)
 		{
-			if (!$val['url_token'])
-			{
-				$val['url_token'] = $val['id'];
-			}
-
-			if (defined('IN_MOBILE'))
-			{
-				$data[$key]['link'] = $url_mobile_prefix . 'category-' . $val['id'];
-			}
-			else
-			{
-				$data[$key]['link'] = $url_prefix . 'category-' . $val['url_token'];
-			}
-
-			$data[$key]['child'] = $this->process_child_menu_links($this->model('system')->fetch_category($val['type'], $val['id']), $app);
-		}
-
-		return $data;
-	}
-
-	public function get_nav_menu_list($app = null)
-	{
-		if (!$nav_menu_data = AWS_APP::cache()->get('nav_menu_list'))
-		{
-			$nav_menu_data = $this->fetch_all('nav_menu', null, 'sort ASC');
-
-			AWS_APP::cache()->set('nav_menu_list', $nav_menu_data, get_setting('cache_level_low'), 'nav_menu');
-		}
-
-		if ($nav_menu_data)
-		{
-			$category_info = $this->model('system')->get_category_list('question');
-
 			switch ($app)
 			{
 				case 'explore':
@@ -123,8 +75,73 @@ class menu_class extends AWS_MODEL
 					break;
 			}
 
+			if (!$val['url_token'])
+			{
+				$val['url_token'] = $val['id'];
+			}
+
+			if (defined('IN_MOBILE'))
+			{
+				$data[$key]['link'] = $url_mobile_prefix . 'category-' . $val['id'];
+			}
+			else
+			{
+				$data[$key]['link'] = $url_prefix . 'category-' . $val['url_token'];
+			}
+
+			$data[$key]['child'] = $this->process_child_menu_links($this->model('system')->fetch_category($val['type'], $val['id']), $app);
+		}
+
+		return $data;
+	}
+
+	public function get_nav_menu_list($app = null)
+	{
+		if (!$nav_menu_data = AWS_APP::cache()->get('nav_menu_list'))
+		{
+			$nav_menu_data = $this->fetch_all('nav_menu', null, 'sort ASC');
+
+			AWS_APP::cache()->set('nav_menu_list', $nav_menu_data, get_setting('cache_level_low'), 'nav_menu');
+		}
+
+		if ($nav_menu_data)
+		{
+			$category_info = $this->model('system')->get_category_list();
+
 			foreach ($nav_menu_data as $key => $val)
 			{
+				$app = $category_info[$val['type_id']]['type'];
+
+				switch ($app)
+				{
+					case 'explore':
+						$url_prefix = 'explore/';
+
+						$url_mobile_prefix = 'm/';
+
+						break;
+
+					case 'question':
+						$url_prefix = 'question/';
+
+						$url_mobile_prefix = 'm/';
+
+						break;
+
+					case 'article':
+						$url_prefix = 'article/';
+
+						$url_mobile_prefix = 'm/article/';
+
+						break;
+
+					case 'project':
+						$url_prefix = 'project/';
+
+						$url_mobile_prefix = 'project/';
+
+						break;
+				}
 				switch ($val['type'])
 				{
 					case 'category':

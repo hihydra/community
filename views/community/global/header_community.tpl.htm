@@ -21,6 +21,7 @@
     <ul class="clearfix nav">
       <li><a href="topic/<?php echo $this->topic_info['topic_title']; ?>" class="stair">首页</a></li>
       <?php foreach ($this->content_nav_menu as $key => $val) { ?>
+      <?php if ($val['title']) { ?>
       <?php if(!empty($this->topic_info['topic_id'])){$val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>
       <li><a href="<?php echo $val['link']; ?>" class="stair"><?php echo $val['title']; ?></a>
       <?php if ($val['child'] && get_setting('nav_menu_show_child') == 'Y') { ?>
@@ -32,6 +33,7 @@
         </ul>
       <?php } ?>
       </li>
+      <?php } ?>
      <?php } ?>
    </ul>
  </div>

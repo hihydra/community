@@ -70,7 +70,7 @@ html .tea_main { color:#555; padding-bottom:28px; *margin-top:40px; width:960px;
 .tea_module .tea_title { height:31px; border-bottom:1px solid #e2e2e2;  margin-bottom:15px; background:#b6a286; color:white; }
 .tea_module .tea_title h3 { font-size:16px;  float:left; font-family:'Microsoft YaHei'; line-height:30px; text-indent:18px; color:white; font-weight:normal; height: 30px;overflow: hidden; }
 .tea_module .tea_title .more { color:white; line-height:32px; margin-right:15px; }
-.tea_module .details { position:relative; padding:0 18px;  }
+.tea_module .details { position:relative; padding:0 18px; min-height: 173px; }
 
 /*工作室简介*/
 .tea_brief .details { padding:0 20px; }
@@ -118,7 +118,7 @@ html .tea_main { color:#555; padding-bottom:28px; *margin-top:40px; width:960px;
 
 /*新闻动态*/
 .tea_news { width:451px; float:left; }
-.tea_news .tea_focus { width:176px; height:170px; float:left; overflow:hidden; position:relative; z-index:5;}
+.tea_news .tea_focus { width:176px; height:158px; float:left; overflow:hidden; position:relative; z-index:5;}
 .tea_news .tea_focus .pic { position:absolute; left:0; top:0; height:162px; }
 .tea_news .tea_focus .pic a { float:left; }
 .tea_news .tea_focus .pic img { width:176px; height:132px; }
@@ -136,6 +136,10 @@ html .tea_main { color:#555; padding-bottom:28px; *margin-top:40px; width:960px;
 .tea_news .news_list h3 {  font-size:16px; line-height:24px; font-family:'Microsoft Yahei';}
 .tea_news .news_list p { line-height:24px; }
 .tea_news .news_list li a { font-size:14px; color:#555;}
+
+.carousel-indicators li{ background:#c8c8c8; }
+.carousel-indicators .active{background: #b6a286;}
+#carousel-example-generic{height:170px;}
 
 /*工作室公告*/
 .tea_notice { width:251px; float:right;}

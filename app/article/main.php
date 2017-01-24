@@ -87,7 +87,7 @@ class main extends AWS_CONTROLLER
 			$article_info['category'] = $this->model('system')->get_category_info($article_info['category_id']);
 			$article_info['category']['link'] = 'article/' . 'category-' . $article_info['category']['id'].'__topic-'.$topic_info['topic_id'];
 		}
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
 		TPL::assign('topic_info',$topic_info);
 		TPL::assign('article_info', $article_info);
 		//wl-end
@@ -172,7 +172,7 @@ class main extends AWS_CONTROLLER
 		$this->crumb(AWS_APP::lang()->_t('文章'), '/article/');
 
 		//wl-add 分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
 		//wll -end
 
 		if ($_GET['category'])

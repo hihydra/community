@@ -427,9 +427,9 @@ class topic_class extends AWS_MODEL
 		}
 
 		$this->update('topic', array(
-			'discuss_count' => $this->count('topic_relation', 'topic_id = ' . intval($topic_id)),
-			'discuss_count_last_week' => $this->count('topic_relation', 'add_time > ' . (time() - 604800) . ' AND topic_id = ' . intval($topic_id)),
-			'discuss_count_last_month' => $this->count('topic_relation', 'add_time > ' . (time() - 2592000) . ' AND topic_id = ' . intval($topic_id)),
+			'discuss_count' => $this->count('topic_relation', 'topic_id = ' . intval($topic_id) .' AND type = \'article\''),
+			'discuss_count_last_week' => $this->count('topic_relation', 'add_time > ' . (time() - 604800) . ' AND topic_id = ' . intval($topic_id).' AND type = \'article\''),
+			'discuss_count_last_month' => $this->count('topic_relation', 'add_time > ' . (time() - 2592000) . ' AND topic_id = ' . intval($topic_id).' AND type = \'article\''),
 			'discuss_count_update' => intval($this->fetch_one('topic_relation', 'add_time', 'topic_id = ' . intval($topic_id), 'add_time DESC'))
 		), 'topic_id = ' . intval($topic_id));
 	}

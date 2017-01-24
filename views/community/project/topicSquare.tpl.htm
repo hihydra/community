@@ -1,0 +1,71 @@
+<?php TPL::output('global/header_community.tpl.htm'); ?>
+
+<div class="aw-container-wrap aw-project-container-wrap">
+	<div class="aw-container aw-wecenter">
+		<div class="container">
+		    <div class="tea_crumbs">
+            <a href="topic/<?php echo $this->topic_info['topic_title']; ?>">首页</a> &gt; <span><?php echo $this->category_info['title']; ?></span>
+        	</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<div class="aw-project-list clearfix">
+							<?php if ($this->project_list) { ?>
+							<ul>
+								<?php foreach ($this->project_list AS $key => $val) { ?>
+								<li class="col-sm-4 col-md-4">
+									<div class="mod-head">
+										<a href="project/<?php echo $val['id']; ?>" class="img"><img src="<?php echo get_setting('upload_url'); ?>/project/<?php echo $val['id']; ?>_main.jpg" alt="" title="" /></a>
+
+									</div>
+									<div class="mod-body">
+										<h3><a href="project/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>"><?php echo $val['title']; ?></a></h3>
+										<div class="progress">
+										  <div class="progress-bar progress-bar-success progress-bar-green" role="progressbar" aria-valuenow="<?php echo get_paid_progress_bar($val['amount'], $val['paid']); ?>" aria-valuemin="0" aria-valuemax="<?php echo get_paid_progress_bar($val['amount'], $val['paid']); ?>" style="width: <?php echo get_paid_progress_bar($val['amount'], $val['paid']); ?>%">
+										  	<span class="sr-only"></span>
+										  </div>
+										</div>
+									</div>
+									<div class="mod-footer">
+										<div class="status clearfix">
+											<span>
+												<b><?php echo get_paid_progress_bar($val['amount'], $val['paid']); ?>%</b>
+												已达到
+											</span>
+											<span>
+												<?php if ($val['project_type'] == 'EVENT') { ?>
+												<b><?php echo intval($val['paid']); ?></b>
+												报名人数
+												<?php } else { ?>
+												<b>¥ <?php echo $val['paid']; ?></b>
+												已获支持
+												<?php } ?>
+											</span>
+											<span class="pull-right">
+												<b><?php echo get_left_days($val['end_time']); ?> 天</b>
+												剩余时间
+											</span>
+										</div>
+										<div class="desc clearfix">
+											<a href="project/<?php echo $val['id']; ?>" class="pull-left label <?php if ($val['project_type'] == 'DEFAULT') { ?>label-oragin<?php } else if ($val['project_type'] == 'EVENT') { ?>label-blue<?php } ?> <?php if (!$val['approved']) { ?>label-gray<?php } else if ($val['end_time'] < time()) { ?>label-gray<?php } else if ($val['start_time'] > time()) { ?>label-gray<?php } else { ?><?php if ($val['paid'] > 0) { if ($val['project_type'] == 'STOCK') { ?>label-blue<?php } else { ?>label-blue2<?php } } else if ($val['paid'] >= $val['amount']) { ?>label-oragin2<?php } else { ?>label-oragin2<?php } ?><?php } ?>" >
+											<?php if ($val['project_type'] == 'DEFAULT') { ?>众筹<?php } else if ($val['project_type'] == 'EVENT') { ?>活动<?php } ?> | <?php if (!$val['approved']) { ?>待审核<?php } else if ($val['end_time'] < time()) { ?>已结束<?php } else if ($val['start_time'] > time()) { ?>预热中<?php } else { ?><?php if ($val['paid'] > 0) { if ($val['project_type'] == 'STOCK') { ?>已筹到<?php } else { ?>进行中<?php } } else if ($val['paid'] >= $val['amount']) { ?>已成功<?php } else { ?>进行中<?php } ?><?php } ?></a>
+											<a href="topic/<?php echo $val['topic_id']; ?>">支持: <?php echo $val['sponsored_users']; ?></a>
+											<a href="project/<?php echo $val['id']; ?>#project-support">讨论: <?php echo $val['discuss_count']; ?></a>
+
+										</div>
+									</div>
+								</li>
+								<?php } ?>
+							</ul>
+							<?php } ?>
+					</div>
+				</div>
+				<div class="square-page">
+					<?php echo $this->pagination; ?>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php TPL::output('global/footer_community.tpl.htm'); ?>

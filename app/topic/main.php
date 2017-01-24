@@ -108,7 +108,7 @@ class main extends AWS_CONTROLLER
 		TPL::assign('best_answer_users', $this->model('topic')->get_best_answer_users_by_topic_id($topic_info['topic_id'], 5));
 
 		//wl-add 分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('article'));
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
 
 		$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
 		TPL::assign('posts_list',$posts_list);

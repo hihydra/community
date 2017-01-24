@@ -320,8 +320,8 @@ class main extends AWS_CONTROLLER
 		//wl-add 导航
 		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'explore/index'))
 		{
-			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('explore'));
-			TPL::assign('topic_id',$question_topics[0]['topic_id']);
+			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
+			TPL::assign('topic_info',$question_topics[0]);
 		}
 		//wl-end
 
@@ -421,11 +421,12 @@ class main extends AWS_CONTROLLER
 	{
 		$this->crumb(AWS_APP::lang()->_t('问题'), '/question/');
 
-		// 导航
+		/*/ 导航
 		if (TPL::is_output('block/content_nav_menu.tpl.htm', 'question/square'))
 		{
 			TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list('question'));
 		}
+		*/
 
 		//边栏可能感兴趣的人
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'question/square'))
@@ -490,6 +491,17 @@ class main extends AWS_CONTROLLER
 		{
 			$topic_ids = $this->model('feature')->get_topics_by_feature_id($feature_info['id']);
 		}
+
+
+		//wl-add
+		if($_GET['topic']){
+			$topic_id = $_GET['topic'];
+			$topic_info = $this->model('topic')->get_topic_by_id($topic_id);
+			$topic_ids = array($topic_id);
+			TPL::assign('topic_info',$topic_info);
+		}
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
+		//wl-end
 
 		if (! $_GET['sort_type'])
 		{

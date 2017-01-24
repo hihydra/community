@@ -517,8 +517,8 @@ class article_class extends AWS_MODEL
 	}
 
 	//wl-add
-	public function get_articles_list_by_topic_category_id($topic_id,$category_id,$limit){
-		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and b.category_id = '.$category_id.' ORDER BY b.add_time DESC',$limit);
+	public function get_articles_list_by_topic_category_id($topic_id,$category_id,$type,$limit){
+		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and a.type = \''.$type.'\' and b.category_id = '.$category_id.' ORDER BY b.add_time DESC',$limit);
 	}
 	//wl-end
 }

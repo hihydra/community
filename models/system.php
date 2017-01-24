@@ -214,11 +214,15 @@ class system_class extends AWS_MODEL
 		return $all_category[$url_token];
 	}
 
-	public function get_category_list($type)
+	public function get_category_list($type = null)
 	{
 		$category_list = array();
 
-		$category_all = $this->fetch_all('category', '`type` = \'' . $this->quote($type) . '\'', 'id ASC');
+		if ($type) {
+			$where = '`type` = \'' . $this->quote($type) . '\'';
+		}
+
+		$category_all = $this->fetch_all('category',$where, 'id ASC');
 
 		foreach($category_all as $key => $val)
 		{
