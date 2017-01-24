@@ -60,7 +60,7 @@ class menu_class extends AWS_MODEL
 
 					break;
 
-				case 'article':
+				case 'article':case 'resource':
 					$url_prefix = 'article/';
 
 					$url_mobile_prefix = 'm/article/';
@@ -128,7 +128,7 @@ class menu_class extends AWS_MODEL
 
 						break;
 
-					case 'article':
+					case 'article':case 'resource':
 						$url_prefix = 'article/';
 
 						$url_mobile_prefix = 'm/article/';

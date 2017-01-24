@@ -204,7 +204,7 @@ var AW_TEMPLATE = {
 								'</div>'+
 								'<div class="aw-topic-bar" data-type="publish">'+
 									'<div class="tag-bar clearfix">'+
-										'<span class="aw-edit-topic"><i class="icon icon-edit"></i>' + _t('编辑话题') + '</span>'+
+										'<span class="aw-edit-topic"><i class="icon icon-edit"></i>' + _t('编辑共同体') + '</span>'+
 									'</div>'+
 								'</div>'+
 								'<div class="clearfix collapse" id="quick_publish_captcha">'+
@@ -255,7 +255,7 @@ var AW_TEMPLATE = {
 
 	'editTopicBox' :
 		'<div class="aw-edit-topic-box form-inline">'+
-			'<input type="text" class="form-control" id="aw_edit_topic_title" autocomplete="off"  placeholder="' + _t('创建或搜索添加新话题') + '...">'+
+			'<input type="text" class="form-control" id="aw_edit_topic_title" autocomplete="off"  placeholder="' + _t('创建或搜索添加新共同体') + '...">'+
 			'<a class="btn btn-normal btn-success add">' + _t('添加') + '</a>'+
 			'<a class="btn btn-normal btn-gray close-edit">' + _t('取消') + '</a>'+
 			'<div class="aw-dropdown">'+

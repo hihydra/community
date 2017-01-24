@@ -41,7 +41,7 @@ class main extends AWS_CONTROLLER
 			$this->crumb(AWS_APP::lang()->_t('标签') . ': ' . $_GET['tag'], '/favorite/tag-' . $_GET['tag']);
 		}
 
-		//边栏可能感兴趣的人或话题
+		//边栏可能感兴趣的人或共同体
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'favorite/index'))
 		{
 			$recommend_users_topics = $this->model('module')->recommend_users_topics($this->user_id);

@@ -3,8 +3,8 @@ var AW_MOBILE_TEMPLATE = {
 		'<div id="aw-loading" class="hide">'+
 			'<div id="aw-loading-box"></div>'+
 		'</div>',
-	    
-	'commentBox' : 
+
+	'commentBox' :
 		'<div class="aw-comment-box" id="{{comment_form_id}}">'+
 			'<form action="{{comment_form_action}}" method="post" onsubmit="return false">'+
 				'<div class="mod-head">'+
@@ -22,7 +22,7 @@ var AW_MOBILE_TEMPLATE = {
 			'</form>'+
 		'</div>',
 
-	'commentBoxClose' : 
+	'commentBoxClose' :
 			'<div class="aw-comment-box" id="{{comment_form_id}}">'+
 				'<div class="aw-comment-list"><p class="text-center margin-0"><i class="aw-loading"></i></p></div>'+
 				'<i class="i-dropdown-triangle"></i>'+
@@ -50,7 +50,7 @@ var AW_MOBILE_TEMPLATE = {
 		'<div class="editor clearfix">'+
             '<div class="mod-head">'+
                 '<div class="form-group">'+
-                    '<input type="text" name="" class="form-control topic-text" placeholder="' + _t('选择话题') + '">'+
+                    '<input type="text" name="" class="form-control topic-text" placeholder="' + _t('选择共同体') + '">'+
                     '<i class="icon icon-search"></i>'+
                     '<div class="aw-dropdown-list hide">'+
 						'<ul></ul>'+
@@ -61,13 +61,13 @@ var AW_MOBILE_TEMPLATE = {
             '</div>'+
         '</div>',
 
-	'dropdownList' : 
+	'dropdownList' :
 		'<ul class="dropdown-menu">'+
 			'{{#items}}'+
 				'<li><a data-value="{{id}}">{{title}}</a></li>'+
 			'{{/items}}'+
 		'</ul>',
-		
+
 	'editCommentBox' :
 		'<div class="modal fade alert-commentEdit">'+
 			'<div class="modal-dialog">'+

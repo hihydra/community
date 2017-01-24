@@ -958,7 +958,7 @@ var AWS =
 			var _this = $(this);
 			AWS.G.card_box_show_timer = setTimeout(function ()
 			{
-				//判断用户id or 话题id 是否存在
+				//判断用户id or 共同体id 是否存在
 				if (_this.attr('data-id'))
 				{
 					 switch (type)
@@ -2609,7 +2609,7 @@ AWS.Init =
 		});
 	},
 
-	// 初始化话题编辑box
+	// 初始化共同体编辑box
 	init_topic_edit_box: function(selector) //selector -> .aw-edit-topic
 	{
 		$(selector).click(function ()
@@ -2731,7 +2731,7 @@ AWS.Init =
 
 			$(this).parents('.aw-topic-bar').find('.aw-edit-topic-box').fadeIn();
 
-			// 是否允许创建新话题
+			// 是否允许创建新共同体
 			if (!G_CAN_CREATE_TOPIC)
 			{
 				$(this).parents('.aw-topic-bar').find('.add').hide();

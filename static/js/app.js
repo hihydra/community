@@ -77,12 +77,12 @@ $(document).ready(function ()
 
     AWS.show_card_box('.topic-tag, .aw-topic-name, .aw-topic-img', 'topic');
 
-    //文章页添加评论, 话题添加 绑定事件
+    //文章页添加评论, 共同体添加 绑定事件
     AWS.Init.init_article_comment_box('.aw-article-content .aw-article-comment');
 
     AWS.Init.init_topic_edit_box('.aw-edit-topic');
 
-    //话题编辑下拉菜单click事件
+    //共同体编辑下拉菜单click事件
     $(document).on('click', '.aw-edit-topic-box .aw-dropdown-list li', function ()
     {
         $(this).parents('.aw-edit-topic-box').find('#aw_edit_topic_title').val($(this).text());
@@ -90,7 +90,7 @@ $(document).ready(function ()
         $(this).parents('.aw-edit-topic-box').find('.aw-dropdown').hide();
     });
 
-    //话题删除按钮
+    //共同体删除按钮
     $(document).on('click', '.topic-tag .close',  function()
     {
         var data_type = $(this).parents('.aw-topic-bar').attr('data-type'),
@@ -128,7 +128,7 @@ $(document).ready(function ()
         }
         else if (data_type == 'favorite')
         {
-            $.post(data_url, 
+            $.post(data_url,
             {
                 'item_type': data_type,
                 'topic_id': topic_id,
@@ -140,7 +140,7 @@ $(document).ready(function ()
         }
         else
         {
-            $.post(data_url, 
+            $.post(data_url,
             {
                 'type': data_type,
                 'topic_id': topic_id,
@@ -191,7 +191,7 @@ $(document).ready(function ()
         });
     });
 
-    //话题小卡片关注更新缓存
+    //共同体小卡片关注更新缓存
     $(document).on('click', '.aw-card-tips-topic .follow', function ()
     {
         var topic_id = $(this).parents('.aw-card-tips').find('.name').attr('data-id');

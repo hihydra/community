@@ -18,7 +18,7 @@
                             <?php } ?>
                             <?php } ?>
 
-                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('添加话题')?><?php } ?></span><?php } ?>
+                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('添加共同体')?><?php } ?></span><?php } ?>
                         </div>
                     </div>
                     <div class="aw-mod aw-question-detail">
@@ -72,7 +72,11 @@
                                     <?php foreach ($this->article_info['attachs'] AS $attach) { ?>
                                     <?php if (!$attach['is_image'] AND (!$this->article_info['attachs_ids'] OR !in_array($attach['id'], $this->article_info['attachs_ids']))) { ?>
                                         <?php if(strstr($attach['attachment'],'mp4')){ ?>
-                                        <li><iframe src ="<?php echo $attach['attachment'] ?>" style="border:none; width:860px;" height="470px" allowfullscreen=true autoPlay=true></iframe></li>
+                                        <li><iframe src ="<?php echo $attach['attachment'] ?>" style="border:none; width:860px;" height="470px"></iframe></li>
+                                        <br>
+                                        <?php } ?>
+                                        <?php if(strstr($attach['attachment'],'mp3')){ ?>
+                                        <li><audio controls="controls" style="width:860px;"><source src="<?php echo $attach['attachment'] ?>" /></audio></li>
                                         <br>
                                         <?php } ?>
                                         <li><a href="<?php echo download_url($attach['file_name'], $attach['attachment']); ?>"><i class="icon icon-attach"></i> <?php echo $attach['file_name']; ?></a></li>

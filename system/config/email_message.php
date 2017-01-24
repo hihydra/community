@@ -53,8 +53,8 @@ $config['ANSWER_SHARE'] = array(
 );
 
 $config['TOPIC_SHARE'] = array(
-	'subject' => "[#user_name#] 在 [#site_name#] 给你分享了一个话题: [#topic_title#]",
-	'message' => "[#user_name#] 在 [#site_name#] 给你分享了一个话题: [#topic_title#]",
+	'subject' => "[#user_name#] 在 [#site_name#] 给你分享了一个共同体: [#topic_title#]",
+	'message' => "[#user_name#] 在 [#site_name#] 给你分享了一个共同体: [#topic_title#]",
 );
 
 $config['QUESTION_MOD'] = array(

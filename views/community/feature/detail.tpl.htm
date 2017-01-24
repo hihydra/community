@@ -72,10 +72,10 @@
 				</div>
 				<!-- 侧边栏 -->
 				<div class="col-xs-12 col-sm-3 aw-side-bar">
-					<!-- 热门话题 -->
+					<!-- 热门共同体 -->
 					<div class="aw-mod">
 						<div class="mod-head">
-							<h2><?php _e('该专题包含'); ?> <?php _e('%s 个话题', '<span class="i_blue">' . $this->feature_info['topic_count'] . '</span>'); ?></h2>
+							<h2><?php _e('该专题包含'); ?> <?php _e('%s 个共同体', '<span class="i_blue">' . $this->feature_info['topic_count'] . '</span>'); ?></h2>
 						</div>
 						<?php if (is_array($this->sidebar_hot_topics)) { ?>
 						<div class="mod-body">
@@ -86,14 +86,14 @@
 								</dt>
 								<dd class="pull-left">
 									<a href="topic/<?php echo $val['url_token']; ?>" class="aw-topic-name" data-id="<?php echo $val['topic_id']; ?>"><span><?php echo $val['topic_title']; ?></span></a>
-									<p><?php _e('该话题下有'); ?> <?php _e('%s 个讨论', $val['discuss_count']); ?></p>
+									<p><?php _e('该共同体下有'); ?> <?php _e('%s 个讨论', $val['discuss_count']); ?></p>
 								</dd>
 							</dl>
 							<?php } ?>
 						</div>
 						<?php } ?>
 					</div>
-					<!-- end 热门话题 -->
+					<!-- end 热门共同体 -->
 				</div>
 				<!-- end 侧边栏 -->
 				</div>

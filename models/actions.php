@@ -22,7 +22,7 @@ class actions_class extends AWS_MODEL
 {
 	public function home_activity($uid, $limit = 10)
 	{
-		// 我关注的话题
+		// 我关注的共同体
 		if ($user_focus_topics_ids = $this->model('topic')->get_focus_topic_ids_by_uid($uid))
 		{
 			if ($user_focus_topics_questions_ids = $this->model('topic')->get_item_ids_by_topics_ids($user_focus_topics_ids, 'question', 1000))
@@ -52,7 +52,7 @@ class actions_class extends AWS_MODEL
 			$where_in[] = "(associate_type = " . ACTION_LOG::CATEGORY_QUESTION . " AND associate_id IN (" . implode(',', $user_focus_questions_ids) . ") AND associate_action = " . ACTION_LOG::ANSWER_QUESTION . " AND uid <> " . $uid . ")";
 		}*/
 
-		// 我关注的话题
+		// 我关注的共同体
 		if ($user_focus_topics_questions_ids)
 		{
 			// 回复问题, 新增问题, 赞同答案

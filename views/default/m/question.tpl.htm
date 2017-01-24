@@ -8,7 +8,7 @@
 
 	<!-- 内容 -->
 	<div class="container padding-0">
-		<!-- 话题bar -->
+		<!-- 共同体bar -->
 		<div class="aw-topic-bar clearfix" data-id="<?php echo $this->question_info['question_id']; ?>" data-type="question">
 			<div class="tag-bar">
 				<?php if ($this->question_topics) { ?>
@@ -19,11 +19,11 @@
 					<?php } ?>
 				<?php } ?>
 				<?php if ($this->user_id AND !$this->question_info['lock']) { ?>
-					<a class="icon icon-inverse aw-add-topic-box"><i class="icon icon-edit"></i> <?php if (!count($this->question_topics) > 0) { ?><?php _e('添加话题'); ?><?php } ?></a>
+					<a class="icon icon-inverse aw-add-topic-box"><i class="icon icon-edit"></i> <?php if (!count($this->question_topics) > 0) { ?><?php _e('添加共同体'); ?><?php } ?></a>
 				<?php } ?>
 			</div>
 		</div>
-		<!-- end 话题bar -->
+		<!-- end 共同体bar -->
 
 		<!-- 问题详情 -->
 		<div class="aw-question-detail">
@@ -307,7 +307,7 @@
 			}
 		});
 
-		
+
 	});
 
 </script>

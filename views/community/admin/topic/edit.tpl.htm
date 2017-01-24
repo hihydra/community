@@ -8,12 +8,12 @@
 		<div class="mod-head">
 			<h3>
 				<?php if ($this->topic_info) { ?>
-				<span class="pull-left"><?php _e('话题编辑'); ?></span>
+				<span class="pull-left"><?php _e('共同体编辑'); ?></span>
 				<?php } else { ?>
 				<ul class="nav nav-tabs">
-					<li><a href="admin/topic/list/"><?php _e('话题管理'); ?></a></li>
-					<li><a href="admin/topic/parent/"><?php _e('根话题'); ?></a></li>
-					<li class="active"><a href="admin/topic/edit/"><?php _e('新建话题'); ?></a></li>
+					<li><a href="admin/topic/list/"><?php _e('共同体管理'); ?></a></li>
+					<li><a href="admin/topic/parent/"><?php _e('根共同体'); ?></a></li>
+					<li class="active"><a href="admin/topic/edit/"><?php _e('新建共同体'); ?></a></li>
 				</ul>
 				<?php } ?>
 			</h3>
@@ -37,7 +37,7 @@
 				<tr>
 					<td>
 						<div class="form-group">
-							<span class="col-sm-4 col-xs-3 control-label"><?php _e('话题标题'); ?>:</span>
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('共同体标题'); ?>:</span>
 							<div class="col-sm-5 col-xs-8">
 								<input type="text" name="topic_title" value="<?php echo $this->topic_info['topic_title']; ?>" class="form-control" />
 							</div>
@@ -48,7 +48,7 @@
 				<tr>
 					<td>
 						<div class="form-group">
-							<span class="col-sm-4 col-xs-3 control-label"><?php _e('话题描述'); ?>:</span>
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('共同体描述'); ?>:</span>
 							<div class="col-sm-5 col-xs-8">
 								<textarea class="form-control" name="topic_description"  ><?php echo $this->topic_info['topic_description']; ?></textarea>
 							</div>
@@ -80,7 +80,7 @@
 				<tr>
 					<td>
 						<div class="form-group">
-							<span class="col-sm-4 col-xs-3 control-label"><?php _e('根话题'); ?>:</span>
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('根共同体'); ?>:</span>
 							<div class="col-sm-6 col-xs-8">
 								<div class="btn-group mod-btn">
 									<label type="button" class="btn mod-btn-color">
@@ -99,7 +99,7 @@
 				<tr class="parent_topic_tr"<?php if ($this->topic_info['is_parent']) { ?> style="display: none;"<?php } ?>>
 					<td>
 						<div class="form-group">
-							<span class="col-sm-4 col-xs-3 control-label"><?php _e('选择根话题'); ?>:</span>
+							<span class="col-sm-4 col-xs-3 control-label"><?php _e('选择根共同体'); ?>:</span>
 							<div class="col-sm-4 col-xs-8">
 								<select id="parent_topic_select" class="collapse" name="parent_id">
 								<option value="0"> --- </option>
@@ -111,7 +111,7 @@
 								<div class="aw-publish-title">
 									<div class="dropdown">
 										<div class="dropdown-toggle">
-											<input class="aw-hide-txt form-control" id="aw-topic-tags-select" placeholder="<?php _e(根话题); ?>" />
+											<input class="aw-hide-txt form-control" id="aw-topic-tags-select" placeholder="<?php _e(根共同体); ?>" />
 											<a class="triangle"><i class="icon icon-down"></i></a>
 										</div>
 										<div class="aw-dropdown">
@@ -147,7 +147,7 @@
 		}
 		<?php } ?>
 
-		// 根话题选择
+		// 根共同体选择
 		$.each($('#parent_topic_select option'), function (i, e)
 		{
 			$('.aw-publish-title .aw-dropdown-list').append('<li data-value="' + $(this).attr('value') + '"><a href="javascript:;" >' + $(this).html() + '</a></li>');

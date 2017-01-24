@@ -11,7 +11,7 @@
 			<!-- 搜索框 -->
 			<div class="aw-search-box  hidden-xs hidden-sm">
 				<form class="navbar-search" action="search/" id="global_search_form" method="post">
-					<input class="form-control search-query" type="text" placeholder="<?php _e('搜索问题、话题或人'); ?>" autocomplete="off" name="q" id="aw-search-query" />
+					<input class="form-control search-query" type="text" placeholder="<?php _e('搜索问题、共同体或人'); ?>" autocomplete="off" name="q" id="aw-search-query" />
 					<span title="<?php _e('搜索'); ?>" id="global_search_btns" onClick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
 					<div class="aw-dropdown">
 						<div class="mod-body">
@@ -46,7 +46,7 @@
 
 					<li><a href="article/" class="<?php if ($_GET['app'] == 'article') { ?>active<?php } ?>"><?php _e('文章'); ?></a></li> -->
 
-					<li><a href="topic/" <?php if ($_GET['app'] == 'topic') { ?>class="active"<?php } ?>><i class="icon icon-topic"></i> <?php _e('话题'); ?></a></li>
+					<li><a href="topic/" <?php if ($_GET['app'] == 'topic') { ?>class="active"<?php } ?>><i class="icon icon-topic"></i> <?php _e('共同体'); ?></a></li>
 					<?php if ($this->user_id) { ?>
 					<li>
 						<a href="notifications/" class="<?php if ($_GET['app'] == 'notifications') { ?>active<?php } ?>"><i class="icon icon-bell"></i> <?php _e('通知'); ?></a>
@@ -110,7 +110,7 @@
 			<!-- 发起 -->
 			<?php if ($this->user_id) { ?>
 			<div class="aw-publish-btn">
-				
+
 				<a id="header_publish" class="btn-primary" <?php if (get_setting('quick_publish') == 'Y' AND $this->user_id) { ?>href="publish/"<?php } else { ?>href="publish/<?php if ($_GET['category']) { ?>category_id-<?php echo intval($_GET['category']); ?>__<?php } ?><?php if ($this->topic_info) { ?>topic_title-<?php echo urlencode($this->topic_info['topic_title']); ?>__<?php } ?>"<?php } ?><?php if (get_setting('quick_publish') == 'Y' && $this->user_id) { ?> onclick="AWS.dialog('publish', {'category_enable':'<?php echo (get_setting('category_enable') == 'Y') ? '1' : '0'; ?>', 'category_id':'<?php echo intval($_GET['category']); ?>', 'topic_title':'<?php echo $this->topic_info['topic_title']; ?>'}); return false;"<?php } ?>><i class="icon icon-ask"></i><?php _e('发起'); ?></a>
 				<div class="dropdown-list pull-right">
 					<ul>

@@ -363,6 +363,51 @@ class publish_class extends AWS_MODEL
 		return $article_id;
 	}
 
+	//wl-add
+	public function publish_resource($title, $message, $uid, $topics = null, $category_id = null, $icon = null,$attach_access_key = null, $create_topic = true)
+	{
+		if ($article_id = $this->insert('article', array(
+			'uid' => intval($uid),
+			'title' => htmlspecialchars($title),
+			'message' => htmlspecialchars($message),
+			'category_id' => intval($category_id),
+			'icon' => $icon,
+			'add_time' => time()
+		)))
+		{
+			set_human_valid('question_valid_hour');
+
+			if (is_array($topics))
+			{
+				foreach ($topics as $key => $topic_title)
+				{
+					$topic_id = $this->model('topic')->save_topic($topic_title, $uid, $create_topic);
+
+					$this->model('topic')->save_topic_relation($uid, $topic_id, $article_id, 'resource');
+				}
+			}
+
+			if ($attach_access_key)
+			{
+				$this->model('publish')->update_attach('article', $article_id, $attach_access_key);
+			}
+
+			$this->model('search_fulltext')->push_index('article', $title, $article_id);
+
+			// 记录日志
+			ACTION_LOG::save_action($uid, $article_id, ACTION_LOG::CATEGORY_QUESTION, ACTION_LOG::ADD_ARTICLE, $title, $message, 0);
+
+			$this->model('posts')->set_posts_index($article_id, 'article');
+
+			$this->shutdown_update('users', array(
+				'article_count' => $this->count('article', 'uid = ' . intval($uid))
+			), 'uid = ' . intval($uid));
+		}
+
+		return $article_id;
+	}
+	//wl-end
+
 	public function publish_article_comment($article_id, $message, $uid, $at_uid = null)
 	{
 		if (!$article_info = $this->model('article')->get_article_info_by_id($article_id))

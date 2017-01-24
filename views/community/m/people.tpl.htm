@@ -159,11 +159,11 @@
 	            <?php } ?>
 				<!-- end 关注者 -->
 
-				<!-- 关注话题 -->
+				<!-- 关注共同体 -->
 				<?php if ($this->focus_topics) { ?>
 				<div class="mod card-mod focus-topics">
 					<div class="mod-head">
-						<h2><?php _e('关注 %s 个话题', $this->user['topic_focus_count']); ?></h2>
+						<h2><?php _e('关注 %s 个共同体', $this->user['topic_focus_count']); ?></h2>
 					</div>
 					<div class="mod-body clearfix">
 						<?php foreach ($this->focus_topics AS $key => $val) { ?>
@@ -174,7 +174,7 @@
 					</div>
 				</div>
 				<?php } ?>
-				<!-- end 关注话题 -->
+				<!-- end 关注共同体 -->
 			</div>
 			<!-- end 关注列表 -->
 

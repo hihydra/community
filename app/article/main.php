@@ -236,7 +236,7 @@ class main extends AWS_CONTROLLER
 		}
 
 
-		//边栏热门话题
+		//边栏热门共同体
 		if (TPL::is_output('block/sidebar_hot_topics.tpl.htm', 'article/square'))
 		{
 			TPL::assign('sidebar_hot_topics', $this->model('module')->sidebar_hot_topics($category_info['id']));

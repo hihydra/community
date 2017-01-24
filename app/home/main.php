@@ -49,7 +49,7 @@ class main extends AWS_CONTROLLER
 	}
 
 	public function index_action()
-	{		
+	{
 		if (! $this->user_id)
 		{
 			HTTP::redirect('/explore/');
@@ -60,7 +60,7 @@ class main extends AWS_CONTROLLER
 			HTTP::redirect('/account/complete_profile/');
 		}
 
-		// 边栏可能感兴趣的人或话题
+		// 边栏可能感兴趣的人或共同体
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'home/index'))
 		{
 			$recommend_users_topics = $this->model('module')->recommend_users_topics($this->user_id);

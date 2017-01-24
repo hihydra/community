@@ -27,7 +27,7 @@ class topic extends AWS_ADMIN_CONTROLLER
 
 	public function list_action()
 	{
-		$this->crumb(AWS_APP::lang()->_t('话题管理'), 'admin/topic/list/');
+		$this->crumb(AWS_APP::lang()->_t('共同体管理'), 'admin/topic/list/');
 
 		if ($_POST)
 		{
@@ -139,7 +139,7 @@ class topic extends AWS_ADMIN_CONTROLLER
 
 	public function parent_action()
 	{
-		$this->crumb(AWS_APP::lang()->_t('根话题'), 'admin/topic/parent/');
+		$this->crumb(AWS_APP::lang()->_t('根共同体'), 'admin/topic/parent/');
 
 		$topic_list = $this->model('topic')->get_topic_list('is_parent = 1', 'topic_id DESC', $this->per_page, $_GET['page']);
 
@@ -192,20 +192,20 @@ class topic extends AWS_ADMIN_CONTROLLER
 	{
 		if ($_GET['topic_id'])
 		{
-			$this->crumb(AWS_APP::lang()->_t('话题编辑'), 'admin/topic/edit/');
+			$this->crumb(AWS_APP::lang()->_t('共同体编辑'), 'admin/topic/edit/');
 
 			$topic_info = $this->model('topic')->get_topic_by_id($_GET['topic_id']);
 
 			if (!$topic_info)
 			{
-				H::redirect_msg(AWS_APP::lang()->_t('话题不存在'), '/admin/topic/list/');
+				H::redirect_msg(AWS_APP::lang()->_t('共同体不存在'), '/admin/topic/list/');
 			}
 
 			TPL::assign('topic_info', $topic_info);
 		}
 		else
 		{
-			$this->crumb(AWS_APP::lang()->_t('新建话题'), 'admin/topic/edit/');
+			$this->crumb(AWS_APP::lang()->_t('新建共同体'), 'admin/topic/edit/');
 		}
 
 		TPL::assign('parent_topics', $this->model('topic')->get_parent_topics());

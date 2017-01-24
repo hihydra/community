@@ -223,7 +223,7 @@ CREATE TABLE `[#DB_PREFIX#]feature` (
   `title` VARCHAR(200) DEFAULT NULL COMMENT '专题标题',
   `description` VARCHAR(255) DEFAULT NULL COMMENT '专题描述',
   `icon` VARCHAR(255) DEFAULT NULL COMMENT '专题图标',
-  `topic_count` INT(11) NOT NULL DEFAULT '0' COMMENT '话题计数',
+  `topic_count` INT(11) NOT NULL DEFAULT '0' COMMENT '共同体计数',
   `css` TEXT COMMENT '自定义CSS',
   `url_token` VARCHAR(32) DEFAULT NULL,
   `seo_title` VARCHAR(255) DEFAULT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE `[#DB_PREFIX#]feature` (
 CREATE TABLE `[#DB_PREFIX#]feature_topic` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `feature_id` INT(11) NOT NULL DEFAULT '0' COMMENT '专题ID',
-  `topic_id` INT(11) NOT NULL DEFAULT '0' COMMENT '话题ID',
+  `topic_id` INT(11) NOT NULL DEFAULT '0' COMMENT '共同体ID',
   PRIMARY KEY (`id`),
   KEY `feature_id` (`feature_id`),
   KEY `topic_id` (`topic_id`)
@@ -520,7 +520,7 @@ CREATE TABLE `[#DB_PREFIX#]question_comments` (
 
 CREATE TABLE `[#DB_PREFIX#]question_focus` (
   `focus_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `question_id` int(11) DEFAULT NULL COMMENT '话题ID',
+  `question_id` int(11) DEFAULT NULL COMMENT '共同体ID',
   `uid` int(11) DEFAULT NULL COMMENT '用户UID',
   `add_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`focus_id`),
@@ -545,7 +545,7 @@ CREATE TABLE `[#DB_PREFIX#]question_invite` (
 
 CREATE TABLE `[#DB_PREFIX#]question_uninterested` (
   `interested_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `question_id` int(11) DEFAULT NULL COMMENT '话题ID',
+  `question_id` int(11) DEFAULT NULL COMMENT '共同体ID',
   `uid` int(11) DEFAULT NULL COMMENT '用户UID',
   `add_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`interested_id`),
@@ -569,8 +569,8 @@ CREATE TABLE `[#DB_PREFIX#]report` (
 CREATE TABLE `[#DB_PREFIX#]reputation_topic` (
   `auto_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT '0',
-  `topic_id` int(11) DEFAULT '0' COMMENT '话题ID',
-  `topic_count` int(10) DEFAULT '0' COMMENT '威望问题话题计数',
+  `topic_id` int(11) DEFAULT '0' COMMENT '共同体ID',
+  `topic_count` int(10) DEFAULT '0' COMMENT '威望问题共同体计数',
   `update_time` int(10) DEFAULT NULL COMMENT '更新时间',
   `agree_count` INT(10) DEFAULT '0' COMMENT '赞成',
   `thanks_count` INT(10) DEFAULT '0' COMMENT '感谢',
@@ -584,8 +584,8 @@ CREATE TABLE `[#DB_PREFIX#]reputation_topic` (
 
 CREATE TABLE `[#DB_PREFIX#]related_topic` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `topic_id` int(11) DEFAULT '0' COMMENT '话题 ID',
-  `related_id` int(11) DEFAULT '0' COMMENT '相关话题 ID',
+  `topic_id` int(11) DEFAULT '0' COMMENT '共同体 ID',
+  `related_id` int(11) DEFAULT '0' COMMENT '相关共同体 ID',
   PRIMARY KEY (`id`),
   KEY `topic_id` (`topic_id`),
   KEY `related_id` (`related_id`)
@@ -643,13 +643,13 @@ CREATE TABLE `[#DB_PREFIX#]system_setting` (
 ) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8 COMMENT='系统设置';
 
 CREATE TABLE `[#DB_PREFIX#]topic` (
-  `topic_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '话题id',
-  `topic_title` varchar(64) DEFAULT NULL COMMENT '话题标题',
+  `topic_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '共同体id',
+  `topic_title` varchar(64) DEFAULT NULL COMMENT '共同体标题',
   `add_time` int(10) DEFAULT NULL COMMENT '添加时间',
   `discuss_count` int(11) DEFAULT '0' COMMENT '讨论计数',
-  `topic_description` text COMMENT '话题描述',
-  `topic_pic` varchar(255) DEFAULT NULL COMMENT '话题图片',
-  `topic_lock` tinyint(2) NOT NULL DEFAULT '0' COMMENT '话题是否锁定 1 锁定 0 未锁定',
+  `topic_description` text COMMENT '共同体描述',
+  `topic_pic` varchar(255) DEFAULT NULL COMMENT '共同体图片',
+  `topic_lock` tinyint(2) NOT NULL DEFAULT '0' COMMENT '共同体是否锁定 1 锁定 0 未锁定',
   `focus_count` int(11) DEFAULT '0' COMMENT '关注计数',
   `user_related` tinyint(1) DEFAULT '0' COMMENT '是否被用户关联',
   `url_token` VARCHAR(32) DEFAULT NULL,
@@ -674,18 +674,18 @@ CREATE TABLE `[#DB_PREFIX#]topic` (
   KEY `discuss_count_last_week` (`discuss_count_last_week`),
   KEY `discuss_count_last_month` (`discuss_count_last_month`),
   KEY `discuss_count_update` (`discuss_count_update`)
-) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8 COMMENT='话题';
+) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8 COMMENT='共同体';
 
 CREATE TABLE `[#DB_PREFIX#]topic_focus` (
   `focus_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `topic_id` int(11) DEFAULT NULL COMMENT '话题ID',
+  `topic_id` int(11) DEFAULT NULL COMMENT '共同体ID',
   `uid` int(11) DEFAULT NULL COMMENT '用户UID',
   `add_time` int(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`focus_id`),
   KEY `uid` (`uid`),
   KEY `topic_id` ( `topic_id` ),
   KEY `topic_uid` ( `topic_id`, `uid` )
-) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8 COMMENT='话题关注表';
+) ENGINE=[#DB_ENGINE#] DEFAULT CHARSET=utf8 COMMENT='共同体关注表';
 
 CREATE TABLE `[#DB_PREFIX#]topic_merge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -701,7 +701,7 @@ CREATE TABLE `[#DB_PREFIX#]topic_merge` (
 
 CREATE TABLE `[#DB_PREFIX#]topic_relation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增 ID',
-  `topic_id` int(11) DEFAULT '0' COMMENT '话题id',
+  `topic_id` int(11) DEFAULT '0' COMMENT '共同体id',
   `item_id` int(11) DEFAULT '0',
   `add_time` int(10) DEFAULT '0' COMMENT '添加时间',
   `uid` int(11) DEFAULT '0' COMMENT '用户ID',
@@ -741,7 +741,7 @@ CREATE TABLE `[#DB_PREFIX#]users` (
   `article_count` int(10) NOT NULL DEFAULT '0' COMMENT '文章数量',
   `question_count` int(10) NOT NULL DEFAULT '0' COMMENT '问题数量',
   `answer_count` int(10) NOT NULL DEFAULT '0' COMMENT '回答数量',
-  `topic_focus_count` int(10) NOT NULL DEFAULT '0' COMMENT '关注话题数量',
+  `topic_focus_count` int(10) NOT NULL DEFAULT '0' COMMENT '关注共同体数量',
   `invitation_available` int(10) NOT NULL DEFAULT '0' COMMENT '邀请数量',
   `group_id` int(10) DEFAULT '0' COMMENT '用户组',
   `reputation_group` int(10) DEFAULT '0' COMMENT '威望对应组',
@@ -1008,7 +1008,7 @@ CREATE TABLE `[#DB_PREFIX#]users_twitter` (
 CREATE TABLE `[#DB_PREFIX#]user_action_history` (
   `history_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `uid` int(11) NOT NULL COMMENT '用户id',
-  `associate_type` tinyint(1) DEFAULT NULL COMMENT '关联类型: 1 问题 2 回答 3 评论 4 话题',
+  `associate_type` tinyint(1) DEFAULT NULL COMMENT '关联类型: 1 问题 2 回答 3 评论 4 共同体',
   `associate_action` smallint(3) DEFAULT NULL COMMENT '操作类型',
   `associate_id` int(11) DEFAULT NULL COMMENT '关联ID',
   `add_time` int(10) DEFAULT NULL COMMENT '添加时间',
@@ -1338,7 +1338,7 @@ INSERT INTO `[#DB_PREFIX#]jobs` (`id`, `job_name`) VALUES
 (37, '在校学生'),
 (38, '其他');
 
-INSERT INTO `[#DB_PREFIX#]topic` (`topic_title`, `topic_description`) VALUES('默认话题', '默认话题');
+INSERT INTO `[#DB_PREFIX#]topic` (`topic_title`, `topic_description`) VALUES('默认共同体', '默认共同体');
 
 INSERT INTO `[#DB_PREFIX#]users_group` (`group_id`, `type`, `custom`, `group_name`, `reputation_lower`, `reputation_higer`, `reputation_factor`, `permission`) VALUES
 (1, 0, 0, '超级管理员', 0, 0, 5, 'a:15:{s:16:"is_administortar";s:1:"1";s:12:"is_moderator";s:1:"1";s:16:"publish_question";s:1:"1";s:21:"publish_approval_time";a:2:{s:5:"start";s:0:"";s:3:"end";s:0:"";}s:13:"edit_question";s:1:"1";s:10:"edit_topic";s:1:"1";s:12:"manage_topic";s:1:"1";s:12:"create_topic";s:1:"1";s:17:"redirect_question";s:1:"1";s:13:"upload_attach";s:1:"1";s:11:"publish_url";s:1:"1";s:15:"publish_article";s:1:"1";s:12:"edit_article";s:1:"1";s:19:"edit_question_topic";s:1:"1";s:15:"publish_comment";s:1:"1";}'),

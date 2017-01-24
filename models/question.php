@@ -370,7 +370,7 @@ class question_class extends AWS_MODEL
 
 		$this->delete('question_thanks', 'question_id = ' . intval($question_id));
 
-		$this->delete('topic_relation', "`type` = 'question' AND item_id = " . intval($question_id));		// 删除话题关联
+		$this->delete('topic_relation', "`type` = 'question' AND item_id = " . intval($question_id));		// 删除共同体关联
 
 		$this->delete('question_invite', 'question_id = ' . intval($question_id));	// 删除邀请记录
 
@@ -844,7 +844,7 @@ class question_class extends AWS_MODEL
 		{
 			return $invite_users_list;
 		}
-		
+
 		if ($invites = $this->fetch_all('question_invite', 'question_id = ' . intval($question_id), 'question_invite_id DESC', $limit))
 		{
 			foreach ($invites as $key => $val)
@@ -853,10 +853,10 @@ class question_class extends AWS_MODEL
 			}
 
 			$invite_users_list = $this->model('account')->get_user_info_by_uids($invite_users);
-			
+
 			AWS_APP::cache()->set('question_invite_users_' . $question_id, $invite_users_list, get_setting('cache_level_normal'));
 		}
-		
+
 		return $invite_users_list;
 	}
 
@@ -1057,7 +1057,7 @@ class question_class extends AWS_MODEL
 	}
 
 	/**
-	 * 处理话题日志
+	 * 处理共同体日志
 	 * @param array $log_list
 	 *
 	 * @return array
@@ -1131,17 +1131,17 @@ class question_class extends AWS_MODEL
 
 					break;
 
-				case ACTION_LOG::ADD_TOPIC : //添加话题
+				case ACTION_LOG::ADD_TOPIC : //添加共同体
 
 					$topic_info = $this->model('topic')->get_topic_by_id($log['associate_attached']);
-					$title_list = $user_name_string . ' 给该问题添加了一个话题 <p><a href="topic/' . $topic_info['url_token'] . '">' . $log['associate_content'] . '</a>';
+					$title_list = $user_name_string . ' 给该问题添加了一个共同体 <p><a href="topic/' . $topic_info['url_token'] . '">' . $log['associate_content'] . '</a>';
 
 					break;
 
-				case ACTION_LOG::DELETE_TOPIC : //移除话题
+				case ACTION_LOG::DELETE_TOPIC : //移除共同体
 
 					$topic_info = $this->model('topic')->get_topic_by_id($log['associate_attached']);
-					$title_list = $user_name_string . ' 移除了该问题的一个话题 <p><a href="topic/' . $topic_info['url_token'] . '">' . $log['associate_content'] . '</a>';
+					$title_list = $user_name_string . ' 移除了该问题的一个共同体 <p><a href="topic/' . $topic_info['url_token'] . '">' . $log['associate_content'] . '</a>';
 
 					break;
 
@@ -1313,7 +1313,7 @@ class question_class extends AWS_MODEL
 
 	/**
 	 *
-	 * 根据问题ID,得到相关联的话题标题信息
+	 * 根据问题ID,得到相关联的共同体标题信息
 	 * @param int $question_id
 	 * @param string $limit
 	 *

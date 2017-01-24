@@ -30,7 +30,7 @@ $(function()
 	//问题添加评论
     AWS.Init.init_comment_box('.aw-add-comment');
 
-	//侧边栏话题编辑记录收缩
+	//侧边栏共同体编辑记录收缩
 	$('.topic-edit-notes .icon-down').click(function() {
 		if (!$(this).parents('.topic-edit-notes').find('.mod-body').is(':visible'))
 		{
@@ -44,7 +44,7 @@ $(function()
 		}
 	});
 
-	//话题问题搜索下拉绑定
+	//共同体问题搜索下拉绑定
 	AWS.Dropdown.bind_dropdown_list($('.aw-search-bar #question-input'), 'topic_question');
 
 	check_related_topic($('#c_all_list .aw-item'));

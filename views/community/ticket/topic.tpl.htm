@@ -38,7 +38,7 @@
                                 <a href="ticket/data/"><?php _e('业绩报表'); ?></a>
                             </li>
                             <li>
-                                <a href="ticket/topic/" class="active"><?php _e('热门话题'); ?></a>
+                                <a href="ticket/topic/" class="active"><?php _e('热门共同体'); ?></a>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
                                 <li><a href="ticket/topic/days-7"<?php if ($_GET['days'] == '7') { ?> class="active"<?php } ?>><?php _e('%s 天', '7'); ?></a></li>
                                 <li><a href="ticket/topic/"<?php if (!$_GET['days']) { ?> class="active"<?php } ?>><?php _e('全部'); ?></a></li>
                                 <h2>
-                                    <i class="icon icon-count"></i> <?php _e('热门话题'); ?>
+                                    <i class="icon icon-count"></i> <?php _e('热门共同体'); ?>
                                 </h2>
                             </ul>
                         </div>
@@ -75,17 +75,17 @@
                             <?php if ($this->topics_list) {
                                 foreach ($this->topics_list AS $topic_info) { ?>
                             <div class="aw-item">
-                                <!-- 话题图片 -->
+                                <!-- 共同体图片 -->
                                 <a data-id="<?php echo $topic_info['topic_id']; ?>" href="topic/<?php echo $topic_info['url_token']; ?>" class="img aw-border-radius-5">
                                     <img alt="" src="<?php echo get_topic_pic_url('mid', $topic_info['topic_pic']); ?>">
                                 </a>
-                                <!-- end 话题图片 -->
+                                <!-- end 共同体图片 -->
                                 <p class="clearfix">
-                                    <!-- 话题内容 -->
+                                    <!-- 共同体内容 -->
                                     <span class="topic-tag">
                                         <a data-id="<?php echo $topic_info['topic_id']; ?>" href="topic/<?php echo $topic_info['url_token']; ?>" class="text"><?php echo $topic_info['topic_title']; ?></a>
                                     </span>
-                                    <!-- end 话题内容 -->
+                                    <!-- end 共同体内容 -->
                                 </p>
                                 <p class="text-color-999">
                                     <?php if ($_GET['days']) { if ($_GET['days'] == '30') _e('本月有'); else if ($_GET['days'] == '7') _e('本周有'); } else _e('共有'); ?>

@@ -48,9 +48,9 @@
                                 <span><i class="icon icon-thank"></i> <?php _e('感谢'); ?> : <em class="aw-text-color-orange"><?php echo $this->user['thanks_count']; ?></em></span>
                             </div>
                             <?php if ($this->reputation_topics) { ?>
-                            <!-- 擅长话题 -->
+                            <!-- 擅长共同体 -->
                             <div class="good-at-topics clearfix">
-                                <h2><?php _e('擅长话题'); ?></h2>
+                                <h2><?php _e('擅长共同体'); ?></h2>
                                 <ul>
                                     <?php foreach ($this->reputation_topics AS $key => $val) { ?>
                                     <li>
@@ -65,7 +65,7 @@
                                     <?php } ?>
                                 </ul>
                             </div>
-                            <!-- end 擅长话题 -->
+                            <!-- end 擅长共同体 -->
                             <?php } ?>
 
                         </div>
@@ -225,7 +225,7 @@
                                         <ul>
                                             <li class="active"><a><?php _e('关注的人'); ?></a></li>
                                             <li><a><?php _e('关注者'); ?></a></li>
-                                            <li><a><?php _e('关注的话题'); ?></a></li>
+                                            <li><a><?php _e('关注的共同体'); ?></a></li>
                                         </ul>
                                     </div>
                                     <div class="mod-body">
@@ -360,7 +360,7 @@
 
                                     <?php if ($this->reputation_topics) { ?>
                                     <dl>
-                                        <dt><span><?php _e('擅长话题'); ?>:</span></dt>
+                                        <dt><span><?php _e('擅长共同体'); ?>:</span></dt>
                                         <dd class="aw-user-center-details-good-topic">
                                             <?php foreach ($this->reputation_topics AS $key => $val) { ?>
                                             <div>
@@ -450,7 +450,7 @@
                     </div>
                     <div class="aw-mod people-following">
                         <div class="mod-body">
-                            <?php _e('关注 %s 话题', '<em class="aw-text-color-blue">' . $this->user['topic_focus_count'] . '</em>'); ?>
+                            <?php _e('关注 %s 共同体', '<em class="aw-text-color-blue">' . $this->user['topic_focus_count'] . '</em>'); ?>
                             <?php if ($this->focus_topics) { ?>
                             <div class="aw-topic-bar">
                                 <div class="tag-bar clearfix">

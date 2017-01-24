@@ -983,12 +983,12 @@ class ajax extends AWS_ADMIN_CONTROLLER
         {
             if (!$topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
             {
-                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('话题不存在')));
+                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('共同体不存在')));
             }
 
             if ($topic_info['topic_title'] != $_POST['topic_title'] AND $this->model('topic')->get_topic_by_title($_POST['topic_title']))
             {
-                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('同名话题已经存在')));
+                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('同名共同体已经存在')));
             }
 
             $this->model('topic')->update_topic($this->user_id, $topic_info['topic_id'], $_POST['topic_title'], $_POST['topic_description']);
@@ -1001,7 +1001,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
         {
             if ($this->model('topic')->get_topic_by_title($_POST['topic_title']))
             {
-                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('同名话题已经存在')));
+                H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('同名共同体已经存在')));
             }
 
             $topic_id = $this->model('topic')->save_topic($_POST['topic_title'], $this->user_id, true, $_POST['topic_description']);
@@ -1023,7 +1023,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
     {
         if (!$_POST['topic_ids'])
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请选择话题进行操作')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请选择共同体进行操作')));
         }
 
         switch($_POST['action'])
@@ -1767,7 +1767,7 @@ class ajax extends AWS_ADMIN_CONTROLLER
                 case 'new_question':    // 新增问题
                 case 'new_user':    // 新注册用户
                 case 'user_valid':  // 新激活用户
-                case 'new_topic':   // 新增话题
+                case 'new_topic':   // 新增共同体
                 case 'new_answer_vote': // 新增答案投票
                 case 'new_answer_thanks': // 新增答案感谢
                 case 'new_favorite_item': // 新增收藏条目

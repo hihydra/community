@@ -2,7 +2,7 @@
 
 <!-- 内容 -->
 	<div class="container padding-0">
-		<!-- 话题bar -->
+		<!-- 共同体bar -->
 		<div class="aw-topic-bar clearfix" data-id="<?php echo $this->article_info['id']; ?>" data-type="article">
 			<div class="tag-bar">
 				<?php foreach($this->article_topics as $key => $val) { if ($key > 2) { break; } ?>
@@ -11,11 +11,11 @@
 					</span>
 				<?php } ?>
 				<?php if ($this->user_id) { ?>
-					<a class="icon icon-inverse aw-add-topic-box"><i class="icon icon-edit"></i> <?php if (!count($this->article_topics) > 0) { ?>添加话题<?php } ?></a>
+					<a class="icon icon-inverse aw-add-topic-box"><i class="icon icon-edit"></i> <?php if (!count($this->article_topics) > 0) { ?>添加共同体<?php } ?></a>
 				<?php } ?>
 			</div>
 		</div>
-		<!-- end 话题bar -->
+		<!-- end 共同体bar -->
 
 		<!-- 文章详情 -->
 		<div class="aw-question-detail aw-article-detail">
@@ -28,7 +28,7 @@
 					<div id="weixin-desc" style="display:none;">
 						<?php echo cjk_substr(str_replace(array("\r","\n"),array(' ',' '), strip_tags($this->article_info['message'])), 0, 130, 'UTF-8', '...');?>
 					</div>
-									
+
 					<?php if ($this->article_info['attachs']) {  ?>
 					<div class="aw-upload-img-list">
 					<?php foreach ($this->article_info['attachs'] AS $attach) { ?>
@@ -38,7 +38,7 @@
 					<?php } ?>
 					</div>
 					<?php } ?>
-					
+
 					<?php if ($this->article_info['attachs']) {  ?>
 					<ul class="aw-upload-file-list">
 						<?php foreach ($this->article_info['attachs'] AS $attach) { ?>
@@ -119,7 +119,7 @@
 		<?php if ($this->next_page) { ?>
 		<a href="m/question/<?php echo $this->question_info['question_id']; ?>?page-<?php echo $this->next_page; ?>" class="aw-load-more">下一页</a>
 		<?php } ?>
-		
+
 		<?php if ($this->article_info['lock']) { ?>
 		<p align="center"><?php _e('该文章目前已经被锁定, 无法添加新评论'); ?></p>
 		<?php } else if (!$this->user_id) { ?>

@@ -7,7 +7,7 @@
 				<div class="col-sm-9 aw-main-content">
 					<div class="aw-mod">
 						<div class="mod-head common-head">
-							<h2><a class="btn btn-mini pull-right" href="topic/<?php echo $this->topic_info['url_token']; ?>"><?php _e('返回话题'); ?> »</a><?php _e('话题编辑'); ?></h2>
+							<h2><a class="btn btn-mini pull-right" href="topic/<?php echo $this->topic_info['url_token']; ?>"><?php _e('返回共同体'); ?> »</a><?php _e('共同体编辑'); ?></h2>
 						</div>
 					</div>
 					<div class="aw-mod aw-mod-topic-edit-box">
@@ -17,7 +17,7 @@
 								<b>修改</b>
 							</a>
 							<h3><?php echo $this->topic_info['topic_title']; ?></h3>
-							<span class="pull-left"><?php _e('相关话题'); ?> : </span>
+							<span class="pull-left"><?php _e('相关共同体'); ?> : </span>
 							<div class="aw-topic-bar pull-left" data-type="topic" data-id="<?php echo $this->topic_info['topic_id']; ?>">
 								<div class="tag-bar clearfix">
 									<?php if ($this->related_topics) { ?>
@@ -27,7 +27,7 @@
 				                    <?php } ?>
 
 				                    <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'] OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic'])) { ?>
-									<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i><?php _e('添加话题'); ?></span>
+									<span class="aw-edit-topic icon-inverse"><i class="icon icon-edit"></i><?php _e('添加共同体'); ?></span>
 									<?php } ?>
 								</div>
 							</div>
@@ -53,11 +53,11 @@
 				<div class="col-sm-3 aw-side-bar">
 					<div class="aw-mod topic-edit-help">
 						<div class="mod-head">
-							<h3><?php _e('话题编辑指南'); ?></h3>
+							<h3><?php _e('共同体编辑指南'); ?></h3>
 						</div>
 						<div class="mod-body">
-							 <p><b>• <?php _e('相关话题'); ?>:</b> <?php _e('添加和该话题词义相近或者相似的话题'); ?></p>
-							 <p><b>• <?php _e('话题内容'); ?>:</b> <?php _e('话题是 WeCenter 系统用来组织内容的一个节点, 也是根据内容提炼出来的知识点. 话题是构成 WeCenter 系统讨论内容的基本单元, 是对各种事物、现象等概念的解释. 如果您针对本话题的定义非常清晰, 请帮忙完善该话题并帮助社区用户对该话题的理解, 谢谢您的分享和贡献'); ?></p>
+							 <p><b>• <?php _e('相关共同体'); ?>:</b> <?php _e('添加和该共同体词义相近或者相似的共同体'); ?></p>
+							 <p><b>• <?php _e('共同体内容'); ?>:</b> <?php _e('共同体是 WeCenter 系统用来组织内容的一个节点, 也是根据内容提炼出来的知识点. 共同体是构成 WeCenter 系统讨论内容的基本单元, 是对各种事物、现象等概念的解释. 如果您针对本共同体的定义非常清晰, 请帮忙完善该共同体并帮助社区用户对该共同体的理解, 谢谢您的分享和贡献'); ?></p>
 						</div>
 					</div>
 				</div>

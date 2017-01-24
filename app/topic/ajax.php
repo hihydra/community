@@ -109,7 +109,7 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 			else if ($this->user_info['permission']['function_interval'] AND ((time() - AWS_APP::cache()->get('function_interval_timer_topic_' . $this->user_id)) < $this->user_info['permission']['function_interval']))
 			{
@@ -119,12 +119,12 @@ class ajax extends AWS_CONTROLLER
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		if (!$_POST['topic_description'])
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请填写话题描述')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请填写共同体描述')));
 		}
 
 		$this->model('topic')->update_topic($this->user_id, $_POST['topic_id'], null, $_POST['topic_description']);
@@ -146,38 +146,38 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_GET['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$this->model('topic')->get_topic_by_id($_GET['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		if (!$topic_title = trim($_POST['topic_title']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入话题标题')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入共同体标题')));
 		}
 
 		if (strstr($_POST['topic_title'], '/') OR strstr($_POST['topic_title'], '-') OR strstr($_POST['topic_title'], '&'))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题标题不能包含 / - &')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体标题不能包含 / - &')));
 		}
 
 		if (get_setting('topic_title_limit') > 0 AND cjk_strlen($topic_title) > get_setting('topic_title_limit'))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
 		}
 
 		if (! $related_id = $this->model('topic')->save_topic($topic_title, $this->user_id, $this->user_info['permission']['create_topic']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题已锁定或没有创建话题权限')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体已锁定或没有创建共同体权限')));
 		}
 
 		if (!$this->model('topic')->save_related_topic($_GET['topic_id'], $related_id))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('已经存在相同推荐话题')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('已经存在相同推荐共同体')));
 		}
 
 		ACTION_LOG::save_action($this->user_id, $_GET['topic_id'], ACTION_LOG::CATEGORY_TOPIC, ACTION_LOG::ADD_RELATED_TOPIC, '', $related_id);
@@ -197,7 +197,7 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_GET['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
@@ -218,13 +218,13 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_GET['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_id($_GET['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		AWS_APP::upload()->initialize(array(
@@ -309,23 +309,23 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		if ($topic_info['is_parent'])
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('不允许为根话题设置根话题')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('不允许为根共同体设置根共同体')));
 		}
 
 		if ($topic_info['topic_id'] == intval($_POST['parent_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('不允许将根话题设置为自己')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('不允许将根共同体设置为自己')));
 		}
 
 		$this->model('topic')->set_parent_id($topic_info['topic_id'], $_POST['parent_id']);
@@ -343,28 +343,28 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		if (!preg_match("/^(?!__)[a-zA-Z0-9_]+$/i", $_POST['url_token']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题别名只允许输入英文或数字')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体别名只允许输入英文或数字')));
 		}
 
 		if ($this->model('topic')->check_url_token($_POST['url_token'], $topic_info['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题别名已经被占用请更换一个')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体别名已经被占用请更换一个')));
 		}
 
 		if (preg_match("/^[\d]+$/i", $_POST['url_token']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题别名不允许为纯数字')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体别名不允许为纯数字')));
 		}
 
 		$this->model('topic')->update_url_token($_POST['url_token'], $topic_info['topic_id']);
@@ -384,13 +384,13 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		$this->model('topic')->update_seo_title($_POST['seo_title'], $topic_info['topic_id']);
@@ -409,7 +409,7 @@ class ajax extends AWS_CONTROLLER
 
 		if (! $topic_info = $this->model('topic')->get_topic_by_id($_POST['topic_id']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, - 1, AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, - 1, AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		$this->model('topic')->lock_topic_by_ids($_POST['topic_id'], !$topic_info['topic_lock']);
@@ -441,25 +441,25 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
 		if (!$topic_info = $this->model('topic')->get_topic_by_title($_POST['topic_title']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题不存在')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体不存在')));
 		}
 
 		if ($topic_info['topic_id'] == $_POST['target_id'])
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题合并不能与自己合并')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体合并不能与自己合并')));
 		}
 
 		if ($topic_info['merged_id'])
 		{
 			$merged_topic_info = $this->model('topic')->get_topic_by_id($topic_info['merged_id']);
 
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('该话题已经与 %s 合并', $merged_topic_info['topic_title'])));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('该共同体已经与 %s 合并', $merged_topic_info['topic_title'])));
 		}
 
 		$this->model('topic')->merge_topic($topic_info['topic_id'], $_POST['target_id'], $this->user_id);
@@ -477,7 +477,7 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
@@ -496,7 +496,7 @@ class ajax extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_POST['topic_id']))
 			{
-				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的话题不能编辑')));
+				H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定的共同体不能编辑')));
 			}
 		}
 
@@ -612,17 +612,17 @@ class ajax extends AWS_CONTROLLER
 
 		if (trim($_POST['topic_title']) == '')
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入话题标题')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请输入共同体标题')));
 		}
 
 		if (strstr($_POST['topic_title'], '/') OR strstr($_POST['topic_title'], '-') OR strstr($_POST['topic_title'], '&'))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题标题不能包含 / - &')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体标题不能包含 / - &')));
 		}
 
 		if (! $this->model('topic')->get_topic_id_by_title($_POST['topic_title']) AND get_setting('topic_title_limit') AND cjk_strlen($_POST['topic_title']) > get_setting('topic_title_limit'))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
 		}
 
 		switch ($_POST['type'])
@@ -630,26 +630,26 @@ class ajax extends AWS_CONTROLLER
 			case 'question':
 				if ($question_info['lock'] AND ! ($this->user_info['permission']['is_administortar'] or $this->user_info['permission']['is_moderator']))
 				{
-					H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定问题不能添加话题')));
+					H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定问题不能添加共同体')));
 				}
 			break;
 
 			case 'article':
 				if ($article_info['lock'] AND ! ($this->user_info['permission']['is_administortar'] or $this->user_info['permission']['is_moderator']))
 				{
-					H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定文章不能添加话题')));
+					H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('锁定文章不能添加共同体')));
 				}
 			break;
 		}
 
 		if (sizeof($this->model('topic')->get_topics_by_item_id($_POST['item_id'], $_POST['type'])) >= get_setting('question_topics_limit') AND get_setting('question_topics_limit'))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('单个问题或文章话题数量最多为 %s 个, 请调整话题数量', get_setting('question_topics_limit'))));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('单个问题或文章共同体数量最多为 %s 个, 请调整共同体数量', get_setting('question_topics_limit'))));
 		}
 
 		if (! $topic_id = $this->model('topic')->save_topic($_POST['topic_title'], $this->user_id, $this->user_info['permission']['create_topic']))
 		{
-			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('话题已锁定或没有创建话题权限, 不能添加话题')));
+			H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('共同体已锁定或没有创建共同体权限, 不能添加共同体')));
 		}
 
 		$this->model('topic')->save_topic_relation($this->user_id, $topic_id, $_POST['item_id'], $_POST['type']);

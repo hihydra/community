@@ -440,7 +440,7 @@ class main extends AWS_CONTROLLER
 			TPL::assign('sidebar_hot_users', $this->model('module')->sidebar_hot_users($this->user_id, 5));
 		}
 
-		//边栏热门话题
+		//边栏热门共同体
 		if (TPL::is_output('block/sidebar_hot_topics.tpl.htm', 'question/square'))
 		{
 			TPL::assign('sidebar_hot_topics', $this->model('module')->sidebar_hot_topics($_GET['category']));

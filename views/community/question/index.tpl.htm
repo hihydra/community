@@ -21,23 +21,23 @@
 		<div class="row">
 			<div class="aw-content-wrap clearfix">
 				<div class="col-sm-12 col-md-9 aw-main-content">
-					<!-- 话题推荐bar -->
+					<!-- 共同体推荐bar -->
 					<?php if (sizeof($this->question_topics) == 0 AND $this->user_id AND !$this->question_info['lock'] && $this->user_info['permission']['edit_topic']) { ?>
 					<div class="aw-notopic-sort">
 						<?php if ($this->related_topics) { ?>
-						<span class="pull-left"><?php _e('可能属于这些话题'); ?>&nbsp;:&nbsp;</span>
+						<span class="pull-left"><?php _e('可能属于这些共同体'); ?>&nbsp;:&nbsp;</span>
 						<?php foreach ($this->related_topics AS $key => $topic_title) { ?>
 						<span class="topic-tag">
 							<a onclick="one_click_add_topic($(this), '<?php echo $topic_title; ?>', <?php echo $this->question_info['question_id'];?>);" class="text"><?php echo $topic_title; ?></a>
 						</span>
-						<?php } ?>, <?php _e('都不是'); ?>? <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click();$(this).parents('.aw-notopic-sort').hide();"> <?php _e('点此添加话题'); ?></a>
+						<?php } ?>, <?php _e('都不是'); ?>? <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click();$(this).parents('.aw-notopic-sort').hide();"> <?php _e('点此添加共同体'); ?></a>
 						<?php } else { ?>
-						<?php _e('没有归属话题, 请帮问题添加话题'); ?>, <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click(); $(this).parents('.aw-notopic-sort').hide();"><?php _e('点此添加话题'); ?></a>
+						<?php _e('没有归属共同体, 请帮问题添加共同体'); ?>, <a href="javascript:;" onclick="$('#question_topic_editor .aw-edit-topic').click(); $(this).parents('.aw-notopic-sort').hide();"><?php _e('点此添加共同体'); ?></a>
 						<?php } ?>
 					</div>
 					<?php } ?>
-					<!-- 话题推荐bar -->
-					<!-- 话题bar -->
+					<!-- 共同体推荐bar -->
+					<!-- 共同体bar -->
 					<div class="aw-mod aw-topic-bar" id="question_topic_editor" data-type="question" data-id="<?php echo $this->question_info['question_id']; ?>">
 						<div class="tag-bar clearfix">
 							<?php foreach($this->question_topics as $key => $val) { ?>
@@ -49,7 +49,7 @@
 							<?php if ($this->user_id AND ((!$this->question_info['lock'] AND $this->user_info['permission']['edit_topic']) OR $this->user_id == $this->question_info['published_uid'])) { ?><span class="icon-inverse aw-edit-topic"<?php if (sizeof($this->question_topics) == 0) { ?> style="display:none"<?php } ?>><i class="icon icon-edit"></i></span><?php } ?>
 						</div>
 					</div>
-					<!-- end 话题bar -->
+					<!-- end 共同体bar -->
 					<div class="aw-mod aw-question-detail aw-item">
 						<div class="mod-head">
 							<h1>
@@ -225,7 +225,7 @@
 
 												<p>
 
-													<?php _e('在 %s 话题下', '<span class="topic-tag"><a class="text" data-id="' . $val['experience']['topic_info']['topic_id'] . '" href="topic/' . $val['experience']['topic_info']['url_token'] . '">' . $val['experience']['topic_info']['topic_title'] . '</a></span>'); ?> <?php _e('获得 %s 个赞同', $val['experience']['agree_count']); ?>
+													<?php _e('在 %s 共同体下', '<span class="topic-tag"><a class="text" data-id="' . $val['experience']['topic_info']['topic_id'] . '" href="topic/' . $val['experience']['topic_info']['url_token'] . '">' . $val['experience']['topic_info']['topic_title'] . '</a></span>'); ?> <?php _e('获得 %s 个赞同', $val['experience']['agree_count']); ?>
 												</p>
 											</div>
 										</li>

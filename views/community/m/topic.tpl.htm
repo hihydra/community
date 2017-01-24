@@ -8,7 +8,7 @@
 
 <!-- 内容 -->
 <div class="container padding-0">
-	<!-- 话题信息 -->
+	<!-- 共同体信息 -->
 	<div class="aw-topic-detail">
 		<div class="mod-head clearfix">
 			<a class="img"><img width="50" src="<?php echo get_topic_pic_url('max', $this->topic_info['topic_pic']); ?>" alt="" /></a>
@@ -34,12 +34,12 @@
 					<a href="#recommend" role="tab" data-toggle="tab"><?php _e('推荐'); ?></a>
 				</li>
 				<li>
-					<a href="#description" role="tab" data-toggle="tab"><?php _e('话题详述'); ?></a>
+					<a href="#description" role="tab" data-toggle="tab"><?php _e('共同体详述'); ?></a>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<!-- end 话题信息 -->
+	<!-- end 共同体信息 -->
 
 	<div class="aw-box">
 		<div class="tab-content">
@@ -119,10 +119,10 @@
 
 <script type="text/javascript">
 	var TOPIC_ID = '<?php echo $this->topic_info['topic_id']; ?>';
-	
+
 	var CONTENTS_TOPIC_ID = '<?php echo $this->contents_topic_id; ?>';
 	var CONTENTS_TOPIC_TITLE = '<?php echo $this->contents_topic_title; ?>';
-	
+
 	$(document).ready(function () {
 		if ($('#all_posts_listview').length)
 		{
@@ -133,7 +133,7 @@
 		{
 			AWS.load_list_view(G_BASE_URL + '/explore/ajax/list/sort_type-new__is_recommend-1__topic_id' + '-' + CONTENTS_TOPIC_ID, $('#load_recommend_answers'), $('#recommend_answers_listview'), 0);
 		}
-		
+
 		if ($('#best_answers_listview').length)
 		{
 			AWS.load_list_view(G_BASE_URL + '/topic/ajax/question_list/type-best__topic_id' + '-' + CONTENTS_TOPIC_ID, $('#load_best_answers'), $('#best_answers_listview'), 0);

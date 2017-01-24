@@ -113,7 +113,7 @@ class tools extends AWS_ADMIN_CONTROLLER
                         ), 'topic_id = ' . intval($val['topic_id']));
                     }
 
-                    H::redirect_msg(AWS_APP::lang()->_t('正在转换话题内容 BBCode') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/bbcode_to_markdown/page-' . ($_GET['page'] + 1) . '__type-topic__per_page-' . $_GET['per_page']);
+                    H::redirect_msg(AWS_APP::lang()->_t('正在转换共同体内容 BBCode') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/bbcode_to_markdown/page-' . ($_GET['page'] + 1) . '__type-topic__per_page-' . $_GET['per_page']);
                 }
                 else
                 {
@@ -191,7 +191,7 @@ class tools extends AWS_ADMIN_CONTROLLER
                         ), 'topic_id = ' . intval($val['topic_id']));
                     }
 
-                    H::redirect_msg(AWS_APP::lang()->_t('正在转换话题内容 Markdown') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/markdown_to_bbcode/page-' . ($_GET['page'] + 1) . '__type-topic__per_page-' . $_GET['per_page']);
+                    H::redirect_msg(AWS_APP::lang()->_t('正在转换共同体内容 Markdown') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/markdown_to_bbcode/page-' . ($_GET['page'] + 1) . '__type-topic__per_page-' . $_GET['per_page']);
                 }
                 else
                 {
@@ -279,11 +279,11 @@ class tools extends AWS_ADMIN_CONTROLLER
     {
         if ($this->model('system')->update_topic_discuss_count($_GET['page'], $_GET['per_page']))
         {
-            H::redirect_msg(AWS_APP::lang()->_t('正在更新话题统计') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/update_topic_discuss_count/page-' . ($_GET['page'] + 1) . '__per_page-' . $_GET['per_page']);
+            H::redirect_msg(AWS_APP::lang()->_t('正在更新共同体统计') . ', ' . AWS_APP::lang()->_t('批次: %s', $_GET['page']), '/admin/tools/update_topic_discuss_count/page-' . ($_GET['page'] + 1) . '__per_page-' . $_GET['per_page']);
         }
         else
         {
-            H::redirect_msg(AWS_APP::lang()->_t('话题统计更新完成'), '/admin/tools/');
+            H::redirect_msg(AWS_APP::lang()->_t('共同体统计更新完成'), '/admin/tools/');
         }
     }
 

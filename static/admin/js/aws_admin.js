@@ -383,7 +383,7 @@ var AWS =
 		    	break;
 
 		    	case 'confirm':
-		    	//后台根话题
+		    	//后台根共同体
 		    	case 'adminCategoryMove':
 		    		$('.aw-confirm-box .yes, .aw-category-move-box .yes').click(function()
 		    		{

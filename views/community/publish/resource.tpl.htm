@@ -10,8 +10,8 @@
 						<?php if (check_extension_package('project') && get_setting('project_enabled') == 'Y' && $this->user_info['permission']['publish_project']) { ?>
 						<li><a href="project/publish/"><?php _e('活动'); ?></a></li>
 						<?php } ?>
-						<li class="active"><a href="publish/article/"><?php _e('文章'); ?></a></li>
-						<li><a href="publish/resource/"><?php _e('资源'); ?></a></li>
+						<li><a href="publish/article/"><?php _e('文章'); ?></a></li>
+						<li class="active"><a href="publish/resource/"><?php _e('资源'); ?></a></li>
 						<?php if ($this->user_info['permission']['publish_question']) { ?>
 						<li><a href="publish/"><?php _e('问题'); ?></a></li>
 						<?php } ?>
@@ -30,8 +30,8 @@
 						<?php } ?>
 						<div class="aw-mod aw-mod-publish">
 							<div class="mod-body">
-								<h3><?php _e('文章标题'); ?>:</h3>
-								<!-- 文章标题 -->
+								<h3><?php _e('资源标题'); ?>:</h3>
+								<!-- 资源标题 -->
 								<div class="aw-publish-title<?php if (!$this->article_category_list) { ?> active<?php } ?>">
 									<input type="text" name="title" value="<?php echo $this->article_info['title']; ?>" class="form-control" />
 									<?php if ($this->article_category_list) { ?>
@@ -48,7 +48,7 @@
 									</div>
 									<?php } ?>
 								</div>
-								<!-- end 文章标题 -->
+								<!-- end 资源标题 -->
 								<h3><?php _e('封面图'); ?>:</h3>
 								<div class="aw-mod aw-icon-box">
 									<div class="row">
@@ -62,9 +62,9 @@
 									<input type="hidden" name="icon" class="hidden-input">
 								</div>
 
-								<h3><?php _e('文章内容'); ?>:</h3>
+								<h3 style="display: none;"><?php _e('资源内容'); ?>:</h3>
 								<div class="aw-mod aw-editor-box">
-									<div class="mod-head">
+									<div class="mod-head" style="display: none;">
 										<div class="wmd-panel">
 											<textarea class="wmd-input form-control autosize editor" id="wmd-input" rows="15" name="message"><?php echo $this->article_info['message']; ?></textarea>
 										</div>
@@ -73,7 +73,7 @@
 										<p class="text-color-999"><span class="pull-right" id="question_detail_message">&nbsp;</span></p>
 										<?php if (get_setting('upload_enable') == 'Y' AND get_setting('advanced_editor_enable' == 'Y')) { ?>
 										<div class="aw-upload-box">
-											<a class="btn btn-default">上传附件</a>
+											<a class="btn btn-default">上传资源</a>
 											<div class="upload-container"></div>
 											<span class="text-color-999 aw-upload-tips hidden-xs"><?php _e('允许的附件文件类型'); ?>: <?php echo get_setting('allowed_upload_types'); ?></span>
 										</div>
@@ -142,7 +142,7 @@
 								<span class="aw-anonymity">
 									<?php if ($this->article_info['id'] AND ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'])) { ?>
 									<label><input type="checkbox" class="pull-left" value="1" name="do_delete" />
-										<?php _e('删除文章'); ?></label>
+										<?php _e('删除资源'); ?></label>
 										<?php } ?>
 									</span>
 									<a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" onclick="AWS.ajax_post($('#question_form')); return false;"><?php _e('确认发起'); ?></a>
@@ -152,20 +152,20 @@
 					</div>
 					<!-- 侧边栏 -->
 					<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-						<!-- 文章发起指南 -->
+						<!-- 资源发起指南 -->
 						<div class="aw-mod publish-help">
 							<div class="mod-head">
-								<h3><?php _e('文章发起指南'); ?></h3>
+								<h3><?php _e('资源发起指南'); ?></h3>
 							</div>
 							<div class="mod-body">
-								<p><b>• <?php _e('文章标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的文章思想'); ?></p>
-								<p><b>• <?php _e('文章补充'); ?>:</b> <?php _e('详细补充您的文章内容, 并提供一些相关的素材以供参与者更多的了解您所要文章的主题思想'); ?></p>
+								<p><b>• <?php _e('资源标题'); ?>:</b> <?php _e('请用准确的语言描述您发布的资源思想'); ?></p>
+								<p><b>• <?php _e('资源类型'); ?>:</b> <?php _e('资源类型目前只能为音视频,文档'); ?></p>
 								<!--
-								<p><b>• <?php _e('选择共同体'); ?>:</b> <?php _e('选择一个或者多个合适的共同体, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的共同体'); ?></p>
+								<p><b>• <?php _e('选择共同体'); ?>:</b> <?php _e('选择一个或者多个合适的共同体, 让您发布的资源得到更多有相同兴趣的人参与. 所有人可以在您发布资源之后添加和编辑该资源所属的共同体'); ?></p>
 								-->
 							</div>
 						</div>
-						<!-- end 文章发起指南 -->
+						<!-- end 资源发起指南 -->
 					</div>
 					<!-- end 侧边栏 -->
 				</div>

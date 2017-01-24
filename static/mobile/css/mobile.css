@@ -59,7 +59,7 @@ textarea.form-control{padding:6px;}
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{background-color: #66b7ff;border-color: #66b7ff;}
 .alert-warning{line-height:35px;margin:0;padding:0 10px;border-radius: 0;}
 
-/* 话题栏 */
+/* 共同体栏 */
 .aw-topic-bar{background-color: #fff;}
 .aw-topic-bar.active .tag-bar{background-color: #fafafa;border-bottom: 1px solid #e6e6e6;}
 .aw-topic-bar.active .topic-tag .text{border-radius: 4px 0 0 4px;}
@@ -214,10 +214,10 @@ textarea.form-control{padding:6px;}
 .card-mod.focus-topics .mod-body{padding-bottom: 0;}
 .card-mod.focus-topics .topic-tag{margin:0 10px 10px 0;}
 
-/* 话题详情页 */
+/* 共同体详情页 */
 .aw-topic-detail .mod-footer{padding:0 10px;}
 
-/* 话题列表 */
+/* 共同体列表 */
 .aw-topic-list li .mod-head{position:relative;min-height:70px;padding:10px 10px 10px 70px;border-bottom: 1px solid #e6e6e6;}
 .aw-topic-list li .mod-head .img{position: absolute;left: 10px;top: 10px;}
 .aw-topic-list li .mod-head .topic-tag{float: none;display: block;margin: 0 0 5px;}
@@ -229,7 +229,7 @@ textarea.form-control{padding:6px;}
 .aw-topic-list li .mod-footer{border-top: none;}
 .aw-topic-list li .mod-footer .btn{height: 24px;line-height: 24px;margin-top:4px;padding:0;color: #fff;}
 
-/* 热门话题 */
+/* 热门共同体 */
 .aw-explore-hot-topic{margin-bottom:10px;background-color: #fff;border:1px solid #e6e6e6;border-radius: 4px;}
 .aw-explore-hot-topic h3{margin:0;}
 .aw-explore-hot-topic .mod-head{height:40px;padding:0 10px;background-color:#fafafa;border-bottom: 1px solid #e6e6e6;}

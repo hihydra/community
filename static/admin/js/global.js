@@ -132,7 +132,7 @@ $(function () {
     });
 
 
-    // 概述页面，新增话题数，点击排序
+    // 概述页面，新增共同体数，点击排序
     $('#sorttable thead').delegate("td","click",function()
     {
         if($(this).index()==0)

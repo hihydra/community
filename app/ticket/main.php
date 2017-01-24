@@ -431,10 +431,10 @@ class main extends AWS_CONTROLLER
     {
         if (!$this->user_info['permission']['is_administortar'])
         {
-            H::redirect_msg(AWS_APP::lang()->_t('你所在用户组没有权限查看工单话题'));
+            H::redirect_msg(AWS_APP::lang()->_t('你所在用户组没有权限查看工单共同体'));
         }
 
-        $this->crumb(AWS_APP::lang()->_t('热门话题'), '/ticket/topic/');
+        $this->crumb(AWS_APP::lang()->_t('热门共同体'), '/ticket/topic/');
 
         $topics_list = $this->model('ticket')->get_hot_topics($_GET['days'], $_GET['page'], $this->per_page);
 

@@ -2,7 +2,7 @@
 <blockquote><?php echo $this->approval_item['content']; ?></blockquote>
 
 <?php if ($this->approval_item['data']['topics']) {  ?>
-<p><strong><?php _e('话题'); ?></strong></p>
+<p><strong><?php _e('共同体'); ?></strong></p>
 <blockquote><?php echo htmlspecialchars(implode(', ', $this->approval_item['data']['topics'])); ?></blockquote>
 <?php } ?>
 
@@ -36,4 +36,6 @@
     <input type="hidden" name="approval_id" value="<?php echo $this->approval_item['id']; ?>" />
 </form>
 
-<p align="center">	<a class="btn btn-success" onclick="$('#approval_type').val('approval'); AWS.ajax_post($('#approval_form'));" href="javascript:;"><?php _e('通过审核'); ?></a> &nbsp; <a class="btn btn-danger" onclick="$('#approval_type').val('decline'); AWS.ajax_post($('#approval_form'));" href="javascript:;"><?php _e('拒绝审核'); ?></a></p>
+<p align="center">
+	<a class="btn btn-success" onclick="$('#approval_type').val('approval'); AWS.ajax_post($('#approval_form'));" href="javascript:;"><?php _e('通过审核'); ?></a> &nbsp; <a class="btn btn-danger" onclick="$('#approval_type').val('decline'); AWS.ajax_post($('#approval_form'));" href="javascript:;"><?php _e('拒绝审核'); ?></a>
+</p>

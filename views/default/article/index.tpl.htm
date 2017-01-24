@@ -15,7 +15,7 @@
                             <?php } ?>
                             <?php } ?>
 
-                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('添加话题')?><?php } ?></span><?php } ?>
+                            <?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?><span class="icon-inverse aw-edit-topic"><i class="icon icon-edit"></i> <?php if (sizeof($this->article_topics) == 0) { ?><?php _e('添加共同体')?><?php } ?></span><?php } ?>
                         </div>
                     </div>
                     <div class="aw-mod aw-question-detail">
@@ -231,7 +231,7 @@
                             <div class="aw-topic-bar">
                                 <div class="topic-bar clearfix">
                                     <span class="pull-left text-color-999">
-                                        <?php _e('擅长话题'); ?> : &nbsp;
+                                        <?php _e('擅长共同体'); ?> : &nbsp;
                                     </span>
                                     <?php foreach ($this->reputation_topics AS $key => $val) { ?>
                                     <span class="topic-tag">

@@ -66,7 +66,7 @@ class project_class extends AWS_MODEL
             return false;
         }
 
-        $this->delete('topic_relation', "`type` = 'project' AND item_id = " . intval($project_id));     // 删除话题关联
+        $this->delete('topic_relation', "`type` = 'project' AND item_id = " . intval($project_id));     // 删除共同体关联
 
         // 删除附件
         if ($attachs = $this->model('publish')->get_attach('project', $project_id))
@@ -212,7 +212,7 @@ class project_class extends AWS_MODEL
             $this->model('publish')->update_attach('project', $project_id, $attach_access_key);
         }
 
-        $this->delete('topic_relation', "`type` = 'project' AND item_id = " . intval($project_id));     // 删除话题关联
+        $this->delete('topic_relation', "`type` = 'project' AND item_id = " . intval($project_id));     // 删除共同体关联
 
         if (is_array($topics))
         {

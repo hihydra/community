@@ -345,8 +345,8 @@
                                 </li>
 
                                 <li>
-                                    <h3><?php _e('话题'); ?></h3>
-                                    <!-- 话题bar -->
+                                    <h3><?php _e('共同体'); ?></h3>
+                                    <!-- 共同体bar -->
                                     <div class="aw-topic-bar ticket_topic_editor" id="question_topic_editor" data-type="ticket" data-url="<?php echo base_url(); if (get_setting('url_rewrite_enable') != 'Y') { ?>/<?php echo rtrim(G_INDEX_SCRIPT, '/'); } ?>/ticket/ajax/remove_topic_relation/" data-id="<?php echo $this->ticket_info['id']; ?>">
                                         <div class="tag-bar clearfix">
                                             <?php if ($this->ticket_topics) {
@@ -360,7 +360,7 @@
                                             <span class="icon-inverse aw-edit-topic"<?php if (!$this->ticket_topics) { ?><?php } ?>><i class="icon icon-edit"></i></span>
                                         </div>
                                     </div>
-                                    <!-- end 话题bar -->
+                                    <!-- end 共同体bar -->
                                 </li>
                                 <?php } ?>
 
@@ -607,7 +607,7 @@
                                 }, 'json');
                             break;
 
-                            // modify by wecenter 添加工单话题
+                            // modify by wecenter 添加工单共同体
                             case 'ticket':
                                 $.post(G_BASE_URL + '/ticket/ajax/save_topic_relation/',
 
@@ -692,7 +692,7 @@
 
             $(this).parents('.aw-topic-bar').find('.aw-edit-topic-box').fadeIn();
 
-            // 是否允许创建新话题
+            // 是否允许创建新共同体
             if (!G_CAN_CREATE_TOPIC)
             {
                 $(this).parents('.aw-topic-bar').find('.add').hide();

@@ -978,7 +978,7 @@ class account_class extends AWS_MODEL
             }
         }
 
-        // 取我关注的话题
+        // 取我关注的共同体
         if ($my_focus_topics = $this->model('topic')->get_focus_topic_list($uid, null))
         {
             foreach ($my_focus_topics as $key => $val)

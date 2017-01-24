@@ -583,7 +583,7 @@ font-size: 1em;border: 0 none;background: none;overflow: visible;padding: 0;marg
 .tea_res .thirdly li i.one { color:#ff9000; }
 .tea_res .thirdly li span { color:#888; }
 
-/*话题列表*/
+/*共同体列表*/
 .tea_talk { border-collapse:collapse; border:1px solid #e6e6e6; width:100%; }
 .tea_talk th, .tea_talk td { height:40px; border:1px solid #e6e6e6; padding:0 20px;text-align:right;}
 .tea_talk th {  background:#fafafa; }
@@ -1308,7 +1308,7 @@ html body .tea_btn_small { height:29px; line-height:29px;}
 
 body ul.tea_ztreeCss { border:none; width:196px; height:210px; margin-top:0; }
 
-/*发布话题*/
+/*发布共同体*/
 .z_mod_con{background: #fff;border:2px solid #d0d0d0;padding:0 18px 20px;}
 .z_mod_tit{background: url(../../../images/teacherSky_3.5/front/style1/ht_ico.gif) no-repeat 0 5px;padding-left: 20px;font-size: 16px;padding-bottom: 8px;border-bottom: 1px solid #d0d0d0;font-family: "Microsoft Yahei"; margin-top:12px;}
 .z_fbitem{margin-bottom: 10px;overflow:hidden;zoom:1;}

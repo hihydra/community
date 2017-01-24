@@ -7,10 +7,10 @@ $(function () {
      */
 
     $('.date-end,.date-start').bind("keydown",function(){
-        
+
         return false
     })
-    
+
     $('.aw-content-wrap').find('.date-start').val(dateArr[1]);
     $('.aw-content-wrap').find('.date-end').val(dateArr[0]);
 
@@ -23,7 +23,7 @@ $(function () {
 
     // 左侧菜单收缩重新渲染图表
     $('.aw-header .mod-head-btn').click(function ()
-    {       
+    {
         echart.render();
         echart2.render();
         echart3.render();
@@ -40,7 +40,7 @@ $(function () {
 
     var oEchart = $('.echart-date');
 
-    for (var i = 0, j = oEchart.length; i < j; i++) 
+    for (var i = 0, j = oEchart.length; i < j; i++)
     {
         (function (i) {
             oEchart[i].onclick = function (ev) {
@@ -270,7 +270,7 @@ Echarts.prototype = {
                 break;
 
             case 'new_topic':
-                arr.push('新增话题');
+                arr.push('新增共同体');
                 break;
 
             case 'new_answer_vote':

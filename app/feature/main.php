@@ -69,7 +69,7 @@ class main extends AWS_CONTROLLER
 
 		if (! $topic_list = $this->model('topic')->get_topics_by_ids($this->model('feature')->get_topics_by_feature_id($feature_info['id'])))
 		{
-			H::redirect_msg(AWS_APP::lang()->_t('专题下必须包含一个以上话题'), '/');
+			H::redirect_msg(AWS_APP::lang()->_t('专题下必须包含一个以上共同体'), '/');
 		}
 
 		if ($feature_info['seo_title'])

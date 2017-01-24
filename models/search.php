@@ -177,7 +177,7 @@ class search_class extends AWS_MODEL
 
 			$detail = array(
 				'topic_pic'=> get_topic_pic_url('mid', $result_info['topic_pic']),
-				'topic_id' => $result_info['topic_id'],	// 话题 ID
+				'topic_id' => $result_info['topic_id'],	// 共同体 ID
 				'focus_count' => $result_info['focus_count'],
 				'discuss_count' => $result_info['discuss_count'],	// 讨论数量
 				'topic_description' => $result_info['topic_description']

@@ -131,7 +131,7 @@ class article_class extends AWS_MODEL
 
 		$this->delete('article_comments', "article_id = " . intval($article_id)); // 删除关联的回复内容
 
-		$this->delete('topic_relation', "`type` = 'article' AND item_id = " . intval($article_id));		// 删除话题关联
+		$this->delete('topic_relation', "`type` = 'article' AND item_id = " . intval($article_id));		// 删除共同体关联
 
 		ACTION_LOG::delete_action_history('associate_type = ' . ACTION_LOG::CATEGORY_QUESTION . ' AND associate_action IN(' . ACTION_LOG::ADD_ARTICLE . ', ' . ACTION_LOG::ADD_AGREE_ARTICLE . ', ' . ACTION_LOG::ADD_COMMENT_ARTICLE . ') AND associate_id = ' . intval($article_id));	// 删除动作
 
@@ -258,7 +258,7 @@ class article_class extends AWS_MODEL
 		//wl-add
 		if ($category_id)
 		{
-			$where[] = 'category_id IN(' . implode(',', $this->model('system')->get_category_with_child_ids('question', $category_id)) . ')';
+			$where[] = 'category_id IN(' . implode(',', $this->model('system')->get_category_with_child_ids('', $category_id)) . ')';
 		}
 		//wl-end
 		array_walk_recursive($topic_ids, 'intval_string');

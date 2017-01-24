@@ -116,8 +116,8 @@ class topic_class extends AWS_MODEL
 
 	/**
 	 *
-	 * 得到单条话题内容
-	 * @param int $topic_id 话题ID
+	 * 得到单条共同体内容
+	 * @param int $topic_id 共同体ID
 	 *
 	 * @return array
 	 */
@@ -314,7 +314,7 @@ class topic_class extends AWS_MODEL
 
 	/**
 	 *
-	 * 锁定/解锁话题
+	 * 锁定/解锁共同体
 	 * @param int $topic_id
 	 * @param int $topic_lock
 	 *
@@ -435,7 +435,7 @@ class topic_class extends AWS_MODEL
 	}
 
 	/**
-	 * 物理删除话题及其关联的图片等
+	 * 物理删除共同体及其关联的图片等
 	 *
 	 * @param  $topic_id
 	 */
@@ -494,7 +494,7 @@ class topic_class extends AWS_MODEL
 		return true;
 	}
 
-	// 我关注的人关注的话题
+	// 我关注的人关注的共同体
 	public function get_user_recommend_v2($uid, $limit = 10)
 	{
 		$topic_focus_ids = array(0);
@@ -769,7 +769,7 @@ class topic_class extends AWS_MODEL
 	}
 
 	/**
-	 * 获取热门话题
+	 * 获取热门共同体
 	 * @param  $category
 	 * @param  $limit
 	 */
@@ -826,7 +826,7 @@ class topic_class extends AWS_MODEL
 	}
 
 	/**
-	 * 处理话题日志
+	 * 处理共同体日志
 	 * @param array $log_list
 	 *
 	 * @return array
@@ -889,49 +889,49 @@ class topic_class extends AWS_MODEL
 
 			switch ($log['associate_action'])
 			{
-				case ACTION_LOG::ADD_TOPIC : //增加话题
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('创建了该话题'). '</p>';
+				case ACTION_LOG::ADD_TOPIC : //增加共同体
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('创建了该共同体'). '</p>';
 					break;
 
-				case ACTION_LOG::ADD_TOPIC_FOCUS : //关注话题
-
-
-					break;
-
-				case ACTION_LOG::DELETE_TOPIC : //删除话题
+				case ACTION_LOG::ADD_TOPIC_FOCUS : //关注共同体
 
 
 					break;
 
-				case ACTION_LOG::MOD_TOPIC : //修改话题标题
+				case ACTION_LOG::DELETE_TOPIC : //删除共同体
+
+
+					break;
+
+				case ACTION_LOG::MOD_TOPIC : //修改共同体标题
 					$Services_Diff = new Services_Diff($log['associate_attached'], $log['associate_content']);
 
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了话题标题') . ' <p>' . $Services_Diff->get_Text_Diff_Renderer_inline() . "</p>";
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了共同体标题') . ' <p>' . $Services_Diff->get_Text_Diff_Renderer_inline() . "</p>";
 					break;
 
-				case ACTION_LOG::MOD_TOPIC_DESCRI : //修改话题描述
+				case ACTION_LOG::MOD_TOPIC_DESCRI : //修改共同体描述
 					$log['associate_attached'] = trim($log['associate_attached']);
 					$log['associate_content'] = trim($log['associate_content']);
 
 					$Services_Diff = new Services_Diff($log['associate_attached'], $log['associate_content']);
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了话题描述') . ' <p>' . $Services_Diff->get_Text_Diff_Renderer_inline() . '</p>';
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了共同体描述') . ' <p>' . $Services_Diff->get_Text_Diff_Renderer_inline() . '</p>';
 
 					break;
 
-				case ACTION_LOG::MOD_TOPIC_PIC : //修改话题图片
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了话题图片');
+				case ACTION_LOG::MOD_TOPIC_PIC : //修改共同体图片
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('修改了共同体图片');
 					break;
 
-				case ACTION_LOG::ADD_RELATED_TOPIC : //添加相关话题
+				case ACTION_LOG::ADD_RELATED_TOPIC : //添加相关共同体
 					$topic_info = $this->get_topic_by_id($log['associate_attached']);
 
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('添加了相关话题') . '<p><a href="topic/' . rawurlencode($topic_info['topic_title']) . '">' . $topic_info['topic_title'] . '</a></p>';
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('添加了相关共同体') . '<p><a href="topic/' . rawurlencode($topic_info['topic_title']) . '">' . $topic_info['topic_title'] . '</a></p>';
 					break;
 
-				case ACTION_LOG::DELETE_RELATED_TOPIC : //删除相关话题
+				case ACTION_LOG::DELETE_RELATED_TOPIC : //删除相关共同体
 					$topic_info = $this->get_topic_by_id($log['associate_attached']);
 
-					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('删除了相关话题') . '<p><a href="topic/' . rawurlencode($topic_info['topic_title']) . '">' . $topic_info['topic_title'] . '</a></p>';
+					$title_list = '<a href="' . $user_url . '">' . $user_name . '</a> ' . AWS_APP::lang()->_t('删除了相关共同体') . '<p><a href="topic/' . rawurlencode($topic_info['topic_title']) . '">' . $topic_info['topic_title'] . '</a></p>';
 					break;
 			}
 

@@ -50,7 +50,7 @@
 									<li><a href="#articles" data-toggle="tab"><?php _e('文章'); ?></a></li>
 									<?php } ?>
 									<li><a href="#favorite" id="i_favorite" data-toggle="tab" style="display:none"><?php _e('我的收藏'); ?></a></li>
-									<li><a href="#about" id="i_about" data-toggle="tab"><?php _e('关于话题'); ?></a></li>
+									<li><a href="#about" id="i_about" data-toggle="tab"><?php _e('关于共同体'); ?></a></li>
 									<div class="aw-search-bar pull-right hidden-xs">
 										<i class="icon icon-search"></i>
 										<input type="text" id="question-input" class="search-query form-control" placeholder="搜索...">
@@ -152,7 +152,7 @@
 								</div>
 
 								<div class="tab-pane" id="articles">
-									<!-- 动态首页&话题精华模块 -->
+									<!-- 动态首页&共同体精华模块 -->
 									<div class="aw-mod">
 										<div class="mod-body">
 											<div class="aw-common-list" id="c_articles_list">
@@ -165,13 +165,13 @@
 											</a>
 										</div>
 									</div>
-									<!-- end 动态首页&话题精华模块 -->
+									<!-- end 动态首页&共同体精华模块 -->
 								</div>
 
 								<div class="tab-pane" id="favorite">
-									<!-- 动态首页&话题精华模块 -->
+									<!-- 动态首页&共同体精华模块 -->
 									<div class="aw-mod aw-feed-list" id="c_favorite_list"></div>
-									<!-- end 动态首页&话题精华模块 -->
+									<!-- end 动态首页&共同体精华模块 -->
 
 									<!-- 加载更多内容 -->
 									<a class="aw-load-more-content" id="bp_favorite_more">
@@ -193,10 +193,10 @@
 
 				<!-- 侧边栏 -->
 				<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs">
-					<!-- 话题描述 -->
+					<!-- 共同体描述 -->
 					<div class="aw-mod aw-text-align-justify">
 						<div class="mod-head">
-							<h3><?php _e('话题描述'); ?></h3>
+							<h3><?php _e('共同体描述'); ?></h3>
 						</div>
 						<div class="mod-body">
 							<?php if ($this->topic_info['topic_description']) { ?>
@@ -206,14 +206,14 @@
 							<?php } ?>
 						</div>
 					</div>
-					<!-- end 话题描述 -->
+					<!-- end 共同体描述 -->
 
 					<?php TPL::output('topic/related_topics.tpl.htm'); ?>
 
 					<?php if ($this->parent_topic_info) { ?>
 					<div class="aw-mod">
 						<div class="mod-head">
-							<h3><?php _e('根话题'); ?></h3>
+							<h3><?php _e('根共同体'); ?></h3>
 						</div>
 
 						<a class="aw-topic-name" href="topic/<?php echo $this->parent_topic_info['url_token']; ?>" data-id="<?php echo $this->parent_topic_info['topic_id']; ?>"><span><?php echo $this->parent_topic_info['topic_title']; ?></span></a>
@@ -246,22 +246,22 @@
 					<?php } ?>
 					<!-- end 最佳回复者 -->
 
-					<!-- xx人关注该话题 -->
+					<!-- xx人关注该共同体 -->
 					<div class="aw-mod topic-status">
 						<div class="mod-head">
-							<h3><?php _e('%s 人关注该话题', $this->topic_info['focus_count']); ?></h3>
+							<h3><?php _e('%s 人关注该共同体', $this->topic_info['focus_count']); ?></h3>
 						</div>
 						<div class="mod-body">
 							<div id="focus_users" class="aw-border-radius-5"></div>
 						</div>
 					</div>
-					<!-- end xx人关注该话题 -->
+					<!-- end xx人关注该共同体 -->
 
-					<!-- 话题修改记录 -->
+					<!-- 共同体修改记录 -->
 					<?php if ($this->user_id) {?>
 					<div class="aw-mod topic-edit-notes">
 						<div class="mod-head">
-							<h3><i class="icon icon-down pull-right"></i><?php _e('话题修改记录'); ?></h3>
+							<h3><i class="icon icon-down pull-right"></i><?php _e('共同体修改记录'); ?></h3>
 						</div>
 						<div class="mod-body collapse">
 							<ul>
@@ -277,7 +277,7 @@
 						</div>
 					</div>
 					<?php } ?>
-					<!-- end 话题修改记录 -->
+					<!-- end 共同体修改记录 -->
 
 					<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator'] OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) OR ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic'])) { ?>
 					<div class="aw-mod">
@@ -288,16 +288,16 @@
 						<div class="mod-body">
 							<ul>
 								<?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['edit_topic']) { ?>
-								<li><a href="topic/edit/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('编辑话题'); ?></a></li>
+								<li><a href="topic/edit/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('编辑共同体'); ?></a></li>
 								<?php } ?>
 								<?php if ($this->topic_info['topic_lock'] == 0 && $this->user_info['permission']['manage_topic']) { ?>
-								<li><a href="topic/manage/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('管理话题'); ?></a></li>
+								<li><a href="topic/manage/<?php echo $this->topic_info['topic_id']; ?>"><?php _e('管理共同体'); ?></a></li>
 								<?php } ?>
 
 								<?php if ($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']) { ?>
-								<li><a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定话题'); ?><?php } ?></a></li>
+								<li><a href="javascript:;" onclick="AWS.ajax_request(G_BASE_URL + '/topic/ajax/lock/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');"><?php if ($this->topic_info['topic_lock']) { ?><?php _e('解除锁定'); ?><?php } else { ?><?php _e('锁定共同体'); ?><?php } ?></a></li>
 
-								<li><a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});"><?php _e('删除话题'); ?></a></li>
+								<li><a href="javascript:;" onclick="AWS.dialog('confirm', {'message' : '<?php _e('确认删除?'); ?>'}, function(){AWS.ajax_request(G_BASE_URL + '/topic/ajax/remove/', 'topic_id=<?php echo $this->topic_info['topic_id']; ?>');});"><?php _e('删除共同体'); ?></a></li>
 								<?php } ?>
 							</ul>
 						</div>

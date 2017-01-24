@@ -285,14 +285,14 @@ class ajax extends AWS_CONTROLLER
     {
         if (!$this->user_info['permission']['is_administortar'] AND !$this->user_info['permission']['is_service'])
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('你没有权限为工单添加话题')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('你没有权限为工单添加共同体')));
         }
 
         $_POST['topic_title'] = trim($_POST['topic_title']);
 
         if (!$_POST['topic_title'])
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请输入话题标题')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请输入共同体标题')));
         }
 
         if (!$_POST['item_id'])
@@ -302,7 +302,7 @@ class ajax extends AWS_CONTROLLER
 
         if (strstr($_POST['topic_title'], '/') OR strstr($_POST['topic_title'], '-'))
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('话题标题不能包含 / 与 -')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('共同体标题不能包含 / 与 -')));
         }
 
         $ticket_info = $this->model('ticket')->get_ticket_info_by_id($_POST['item_id']);
@@ -314,19 +314,19 @@ class ajax extends AWS_CONTROLLER
 
         if (!$this->model('topic')->get_topic_id_by_title($_POST['topic_title']) AND get_setting('topic_title_limit') AND cjk_strlen($_POST['topic_title']) > get_setting('topic_title_limit'))
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('话题标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('共同体标题字数不得超过 %s 字节', get_setting('topic_title_limit'))));
         }
 
         if (count($this->model('topic')->get_topics_by_item_id($ticket_info['id'], 'ticket')) >= get_setting('question_topics_limit') AND get_setting('question_topics_limit'))
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('单个工单话题数量最多为 %s 个, 请调整话题数量', get_setting('question_topics_limit'))));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('单个工单共同体数量最多为 %s 个, 请调整共同体数量', get_setting('question_topics_limit'))));
         }
 
         $topic_id = $this->model('topic')->save_topic($_POST['topic_title'], $this->user_id, $this->user_info['permission']['create_topic']);
 
         if (!$topic_id)
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('话题已锁定或没有创建话题权限, 不能添加话题')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('共同体已锁定或没有创建共同体权限, 不能添加共同体')));
         }
 
         $this->model('topic')->save_topic_relation($this->user_id, $topic_id, $ticket_info['id'], 'ticket');
@@ -341,7 +341,7 @@ class ajax extends AWS_CONTROLLER
     {
         if (!$_POST['topic_id'])
         {
-            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请选择话题')));
+            H::ajax_json_output(AWS_APP::RSM(null, -1, AWS_APP::lang()->_t('请选择共同体')));
         }
 
         if (!$_POST['item_id'])

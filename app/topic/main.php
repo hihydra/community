@@ -78,7 +78,7 @@ class main extends AWS_CONTROLLER
 		{
 			if ($from_topic = $this->model('topic')->get_topic_by_id($_GET['rf']))
 			{
-				$redirect_message[] = AWS_APP::lang()->_t('话题 (%s) 已与当前话题合并', $from_topic['topic_title']);
+				$redirect_message[] = AWS_APP::lang()->_t('共同体 (%s) 已与当前共同体合并', $from_topic['topic_title']);
 			}
 		}
 
@@ -357,7 +357,7 @@ class main extends AWS_CONTROLLER
 			'per_page' => 20
 		))->create_links());
 
-		$this->crumb(AWS_APP::lang()->_t('话题广场'), '/topic/');
+		$this->crumb(AWS_APP::lang()->_t('共同体广场'), '/topic/');
 
 		TPL::output('topic/square');
 	}
@@ -366,7 +366,7 @@ class main extends AWS_CONTROLLER
 	{
 		if (! $topic_info = $this->model('topic')->get_topic_by_id($_GET['id']))
 		{
-			H::redirect_msg(AWS_APP::lang()->_t('话题不存在'), '/');
+			H::redirect_msg(AWS_APP::lang()->_t('共同体不存在'), '/');
 		}
 
 		if (!($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']))
@@ -377,11 +377,11 @@ class main extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_GET['id']))
 			{
-				H::redirect_msg(AWS_APP::lang()->_t('已锁定的话题不能编辑'));
+				H::redirect_msg(AWS_APP::lang()->_t('已锁定的共同体不能编辑'));
 			}
 		}
 
-		$this->crumb(AWS_APP::lang()->_t('话题编辑'), '/topic/edit/' . $topic_info['topic_id']);
+		$this->crumb(AWS_APP::lang()->_t('共同体编辑'), '/topic/edit/' . $topic_info['topic_id']);
 		$this->crumb($topic_info['topic_title'], '/topic/' . $topic_info['topic_id']);
 
 		TPL::assign('topic_info', $topic_info);
@@ -401,10 +401,10 @@ class main extends AWS_CONTROLLER
 	{
 		if (! $topic_info = $this->model('topic')->get_topic_by_id($_GET['id']))
 		{
-			H::redirect_msg(AWS_APP::lang()->_t('话题不存在'), '/');
+			H::redirect_msg(AWS_APP::lang()->_t('共同体不存在'), '/');
 		}
 
-		$this->crumb(AWS_APP::lang()->_t('话题管理'), '/topic/manage/' . $topic_info['topic_id']);
+		$this->crumb(AWS_APP::lang()->_t('共同体管理'), '/topic/manage/' . $topic_info['topic_id']);
 		$this->crumb($topic_info['topic_title'], '/topic/' . $topic_info['topic_id']);
 
 		if (!($this->user_info['permission']['is_administortar'] OR $this->user_info['permission']['is_moderator']))
@@ -415,7 +415,7 @@ class main extends AWS_CONTROLLER
 			}
 			else if ($this->model('topic')->has_lock_topic($_GET['id']))
 			{
-				H::redirect_msg(AWS_APP::lang()->_t('已锁定的话题不能编辑'));
+				H::redirect_msg(AWS_APP::lang()->_t('已锁定的共同体不能编辑'));
 			}
 		}
 

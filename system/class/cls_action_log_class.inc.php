@@ -20,7 +20,7 @@ class ACTION_LOG
 
 	const CATEGORY_COMMENT = 3;	// 评论
 
-	const CATEGORY_TOPIC = 4;	// 话题
+	const CATEGORY_TOPIC = 4;	// 共同体
 
 
 	const ADD_QUESTION = 101;	// 添加问题
@@ -47,21 +47,21 @@ class ACTION_LOG
 
 	const ADD_UNUSEFUL = 207;	// 问题没有帮助
 
-	const ADD_TOPIC = 401;	// 创建话题
+	const ADD_TOPIC = 401;	// 创建共同体
 
-	const MOD_TOPIC = 402;	// 修改话题
+	const MOD_TOPIC = 402;	// 修改共同体
 
-	const MOD_TOPIC_DESCRI = 403;	// 修改话题描述
+	const MOD_TOPIC_DESCRI = 403;	// 修改共同体描述
 
-	const MOD_TOPIC_PIC = 404;	// 修改话题图片
+	const MOD_TOPIC_PIC = 404;	// 修改共同体图片
 
-	const DELETE_TOPIC = 405;	// 删除话题
+	const DELETE_TOPIC = 405;	// 删除共同体
 
-	const ADD_TOPIC_FOCUS = 406;	// 添加话题关注
+	const ADD_TOPIC_FOCUS = 406;	// 添加共同体关注
 
-	const ADD_RELATED_TOPIC = 410;	// 添加相关话题
+	const ADD_RELATED_TOPIC = 410;	// 添加相关共同体
 
-	const DELETE_RELATED_TOPIC = 411;	// 删除相关话题
+	const DELETE_RELATED_TOPIC = 411;	// 删除相关共同体
 
 	const ADD_ARTICLE = 501;	// 添加文章
 
@@ -356,7 +356,7 @@ class ACTION_LOG
 			case self::ADD_QUESTION:
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题发起了一个问题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体发起了一个问题');
 				}
 				else if ($associate_question_info['anonymous'])
 				{
@@ -375,7 +375,7 @@ class ACTION_LOG
 			case self::ANSWER_QUESTION:
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题新增了一个回答');
+					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体新增了一个回答');
 				}
 				else
 				{
@@ -386,7 +386,7 @@ class ACTION_LOG
 			case self::ADD_AGREE: // '增加赞同'
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个回复赞同');
+					$action_string = '<a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体添加了一个回复赞同');
 				}
 				else
 				{
@@ -398,7 +398,7 @@ class ACTION_LOG
 				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('喜欢了该活动');
 				break;
 
-			case self::ADD_TOPIC : // '添加话题',
+			case self::ADD_TOPIC : // '添加共同体',
 				if ($associate_topic_info)
 				{
 					if (isset($associate_topic_info[0]))
@@ -427,27 +427,27 @@ class ACTION_LOG
 							$action_string .= AWS_APP::lang()->_t('等') . ' ';
 						}
 
-						$action_string .= AWS_APP::lang()->_t('话题');
+						$action_string .= AWS_APP::lang()->_t('共同体');
 					}
 					else
 					{
-						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('将该问题添加到') . ' <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题');
+						$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('将该问题添加到') . ' <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体');
 					}
 				}
 				else
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('添加了一个话题');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('添加了一个共同体');
 				}
 				break;
 
-			case self::ADD_TOPIC_FOCUS : // '关注话题',
-				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('关注话题');
+			case self::ADD_TOPIC_FOCUS : // '关注共同体',
+				$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> ' . AWS_APP::lang()->_t('关注共同体');
 				break;
 
 			case self::ADD_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题发表了文章');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体发表了文章');
 				}
 				else
 				{
@@ -458,7 +458,7 @@ class ACTION_LOG
 			case self::ADD_AGREE_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个文章赞同');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体添加了一个文章赞同');
 				}
 				else
 				{
@@ -469,7 +469,7 @@ class ACTION_LOG
 			case self::ADD_COMMENT_ARTICLE :
 				if ($associate_topic_info)
 				{
-					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('话题添加了一个文章评论');
+					$action_string = '<a href="' . $user_profile_url . '" ' . $user_link_attr . '>' . $user_name . '</a> 在 <a href="' . $topic_url . '" ' . $topic_link_attr . '>' . $associate_topic_info['topic_title'] . '</a> ' . AWS_APP::lang()->_t('共同体添加了一个文章评论');
 				}
 				else
 				{

@@ -882,7 +882,7 @@ class main extends AWS_CONTROLLER
 
 	public function topic_square_action()
 	{
-		$this->crumb(AWS_APP::lang()->_t('话题广场'), '/m/topic/');
+		$this->crumb(AWS_APP::lang()->_t('共同体广场'), '/m/topic/');
 
 		TPL::assign('topics_hot_list', $this->model('topic')->get_topic_list(null, 'discuss_count DESC', 5));
 
@@ -929,7 +929,7 @@ class main extends AWS_CONTROLLER
 		{
 			if ($from_topic = $this->model('topic')->get_topic_by_id($_GET['rf']))
 			{
-				$redirect_message[] = AWS_APP::lang()->_t('话题 (%s) 已与当前话题合并', $from_topic['topic_title']);
+				$redirect_message[] = AWS_APP::lang()->_t('共同体 (%s) 已与当前共同体合并', $from_topic['topic_title']);
 			}
 		}
 
@@ -968,7 +968,7 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('topic_info', $topic_info);
 
-		$this->crumb(AWS_APP::lang()->_t('话题'), '/m/topic/');
+		$this->crumb(AWS_APP::lang()->_t('共同体'), '/m/topic/');
 		$this->crumb($topic_info['topic_title'], '/m/topic/' . $topic_info['topic_title']);
 
 		TPL::assign('redirect_message', $redirect_message);

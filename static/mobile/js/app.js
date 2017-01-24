@@ -3,7 +3,7 @@ var document_title = document.title;
 $(document).ready(function () {
 
 	// 检测首页动态更新
-	if (G_USER_ID.length > 0) 
+	if (G_USER_ID.length > 0)
 	{
 		var checkactionsnew_handle = setInterval(function ()
 		{
@@ -76,7 +76,7 @@ $(document).ready(function () {
 	// 文章评论box
 	AWS.Init.init_article_comment_box('.aw-article-comment');
 
-	// 话题编辑box
+	// 共同体编辑box
 	AWS.Init.init_topic_edit_box('.aw-topic-bar .icon-inverse');
 
 	// 搜索下拉菜单
@@ -88,7 +88,7 @@ $(document).ready(function () {
 	// 邀请下拉菜单
 	AWS.Dropdown.bind_dropdown_list('.aw-invite-box input','invite');
 
-	// 话题编辑删除按钮
+	// 共同体编辑删除按钮
 	$(document).on('click', '.aw-topic-bar .tag-bar .topic-tag i', function()
 	{
 		var _this = $(this);
