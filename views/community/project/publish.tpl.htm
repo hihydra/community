@@ -11,7 +11,7 @@
 						<input type="hidden" name="project_id" value="<?php echo $this->project_info['id']; ?>" />
 						<input type="hidden" name="post_hash" value="<?php echo new_post_hash(); ?>" />
 						<input type="hidden" name="attach_access_key" value="<?php echo $this->attach_access_key; ?>" />
-						<input type="hidden" name="project_type" id="projectPost" value="<?php if ($this->project_info['project_type']) { echo $this->project_info['project_type']; } else { ?>DEFAULT<?php } ?>">
+						<input type="hidden" name="project_type" id="projectPost" value="<?php if ($this->project_info['project_type']) { echo $this->project_info['project_type']; } else { ?>EVENT<?php } ?>">
 
 						<input type="hidden"  name="contact[name]" id="project_name" value="" />
 						<input type="hidden"  name="contact[mobile]" id="project_mobile" value="" />
@@ -57,10 +57,11 @@
 										<dd>
 										 <div class="aw-topic-bar" data-type="publish">
 											<div class="tag-bar clearfix">
-												<?php if ($_GET['topic_title']) { ?>
-												<span class="topic-tag"><a href="javascript:;" class="text"><?php echo urldecode($_GET['topic_title']); ?><i class="aw-icon i-close-hover" onclick="$(this).parents('.topic-tag').remove();"></i><input type="hidden" value="<?php echo urldecode($_GET['topic_title']); ?>" name="topics[]" /></a>
+												<?php if ($_POST['topics']) { ?>
+												<?php foreach ($_POST['topics'] AS $key => $val) { ?>
+												<span class="topic-tag"><a href="javascript:;" class="text"><?php echo $val; ?><i class="aw-icon i-close-hover" onclick="$(this).parents('.topic-tag').remove();"></i><input type="hidden" value="<?php echo $val; ?>" name="topics[]" /></a>
 												</span>
-
+												<?php } ?>
 												<?php } ?>
 
 												<?php if ($this->project_topics) { ?>
@@ -486,11 +487,11 @@ $(function()
 	//初始化选择众筹
 	if($('#projectPost').val() == 'DEFAULT')
 	{
-		$('.aw-publish-tabs li:eq(1)').click();
+		$('.aw-publish-tabs li:eq(0)').click();
 	}
 	else if($('#projectPost').val() == 'EVENT')
 	{
-		$('.aw-publish-tabs li:eq(0)').click();
+		$('.aw-publish-tabs li:eq(1)').click();
 	}
 	/*
 	if($('.lump dt').text()=='*活动人数:')
@@ -500,8 +501,8 @@ $(function()
 	}
 	*/
 	// 默认展开话题编辑框和回报设置框
-	$('.aw-add-return').click();
-	$('.aw-edit-topic').click();
+	//$('.aw-add-return').click();
+	//$('.aw-edit-topic').click();
 
 	// 整个表单提交验证
 	$('.aw-publish-setting .mod-footer .btn').on('click',function()
