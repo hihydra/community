@@ -2135,6 +2135,10 @@ AWS.Dropdown =
 				url = G_BASE_URL + '/search/ajax/search/?type=articles&q=' + encodeURIComponent(data) + '&limit=10';
 			break;
 
+			case 'topic_user' :
+				url = G_BASE_URL + '/search/ajax/search/?type=users&q=' + encodeURIComponent(data) + '&topic_ids=' + CONTENTS_RELATED_TOPIC_IDS + '&limit=10';
+			break;
+
 		}
 
 		AWS.G.dropdown_list_xhr = $.get(url, function (result)
@@ -2144,7 +2148,7 @@ AWS.Dropdown =
 				$(selector).parent().find('.aw-dropdown-list').html(''); // 清空内容
 				switch (type)
 				{
-					case 'search' :
+					case 'search' :case 'topic_user' :
 						$.each(result, function (i, a)
 						{
 							switch (a.type)

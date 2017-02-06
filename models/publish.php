@@ -320,7 +320,7 @@ class publish_class extends AWS_MODEL
 		return $question_id;
 	}
 
-	public function publish_article($title, $message, $uid, $topics = null, $category_id = null, $icon = null,$attach_access_key = null, $create_topic = true)
+	public function publish_article($title, $message, $uid, $topics = null, $category_id = null, $icon = null,$attach_access_key = null, $create_topic = true,$type = 'article')
 	{
 		if ($article_id = $this->insert('article', array(
 			'uid' => intval($uid),
@@ -339,7 +339,7 @@ class publish_class extends AWS_MODEL
 				{
 					$topic_id = $this->model('topic')->save_topic($topic_title, $uid, $create_topic);
 
-					$this->model('topic')->save_topic_relation($uid, $topic_id, $article_id, 'article');
+					$this->model('topic')->save_topic_relation($uid, $topic_id, $article_id,$type);
 				}
 			}
 

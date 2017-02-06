@@ -107,16 +107,7 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('best_answer_users', $this->model('topic')->get_best_answer_users_by_topic_id($topic_info['topic_id'], 5));
 
-		//wl-add 分类
-		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
 
-		$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
-		TPL::assign('posts_list',$posts_list);
-
-		TPL::output('topic/index');
-		//wl-end
-
-		/*
 		switch ($topic_info['model_type'])
 		{
 			default:
@@ -240,10 +231,17 @@ class main extends AWS_CONTROLLER
 					TPL::assign('parent_topic_info', $this->model('topic')->get_topic_by_id($topic_info['parent_id']));
 				}
 
+				//wl-add 分类
+				TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
+
+				$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
+				TPL::assign('posts_list',$posts_list);
+
 				TPL::output('topic/index');
+				//wl-end
 			break;
 		}
-		*/
+
 	}
 
 	public function index_square_action()

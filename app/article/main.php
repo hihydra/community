@@ -70,7 +70,11 @@ class main extends AWS_CONTROLLER
 
 		$article_info['vote_users'] = $this->model('article')->get_article_vote_users_by_id('article', $article_info['id'], 1, 10);
 
-		$article_topics = $this->model('topic')->get_topics_by_item_id($article_info['id'], 'article');
+		//wl-add
+		$category_info = $this->model('system')->get_category_info($article_info['category_id']);
+		//wl-end
+
+		$article_topics = $this->model('topic')->get_topics_by_item_id($article_info['id'], $category_info['type']);
 
 		if ($article_topics)
 		{
@@ -83,10 +87,8 @@ class main extends AWS_CONTROLLER
 		}
 
 		//wl-add 分类
-		if ($article_info['category_id']) {
-			$article_info['category'] = $this->model('system')->get_category_info($article_info['category_id']);
-			$article_info['category']['link'] = 'article/' . 'category-' . $article_info['category']['id'].'__topic-'.$topic_info['topic_id'];
-		}
+		$article_info['category'] = $category_info;
+		$article_info['category']['link'] = 'article/' . 'category-' . $article_info['category']['id'].'__topic-'.$topic_info['topic_id'];
 		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
 		TPL::assign('topic_info',$topic_info);
 		TPL::assign('article_info', $article_info);
@@ -205,7 +207,7 @@ class main extends AWS_CONTROLLER
 			$topic_id = $_GET['topic'];
 			$topic_info = $this->model('topic')->get_topic_by_id($topic_id);
 			TPL::assign('topic_info',$topic_info);
-			$article_list = $this->model('article')->get_articles_list_by_topic_ids($_GET['page'],get_setting('contents_per_page'), 'add_time DESC',$topic_id,$category_info['id']);
+			$article_list = $this->model('article')->get_articles_list_by_topic_ids($_GET['page'],get_setting('contents_per_page'), 'add_time DESC',$topic_id,$category_info['id'],$category_info['type']);
 
 			$article_list_total = $this->model('article')->found_rows();
 		}

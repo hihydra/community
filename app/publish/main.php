@@ -112,6 +112,10 @@ class main extends AWS_CONTROLLER
 
 		TPL::assign('recent_topics', @unserialize($this->user_info['recent_topics']));
 
+		//wl-add
+		TPL::assign('focus_topics', $this->model('topic')->get_focus_topic_list($this->user_id, 10));
+		//wl-end
+
 		TPL::output('publish/index');
 	}
 
@@ -184,6 +188,10 @@ class main extends AWS_CONTROLLER
 		}
 
 		TPL::assign('recent_topics', @unserialize($this->user_info['recent_topics']));
+
+		//wl-add
+		TPL::assign('focus_topics', $this->model('topic')->get_focus_topic_list($this->user_id, 10));
+		//wl-end
 
 		TPL::assign('article_info', $article_info);
 
@@ -261,6 +269,10 @@ class main extends AWS_CONTROLLER
 		TPL::assign('recent_topics', @unserialize($this->user_info['recent_topics']));
 
 		TPL::assign('article_info', $article_info);
+
+		//wl-add
+		TPL::assign('focus_topics', $this->model('topic')->get_focus_topic_list($this->user_id, 10));
+		//wl-end
 
 		TPL::output('publish/resource');
 	}

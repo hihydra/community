@@ -644,7 +644,14 @@ class ajax extends AWS_CONTROLLER
         {
             H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请填写正确的验证码')));
         }
-
+        //wl-add
+        if ($_POST['type'])
+        {
+            $type = $_POST['type'];
+        }else{
+            $type = 'article';
+        }
+        //wl-end
         if ($_POST['topics'])
         {
             foreach ($_POST['topics'] AS $key => $topic_title)
@@ -668,7 +675,7 @@ class ajax extends AWS_CONTROLLER
         }
         if (get_setting('new_question_force_add_topic') == 'Y' AND !$_POST['topics'])
         {
-            H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请为文章添加共同体')));
+            H::ajax_json_output(AWS_APP::RSM(null, '-1', AWS_APP::lang()->_t('请添加共同体')));
         }
 
         // !注: 来路检测后面不能再放报错提示
@@ -698,7 +705,7 @@ class ajax extends AWS_CONTROLLER
         }
         else
         {
-            $article_id = $this->model('publish')->publish_article($_POST['title'], $_POST['message'], $this->user_id, $_POST['topics'], $_POST['category_id'],$_POST['icon'],$_POST['attach_access_key'], $this->user_info['permission']['create_topic']);
+            $article_id = $this->model('publish')->publish_article($_POST['title'], $_POST['message'], $this->user_id, $_POST['topics'], $_POST['category_id'],$_POST['icon'],$_POST['attach_access_key'], $this->user_info['permission']['create_topic'],$type);
 
             if ($_POST['_is_mobile'])
             {

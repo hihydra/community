@@ -131,7 +131,7 @@ class article_class extends AWS_MODEL
 
 		$this->delete('article_comments', "article_id = " . intval($article_id)); // 删除关联的回复内容
 
-		$this->delete('topic_relation', "`type` = 'article' AND item_id = " . intval($article_id));		// 删除共同体关联
+		$this->delete('topic_relation', "`type` in ('article','resource') AND item_id = " . intval($article_id));		// 删除共同体关联
 
 		ACTION_LOG::delete_action_history('associate_type = ' . ACTION_LOG::CATEGORY_QUESTION . ' AND associate_action IN(' . ACTION_LOG::ADD_ARTICLE . ', ' . ACTION_LOG::ADD_AGREE_ARTICLE . ', ' . ACTION_LOG::ADD_COMMENT_ARTICLE . ') AND associate_id = ' . intval($article_id));	// 删除动作
 
@@ -242,7 +242,7 @@ class article_class extends AWS_MODEL
 		return $this->fetch_page('article', implode(' AND ', $where), $order_by, $page, $per_page);
 	}
 
-	public function get_articles_list_by_topic_ids($page, $per_page, $order_by, $topic_ids,$category_id)
+	public function get_articles_list_by_topic_ids($page, $per_page, $order_by, $topic_ids,$category_id,$type = 'article')
 	{
 		if (!$topic_ids)
 		{
@@ -270,7 +270,7 @@ class article_class extends AWS_MODEL
 		if (!$result = AWS_APP::cache()->get($result_cache_key) OR $found_rows = AWS_APP::cache()->get($found_rows_cache_key))
 		{
 			$topic_relation_where[] = '`topic_id` IN(' . implode(',', $topic_ids) . ')';
-			$topic_relation_where[] = "`type` = 'article'";
+			$topic_relation_where[] = "`type` = '".$type."'";
 
 			if ($topic_relation_query = $this->query_all("SELECT item_id FROM " . get_table('topic_relation') . " WHERE " . implode(' AND ', $topic_relation_where)))
 			{

@@ -310,7 +310,7 @@ background-color:white; background-image:url(../images/topmenu2014.png); }
 .tea_crumbs a { color:#888; }
 
 /*大标题*/
-.tea_headline { line-height:36px; height:36px; font-size:16px; font-family:'Microsoft Yahei';  border-bottom:1px solid #d0d0d0; margin:5px 0 15px; position:relative; }
+.tea_headline { line-height:36px; height:45px; font-size:16px; font-family:'Microsoft Yahei';  border-bottom:1px solid #d0d0d0; margin:5px 0 15px; position:relative; }
 .tea_headline a { color:#555; font-size:12px; margin-right:20px; float:right; }
 .tea_headline span { background:url(../images/notice_ico.png) no-repeat 0 -16px; text-indent:22px; float:left; }
 .tea_headline_no { border-bottom:none; margin-bottom:5px; margin-top:10px; }
@@ -460,3 +460,15 @@ a{ color:#b6a286;}
 /*top S*/
 .m_topHeader{    background: #b6a286;}
 /*top E*/
+
+/* 文章问题搜索 */
+#search_question{height: 30px;}
+#search_question .search-box .aw-search-bar{position: absolute;width:725px;}
+#search_question .search-box .aw-search-bar input{height: 32px;padding-right: 30px !important;}
+#search_question .search-box .aw-search-bar .icon-search{position: absolute;right: 8px;top: 8px;font-size: 16px;}
+#search_question .search-box .aw-search-bar .aw-dropdown-list{max-height: 336px;overflow-y:scroll;}
+
+/* 用户搜索 */
+#search_user .aw-search-bar{width:150px;}
+#search_user .aw-search-bar .aw-dropdown-list {width:150px;}
+#search_user .aw-search-bar .aw-dropdown-list li{float: left;}

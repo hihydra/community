@@ -18,6 +18,7 @@
                <span></span> <em></em>
              </li>
              <li><span>成员数</span> <em><a><?php echo $this->topic_info['focus_count']; ?></a></em></li>
+             <li><span>资源数</span> <em><a><?php echo $this->topic_info['resource_count']; ?></a></em></li>
              <li class="last"><span>文章数</span> <em><a><?php echo $this->topic_info['discuss_count']?></a></em></li>
            </ul>
            <?php if ($this->user_id) { ?>
@@ -35,7 +36,7 @@
       <div class="tea_module tea_member">
         <div class="tea_title clearfix">
          <h3>共同体成员</h3>
-         <a href="http://www.wuhaneduyun.cn/index.php?r=studio/member/index&amp;sid=343" class="fr more" target="_blank">更多</a>
+         <a href="member/topic-<?php echo $this->topic_info['topic_id']; ?>" class="fr more" target="_blank">更多</a>
        </div>
        <div class="details">
          <ul class="member_list clearfix">
@@ -125,47 +126,41 @@
             <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 15, 'UTF-8', '... &nbsp;'); ?></a></li>
             <?php } ?>
           </ul>
-        </ul>
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
-    <div class="tea_title clearfix">
-     <?php $article = $this->posts_list['1'];?>
-     <h3><?php echo $article['title']; ?></h3>
-     <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
+    <div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
+      <div class="tea_title clearfix">
+       <?php $article = $this->posts_list['1'];?>
+       <h3><?php echo '公告'; ?></h3>
+       <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
+     </div>
+     <div class="details clearfix">
+       <ul class="list">
+         <?php foreach ($article['article'] as $key => $val) {?>
+         <?php if($key == 6){ break;}?>
+         <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 10, 'UTF-8', '... &nbsp;'); ?></a><span><?php echo date_friendly($val['add_time'], 604800, 'Y-m-d'); ?></span></li>
+         <?php } ?>
+       </ul>
+     </div>
    </div>
-   <div class="details clearfix">
-     <ul class="list">
-       <?php foreach ($article['article'] as $key => $val) {?>
-       <?php if($key == 6){ break;}?>
-       <li class="clearfix"><a href="article/<?php echo $val['id']; ?>" title="<?php echo $val['title']; ?>" target="_blank"><?php echo cjk_substr($val['title'], 0, 10, 'UTF-8', '... &nbsp;'); ?></a><span><?php echo date_friendly($val['add_time'], 604800, 'Y-m-d'); ?></span></li>
-       <?php } ?>
-     </ul>
-   </div>
+
  </div>
-
-</div>
 </div>
 </div>
 
-
-<div class="groupItem" id="Search" style="z-index: 95;">
+<div class="groupItem" id="search_question" style="z-index: 95;">
   <div class="itemContent">
     <div class="search-box clearfix app">
-      <form method="get" id="searchform" action="http://www.wuhaneduyun.cn/index.php?r=studio/index/index&amp;sid=343">
-        <div class="txt-l fl">
-          <div class="txt fl">
-            <input id="key_words" name="key_words" type="text" class="s-txt" value="" placeholder=" 请输入搜索内容">
-            <input id="searchtype" name="type" type="hidden" value="post">
-          </div>
+      <div class="aw-search-bar">
+        <input type="text" id="question-input" class="search-query form-control" placeholder="搜索...">
+        <div class="aw-dropdown">
+          <p class="title"><?php _e('没有找到相关结果'); ?></p>
+          <ul class="aw-dropdown-list"></ul>
         </div>
-        <div class="btn fl">
-          <input type="submit" value="搜索" class="s-btn">
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
@@ -175,7 +170,7 @@
     <div class="tea_module tea_subject">
       <div class="tea_title clearfix">
         <?php $article = $this->posts_list['1'];?>
-        <h3><?php echo $article['title']; ?></h3>
+        <h3><?php echo '项目研究'; ?></h3>
         <a href="<?php echo $article['link']  ?>" target="_blank" class="fr more">更多</a>
       </div>
       <div class="details clearfix">
@@ -203,7 +198,7 @@
     <div class="tea_module tea_fruits">
      <div class="tea_title clearfix">
        <?php $article = $this->posts_list['1'];?>
-       <h3><?php echo $article['title']; ?></h3>
+       <h3><?php echo '资源成果'; ?></h3>
        <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
      </div>
      <div class="details clearfix">
@@ -225,7 +220,7 @@
     <div class="tea_module tea_resource">
       <div class="tea_title clearfix">
         <?php $article = $this->posts_list['1'];?>
-        <h3><?php echo $article['title']; ?></h3>
+        <h3><?php echo '专家导教'; ?></h3>
         <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
       </div>
       <div class="details clearfix">

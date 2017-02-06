@@ -428,6 +428,9 @@ class topic_class extends AWS_MODEL
 
 		$this->update('topic', array(
 			'discuss_count' => $this->count('topic_relation', 'topic_id = ' . intval($topic_id) .' AND type = \'article\''),
+			//wl-add
+			'resource_count' => $this->count('topic_relation', 'topic_id = ' . intval($topic_id) .' AND type = \'resource\''),
+			//wl-end
 			'discuss_count_last_week' => $this->count('topic_relation', 'add_time > ' . (time() - 604800) . ' AND topic_id = ' . intval($topic_id).' AND type = \'article\''),
 			'discuss_count_last_month' => $this->count('topic_relation', 'add_time > ' . (time() - 2592000) . ' AND topic_id = ' . intval($topic_id).' AND type = \'article\''),
 			'discuss_count_update' => intval($this->fetch_one('topic_relation', 'add_time', 'topic_id = ' . intval($topic_id), 'add_time DESC'))
@@ -592,7 +595,40 @@ class topic_class extends AWS_MODEL
 
 		return $user_list;
 	}
+	//wl-add
+	public function get_focus_users_page_by_topic($topic_id,$page,$per_page){
+		$user_list = array();
 
+		$uids = $this->fetch_page('topic_focus', 'topic_id =' . intval($topic_id),'add_time ASC', $page, $per_page);
+
+		if ($uids)
+		{
+			$user_list_query = $this->model('account')->get_user_info_by_uids(fetch_array_value($uids, 'uid'));
+
+			if ($user_list_query)
+			{
+				foreach ($user_list_query AS $user_info)
+				{
+					$user_list[$user_info['uid']]['uid'] = $user_info['uid'];
+
+					$user_list[$user_info['uid']]['sex'] = $user_info['sex'];
+
+					$user_list[$user_info['uid']]['user_name'] = $user_info['user_name'];
+
+					$user_list[$user_info['uid']]['signature'] = $user_info['signature'];
+
+					$user_list[$user_info['uid']]['avatar_file'] = get_avatar_url($user_info['uid'], 'mid');
+
+					$user_list[$user_info['uid']]['url'] = get_js_url('/people/' . $user_info['url_token']);
+				}
+			}
+		}
+
+		$this->focus_users_total = $this->found_rows();
+
+		return $user_list;
+	}
+	//wl-end
 	public function get_item_ids_by_topics_id($topic_id, $type = null, $limit = null)
 	{
 		return $this->get_item_ids_by_topics_ids(array(

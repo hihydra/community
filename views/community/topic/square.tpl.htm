@@ -15,7 +15,7 @@
                         <?php if ($_GET['channel'] == 'focus') { ?>
                         <h2 class="hidden-xs"><i class="icon icon-topic"></i> <?php _e('我关注的共同体'); ?></h2>
                         <?php } else { ?>
-                        <h2 class="hidden-xs"><i class="icon icon-topic"></i> <?php _e('热门共同体'); ?></h2>
+                        <h2 class="hidden-xs"><i class="icon icon-topic"></i> <?php _e('共同体'); ?></h2>
                         <?php } ?>
                     </ul>
                     <!-- end tab切换 -->
@@ -76,31 +76,6 @@
                 </div>
                 <!-- 侧边栏 -->
                 <div class="col-sm-3 col-md-3 aw-side-bar hidden-sm hidden-xs">
-                    <!-- 今日共同体 -->
-                    <div class="aw-mod topic-daily hidden-xs">
-                        <div class="mod-head">
-                            <h3><?php _e('今日共同体'); ?></h3>
-                        </div>
-                        <div class="mod-body">
-                            <dl>
-                                <dt class="pull-left">
-                                    <!-- 共同体图片 -->
-                                    <a data-id="<?php echo $this->today_topic['topic_id']; ?>" class="img aw-border-radius-5" href="topic/<?php echo $this->today_topic['url_token']; ?>">
-                                        <img src="<?php echo get_topic_pic_url('mid', $this->today_topic['topic_pic']); ?>" alt="<?php echo $this->today_topic['topic_title']; ?>" />
-                                    </a>
-                                    <!-- end 共同体图片 -->
-                                </dt>
-                                <dd class="pull-left">
-                                    <?php echo $this->today_topic['topic_title']; ?>
-                                </dd>
-                            </dl>
-                            <!-- 共同体描述 -->
-                            <p>
-                                <span><?php echo nl2br($this->today_topic['topic_description']); ?></span>...<a href="topic/<?php echo $this->today_topic['url_token']; ?>"><?php _e('进入共同体'); ?> »</a></p>
-                            <!-- end 共同体描述 -->
-                        </div>
-                    </div>
-                    <!-- end 今日共同体 -->
                     <!-- 新增共同体 -->
                     <div class="aw-mod new-topic">
                         <div class="mod-head">

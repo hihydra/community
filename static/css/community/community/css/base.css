@@ -401,7 +401,7 @@ html body .tea_redtig2 { background:url(../../../images/teacherSky_3.5/front/tas
 .tea_noticelist3 .content .first .title { width:445px;  display:inline-block;}
 .tea_noticelist2 .content .first .user { width:60px; }
 .tea_noticelist2 .content .firstDiv .user { width:50px; }
-.tea_noticelist2 .content .first .date { width:95px; }
+.tea_noticelist2 .content .first .date { width:115px; }
 .tea_noticelist2 .content .firstDiv .date { width:75px;}
 .tea_noticelist2 .content .first .user { width:60px; padding-left:10px; }
 .tea_noticelist2 .content .first .download { color:#555; display:inline-block; width:110px; background:url(../../../images/teacherSky_3.5/front/style1/download_ico.png) no-repeat right 0;}
@@ -486,7 +486,7 @@ html body .tea_redtig2 { background:url(../../../images/teacherSky_3.5/front/tas
 .tea_member2 { background:white; }
 .tea_member2 .tea_headline span { background-position:0 -52px;}
 .tea_member2 .list { padding:5px 0 20px 20px;}
-.tea_member2 .list li { float:left; margin:0 20px 20px 0; width:194px; height:140px; padding:9px; border:1px solid #e6e6e6; position:relative; }
+.tea_member2 .list li { float:left; margin:0 20px 20px 0; width:210px; height:140px; padding:9px; border:1px solid #e6e6e6; position:relative; }
 .tea_member2 .list li .head_wrap img { float:left; width:97px; height:97px;  }
 .tea_member2 .list li dl { float:left; padding-left:13px; line-height:24px;}
 .tea_member2 .list li dt { padding-bottom:4px;}

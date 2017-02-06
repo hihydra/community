@@ -101,14 +101,14 @@
 										</span>
 									</div>
 								</div>
-								<?php if ($this->recent_topics) { ?>
-								<h3><?php _e('最近共同体'); ?>:</h3>
+								<?php if ($this->focus_topics) { ?>
+								<h3><?php _e('加入的共同体'); ?>:</h3>
 								<div class="aw-topic-bar">
 									<div class="topic-bar clearfix">
-										<?php foreach($this->recent_topics as $key => $val) { ?>
-										<span class="topic-tag" onclick="$('#aw_edit_topic_title').val('<?php echo $val; ?>');$('.add').click();$(this).hide();">
+										<?php foreach($this->focus_topics as $key => $val) { ?>
+										<span class="topic-tag" onclick="$('#aw_edit_topic_title').val('<?php echo $val['topic_title']; ?>');$('.add').click();$(this).hide();">
 											<a class="text">
-												<?php echo $val; ?>
+												<?php echo $val['topic_title']; ?>
 											</a>
 										</span>
 										<?php } ?>

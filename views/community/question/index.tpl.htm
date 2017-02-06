@@ -58,7 +58,9 @@
 
 							<?php if ($this->user_id) { ?>
 							<div class="operate clearfix">
+								<!--
 								<a href="javascript:;" onclick="AWS.User.follow($(this), 'question', <?php echo $this->question_info['question_id']; ?>);" class="follow btn btn-normal btn-success pull-left <?php if ($this->question_focus) { ?> active<?php } ?>"><span><?php if ($this->question_focus) { ?><?php _e('取消关注'); ?><?php } else { ?><?php _e('关注'); ?><?php } ?></span> <em>|</em> <b><?php echo $this->question_info['focus_count']?></b></a>
+								-->
 								<!-- 下拉菜单 -->
 								<div class="btn-group pull-left">
 									<a class="btn btn-gray dropdown-toggle" data-toggle="dropdown" href="javascript:;">...</a>
