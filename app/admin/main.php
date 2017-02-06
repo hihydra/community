@@ -128,7 +128,7 @@ class main extends AWS_ADMIN_CONTROLLER
 
         TPL::assign('nav_menu_list', $this->model('menu')->get_nav_menu_list());
 
-        TPL::assign('category_list', $this->model('system')->build_category_html('question', 0, 0, null, true));
+        TPL::assign('category_list', $this->model('system')->build_category_html('', 0, 0, null, true));
 
         TPL::assign('setting', get_setting());
 
