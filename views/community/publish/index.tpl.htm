@@ -15,7 +15,9 @@
 						<?php } ?>
 						<?php if ($this->user_info['permission']['publish_article']) { ?>
 						<li><a href="publish/article/"><?php _e('文章'); ?></a></li>
+						<?php if (get_setting('resource_enabled') == 'Y' ) { ?>
 						<li><a href="publish/resource/"><?php _e('资源'); ?></a></li>
+						<?php } ?>
 						<?php } ?>
 						<li class="active"><a href="publish/"><?php _e('问题'); ?></a></li>
 						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('发起'); ?></h2>

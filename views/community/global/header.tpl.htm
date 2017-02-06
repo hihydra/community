@@ -126,6 +126,7 @@
 						</li>
 
 						<?php if ($this->user_info['permission']['publish_article']) { ?>
+						<?php if (get_setting('resource_enabled') == 'Y' ) { ?>
 						<li>
 							<form method="post" action="publish/resource/">
 								<?php if ($this->topic_info['topic_title']) { ?>
@@ -134,6 +135,7 @@
 								<a onclick="$(this).parents('form').submit();"><?php _e('资源'); ?></a>
 							</form>
 						</li>
+						<?php } ?>
 						<li>
 							<form method="post" action="publish/article/">
 								<?php if ($this->topic_info['topic_title']) { ?>

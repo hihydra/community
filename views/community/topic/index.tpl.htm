@@ -18,7 +18,9 @@
                <span></span> <em></em>
              </li>
              <li><span>成员数</span> <em><a><?php echo $this->topic_info['focus_count']; ?></a></em></li>
+             <?php if (get_setting('resource_enabled') == 'Y' ) { ?>
              <li><span>资源数</span> <em><a><?php echo $this->topic_info['resource_count']; ?></a></em></li>
+             <?php } ?>
              <li class="last"><span>文章数</span> <em><a><?php echo $this->topic_info['discuss_count']?></a></em></li>
            </ul>
            <?php if ($this->user_id) { ?>
