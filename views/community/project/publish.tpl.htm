@@ -29,7 +29,7 @@
                                         <dd>
                                             <?php if ($this->project_category_list) { ?>
                                             <select name="category_id" id="category_id" class="project-sort">
-                                                <option value="15">-
+                                                <option value="0">-
                                                     <?php _e('请选择分类'); ?> -</option>
                                                 <?php echo $this->project_category_list; ?>
                                             </select>
@@ -645,6 +645,8 @@ $(function() {
         var pathString = ";path=/";
         document.cookie = name + "=" + escape(value) + expString + pathString;
     }
+
+    $("#category_id option:last").attr("selected", 'selected');
 
 });
 </script>

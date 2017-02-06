@@ -126,6 +126,14 @@
 						</li>
 
 						<?php if ($this->user_info['permission']['publish_article']) { ?>
+						<li>
+							<form method="post" action="publish/article/">
+								<?php if ($this->topic_info['topic_title']) { ?>
+								<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
+								<?php } ?>
+								<a onclick="$(this).parents('form').submit();"><?php _e('文章'); ?></a>
+							</form>
+						</li>
 						<?php if (get_setting('resource_enabled') == 'Y' ) { ?>
 						<li>
 							<form method="post" action="publish/resource/">
@@ -136,14 +144,6 @@
 							</form>
 						</li>
 						<?php } ?>
-						<li>
-							<form method="post" action="publish/article/">
-								<?php if ($this->topic_info['topic_title']) { ?>
-								<input type="hidden" value="<?php echo $this->topic_info['topic_title']; ?>" name="topics[]" />
-								<?php } ?>
-								<a onclick="$(this).parents('form').submit();"><?php _e('文章'); ?></a>
-							</form>
-						</li>
 						<?php } ?>
 						<?php if (check_extension_package('ticket') && get_setting('ticket_enabled') == 'Y' && $this->user_info['permission']['publish_ticket']) { ?>
 						<li><a href="ticket/publish/"><?php _e('工单'); ?></a></li>

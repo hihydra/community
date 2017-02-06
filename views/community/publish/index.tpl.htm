@@ -14,10 +14,10 @@
 						<li><a href="ticket/publish/"><?php _e('工单'); ?></a></li>
 						<?php } ?>
 						<?php if ($this->user_info['permission']['publish_article']) { ?>
-						<li><a href="publish/article/"><?php _e('文章'); ?></a></li>
 						<?php if (get_setting('resource_enabled') == 'Y' ) { ?>
 						<li><a href="publish/resource/"><?php _e('资源'); ?></a></li>
 						<?php } ?>
+						<li><a href="publish/article/"><?php _e('文章'); ?></a></li>
 						<?php } ?>
 						<li class="active"><a href="publish/"><?php _e('问题'); ?></a></li>
 						<h2 class="hidden-xs"><i class="icon icon-ask"></i> <?php _e('发起'); ?></h2>
@@ -173,6 +173,7 @@
 	var ATTACH_ACCESS_KEY = '<?php echo $this->attach_access_key; ?>';
 	var CATEGORY_ID = <?php echo $this->question_info['category_id']; ?>;
 	var PUBLISH_TYPE = 'question';
+	$("#category_id option:last").attr("selected", 'selected');
 </script>
 
 <?php TPL::output('global/footer.tpl.htm'); ?>
