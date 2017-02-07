@@ -1,7 +1,7 @@
 ﻿@charset "utf-8";
 /* public style 20141204 */
 /*reset*/
-body{color:#555;font-size:12px;line-height:1.8em;font-family:"微软雅黑",Tahoma,Helvetica;}
+body{color:#555;font-size:12.5px;line-height:1.8em;font-family:"微软雅黑",Tahoma,Helvetica;}
 body,form,ul,ol,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,table,fieldset,div,tr,td{margin:0; padding:0;}
 img{border:0; vertical-align:middle;}
 em,i{font-style:normal;}

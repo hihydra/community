@@ -263,9 +263,9 @@ class article_class extends AWS_MODEL
 		//wl-end
 		array_walk_recursive($topic_ids, 'intval_string');
 
-		$result_cache_key = 'article_list_by_topic_ids_' . md5(implode('_', $topic_ids) . $order_by . $page . $per_page);
+		$result_cache_key = 'article_list_by_topic_ids_' . md5(implode('_', $topic_ids).$category_id . $order_by . $page . $per_page);
 
-		$found_rows_cache_key = 'article_list_by_topic_ids_found_rows_' . md5(implode('_', $topic_ids) . $order_by . $page . $per_page);
+		$found_rows_cache_key = 'article_list_by_topic_ids_found_rows_' . md5(implode('_', $topic_ids).$category_id . $order_by . $page . $per_page);
 
 		if (!$result = AWS_APP::cache()->get($result_cache_key) OR $found_rows = AWS_APP::cache()->get($found_rows_cache_key))
 		{
@@ -516,9 +516,4 @@ class article_class extends AWS_MODEL
 		$this->model('posts')->set_posts_index($article_id, 'article');
 	}
 
-	//wl-add
-	public function get_articles_list_by_topic_category_id($topic_id,$category_id,$type,$limit){
-		return $articles_list =  $this->query_all('SELECT b.* FROM aws_topic_relation a LEFT JOIN aws_article b ON a.item_id = b.id WHERE a.topic_id = '.$topic_id.' and a.type = \''.$type.'\' and b.category_id = '.$category_id.' ORDER BY b.add_time DESC',$limit);
-	}
-	//wl-end
 }

@@ -360,6 +360,28 @@ class main extends AWS_CONTROLLER
 		TPL::output('topic/square');
 	}
 
+	//wl-add
+	public function intro_action()
+	{
+		if (! $topic_info = $this->model('topic')->get_topic_by_id($_GET['id']))
+		{
+			H::redirect_msg(AWS_APP::lang()->_t('共同体不存在'), '/');
+		}
+
+		$topic_info['topic_description'] = FORMAT::parse_attachs(nl2br(FORMAT::parse_bbcode($topic_info['topic_description'])));
+
+		TPL::assign('topic_info',$topic_info);
+
+		TPL::assign('content_nav_menu', $this->model('menu')->get_nav_menu_list());
+
+		$posts_list = $this->model('posts')->get_category_article($topic_info['topic_id']);
+
+		TPL::assign('posts_list',$posts_list);
+
+		TPL::output('topic/intro');
+	}
+	//wl-end
+
 	public function edit_action()
 	{
 		if (! $topic_info = $this->model('topic')->get_topic_by_id($_GET['id']))

@@ -1,0 +1,31 @@
+<?php TPL::output('global/header_community.tpl.htm'); ?>
+<div class="w960 tea_main clearfix">
+  <div class="tea_crumbs">
+   <a href="topic/<?php echo $this->topic_info['topic_title']; ?>">首页</a> &gt; 共同体简介
+ </div>
+
+ <div class="tea_brief2">
+  <div class="tea_headline clearfix">
+    <span>共同体简介</span>
+  </div>
+
+  <div class="clearfix first">
+    <div class="tLeft">
+      <div class="head_wrap clearfix">
+        <img src="<?php echo get_topic_pic_url('mid', $this->topic_info['topic_pic']); ?>">
+      </div>
+      <ul class="mgt10">
+      <li>名称: <span class="tea_color"><?php echo $this->topic_info['topic_title']; ?></span></li>
+      </ul>
+      <div class="btn">
+      </div>
+    </div>
+
+    <div class="tRight">
+      <p><?php echo $this->topic_info['topic_description']; ?></p>
+    </div>
+  </div>
+
+</div>
+</div>
+<?php TPL::output('global/footer_community.tpl.htm'); ?>

@@ -511,12 +511,12 @@ class posts_class extends AWS_MODEL
 
 		return $recommend_posts;
 	}
-
+	//wl-add
 	public function get_category_article($topic_id){
-		$category_list =  $this->fetch_all('category');
+		$category_list =  $this->fetch_all('category','`parent_id` = 0');
 		foreach ($category_list as &$value) {
 			$value['link'] = 'article/category-'.$value['id'].'__topic-'.$topic_id;
-			$value['article'] = $this->model('article')->get_articles_list_by_topic_category_id($topic_id,$value['id'],$value['type'],10);
+			$value['article'] = $this->model('article')->get_articles_list_by_topic_ids('',get_setting('contents_per_page'), 'add_time DESC',array($topic_id),$value['id'],$value['type']);
 			foreach ($value['article'] as &$val) {
 				if ($val['icon'])
 				{
@@ -529,6 +529,23 @@ class posts_class extends AWS_MODEL
 				$val['user'] = $this->model('account')->get_user_info_by_uid($val['uid']);
 			}
 		}
-		return $category_list;
+		return $this->index($category_list,id);
 	}
+
+	public function index (array $array, $name)
+    {
+        $indexedArray = array();
+        if (empty($array)) {
+            return $indexedArray;
+        }
+
+        foreach ($array as $item) {
+            if (isset($item[$name])) {
+                $indexedArray[$item[$name]] = $item;
+                continue;
+            }
+        }
+        return $indexedArray;
+    }
+    //wl-end
 }

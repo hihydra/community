@@ -7,7 +7,7 @@
         <div class="tea_module tea_brief">
           <div class="tea_title clearfix">
             <h3>共同体简介</h3>
-            <a href="http://www.wuhaneduyun.cn/index.php?r=studio/intro/index&amp;sid=343" class="fr more" target="_blank">详情</a>
+            <a href="topic/intro/<?php echo $this->topic_info['topic_id']; ?>" class="fr more">详情</a>
           </div>
           <div class="details">
             <div class="head_wrap">
@@ -90,7 +90,7 @@
       <div class="clearfix">
        <div class="tea_module tea_news" id="tea_news">
         <div class="tea_title clearfix">
-         <?php $article = $this->posts_list['1'];?>
+         <?php $article = $this->posts_list['2'];?>
          <h3><?php echo $article['title']; ?></h3>
          <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
        </div>
@@ -135,8 +135,8 @@
 
     <div id="tea_notice" class="tea_module tea_news tea_notice" style="min-height:217px;">
       <div class="tea_title clearfix">
-       <?php $article = $this->posts_list['1'];?>
-       <h3><?php echo '公告'; ?></h3>
+       <?php $article = $this->posts_list['7'];?>
+       <h3><?php echo $article['title']; ?></h3>
        <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
      </div>
      <div class="details clearfix">
@@ -171,8 +171,8 @@
   <div class="itemContent">
     <div class="tea_module tea_subject">
       <div class="tea_title clearfix">
-        <?php $article = $this->posts_list['1'];?>
-        <h3><?php echo '项目研究'; ?></h3>
+        <?php $article = $this->posts_list['8'];?>
+        <h3><?php echo $article['title']; ?></h3>
         <a href="<?php echo $article['link']  ?>" target="_blank" class="fr more">更多</a>
       </div>
       <div class="details clearfix">
@@ -199,8 +199,8 @@
   <div class="itemContent">
     <div class="tea_module tea_fruits">
      <div class="tea_title clearfix">
-       <?php $article = $this->posts_list['1'];?>
-       <h3><?php echo '资源成果'; ?></h3>
+       <?php $article = $this->posts_list['12'];?>
+       <h3><?php echo $article['title']; ?></h3>
        <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
      </div>
      <div class="details clearfix">
@@ -221,8 +221,8 @@
   <div class="itemContent"> <!--widget接口调用耗时：0.0026-->
     <div class="tea_module tea_resource">
       <div class="tea_title clearfix">
-        <?php $article = $this->posts_list['1'];?>
-        <h3><?php echo '专家导教'; ?></h3>
+        <?php $article = $this->posts_list['13'];?>
+        <h3><?php echo $article['title']; ?></h3>
         <a href="<?php echo $article['link']  ?>" class="fr more" target="_blank">更多</a>
       </div>
       <div class="details clearfix">
