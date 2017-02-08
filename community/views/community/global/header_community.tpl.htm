@@ -19,7 +19,7 @@
 
   <div class="tea_spModular_nav">
     <ul class="clearfix nav">
-      <li><a href="topic/<?php echo $this->topic_info['topic_title']; ?>" class="stair">首页</a></li>
+      <li><a href="topic/<?php echo $this->topic_info['url_token']; ?>" class="stair">首页</a></li>
       <?php foreach ($this->content_nav_menu as $key => $val) { ?>
       <?php if ($val['title']) { ?>
       <?php if(!empty($this->topic_info['topic_id'])){$val['link'] .='__topic-'.$this->topic_info['topic_id'];}?>

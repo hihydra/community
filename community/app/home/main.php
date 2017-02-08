@@ -50,6 +50,7 @@ class main extends AWS_CONTROLLER
 
 	public function index_action()
 	{
+
 		if (! $this->user_id)
 		{
 			HTTP::redirect('/explore/');
@@ -81,6 +82,7 @@ class main extends AWS_CONTROLLER
 		TPL::import_js('js/app/index.js');
 
 		TPL::output('home/index');
+
 	}
 
 	public function explore_action()

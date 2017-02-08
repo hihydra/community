@@ -28,6 +28,7 @@ class main extends AWS_CONTROLLER
 		{
 			$rule_action['actions'][] = 'square';
 			$rule_action['actions'][] = 'index';
+			$rule_action['actions'][] = 'intro';
 		}
 
 		return $rule_action;

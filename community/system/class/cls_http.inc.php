@@ -91,7 +91,6 @@ class HTTP
 		{
 			$url = get_js_url($url);
 		}
-
 		return $url;
 	}
 
@@ -379,7 +378,7 @@ class HTTP
 		{
 			$headers = array_merge($header, $headers);
 		}
-		
+
 		$options = array(
 			'useragent' => $user_agent,
 			'timeout' => $timeout,
